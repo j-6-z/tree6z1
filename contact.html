@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
     <title>Contact | tree6z</title>
 
     <!-- Open Graph -->
@@ -42,7 +42,8 @@
 
     <style>
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        body{font-family:'Inter',sans-serif;background:#000;color:#fff;line-height:1.6;overflow-x:hidden}
+        html{overflow-x:hidden}
+        body{font-family:'Inter',sans-serif;background:#000;color:#fff;line-height:1.6;overflow-x:hidden;min-height:100dvh}
         a{color:inherit;text-decoration:none}
         img{max-width:100%;display:block}
         h1,h2,h3{font-weight:900;letter-spacing:-.02em}
@@ -51,13 +52,13 @@
         /* DARK OVERLAY */
         .menu-overlay{
             position:fixed;top:0;left:0;width:100%;height:100dvh;
-            background:rgba(0,0,0,0.78);backdrop-filter:blur(10px);
+            background:rgba(0,0,0,0.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
             opacity:0;visibility:hidden;z-index:1001;
             transition:all .35s ease;
         }
         .menu-overlay.active{opacity:1;visibility:visible}
 
-        /* CENTERED SEXY NAVBAR - MATCHING INDEX */
+        /* NAVBAR */
         nav{
             position:fixed;top:0;left:50%;transform:translateX(-50%);
             width:100%;max-width:1400px;padding:1.8rem 1.5rem;
@@ -66,7 +67,7 @@
         }
         nav.scrolled{
             padding:1rem 1.5rem;background:rgba(0,0,0,.96);
-            backdrop-filter:blur(20px);border-radius:0 0 26px 26px;
+            backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:0 0 26px 26px;
             box-shadow:0 12px 40px rgba(0,0,0,.7);
         }
         .nav-inner{
@@ -78,28 +79,34 @@
             cursor:pointer;padding:16px;border-radius:50%;
             background:rgba(255,255,255,.1);transition:all .3s;
             position:relative;z-index:1004;border:none;
+            -webkit-tap-highlight-color:transparent;
+            touch-action:manipulation;
+            min-width:56px;min-height:56px;
+            display:flex;align-items:center;justify-content:center;flex-direction:column;
         }
         .hamburger:hover{background:rgba(255,255,255,.2)}
         .hamburger span{
             display:block;width:28px;height:3px;background:#fff;
             margin:6px 0;transition:all .3s;border-radius:3px;
+            pointer-events:none;
         }
         .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(10px,10px)}
         .hamburger.active span:nth-child(2){opacity:0}
         .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(9px,-9px)}
 
-        /* SIDEBAR - MATCHING INDEX */
+        /* SIDEBAR */
         .mobile-menu{
             position:fixed;top:0;right:-420px;width:100%;max-width:380px;height:100dvh;
             background:#000;padding:7rem 2rem 3rem;z-index:1002;
             transition:right .5s cubic-bezier(0.77,0,0.18,1);
             box-shadow:-10px 0 50px rgba(0,0,0,.9);border-left:1px solid #222;
-            overflow-y:auto;
+            overflow-y:auto;-webkit-overflow-scrolling:touch;
         }
         .mobile-menu.active{right:0}
         .mobile-menu a{
             display:block;padding:1.5rem 0;font-size:1.5rem;
             font-weight:700;border-bottom:1px solid #111;
+            -webkit-tap-highlight-color:transparent;
         }
         .mobile-menu a:last-child{border:none}
 
@@ -109,51 +116,30 @@
             text-align:center;padding-top:160px;
             background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
                        url('https://images.unsplash.com/photo-1502086223501-09a85ba1a2b7?auto=format&fit=crop&w=2000&q=80') center/cover fixed;
-            position: relative;
-        }
-
-        /* LOGO - GLASSMORPHIC STYLE - MATCHING INDEX */
-        .logo-bubble{
-            width:clamp(160px,40vw,260px);
-            height:clamp(160px,40vw,260px);
-            background:rgba(255,255,255,.03);
-            backdrop-filter:blur(20px);
-            border-radius:24px;
-            margin:0 auto 3rem;
-            overflow:hidden;
-            border:1px solid rgba(255,255,255,.1);
-            box-shadow:0 30px 100px rgba(0,0,0,.8),
-                       0 0 60px rgba(255,255,255,.05),
-                       inset 0 1px 0 rgba(255,255,255,.1);
-            animation:logoFloat 4s ease-in-out infinite;
             position:relative;
         }
+
+        /* LOGO */
+        .logo-bubble{
+            width:clamp(160px,40vw,260px);height:clamp(160px,40vw,260px);
+            background:rgba(255,255,255,.03);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+            border-radius:24px;margin:0 auto 3rem;overflow:hidden;
+            border:1px solid rgba(255,255,255,.1);
+            box-shadow:0 30px 100px rgba(0,0,0,.8),0 0 60px rgba(255,255,255,.05),inset 0 1px 0 rgba(255,255,255,.1);
+            animation:logoFloat 4s ease-in-out infinite;position:relative;
+        }
         .logo-bubble::before{
-            content:'';
-            position:absolute;
-            inset:-2px;
-            background:linear-gradient(135deg, rgba(255,255,255,.1), transparent, rgba(255,255,255,.05));
-            border-radius:24px;
-            z-index:-1;
-            opacity:0;
-            transition:opacity .4s;
+            content:'';position:absolute;inset:-2px;
+            background:linear-gradient(135deg,rgba(255,255,255,.1),transparent,rgba(255,255,255,.05));
+            border-radius:24px;z-index:-1;opacity:0;transition:opacity .4s;
         }
-        .logo-bubble:hover::before{
-            opacity:1;
-        }
+        .logo-bubble:hover::before{opacity:1}
         .logo-img{
-            width:100%;height:100%;object-fit:contain;
-            padding:20px;
-            transition:transform .4s;
-            filter:drop-shadow(0 4px 20px rgba(0,0,0,.3));
+            width:100%;height:100%;object-fit:contain;padding:20px;
+            transition:transform .4s;filter:drop-shadow(0 4px 20px rgba(0,0,0,.3));
         }
-        .logo-bubble:hover .logo-img{
-            transform:scale(1.05);
-        }
-        @keyframes logoFloat{
-            0%,100%{transform:translateY(0) scale(1)}
-            50%{transform:translateY(-15px) scale(1.02)}
-        }
+        .logo-bubble:hover .logo-img{transform:scale(1.05)}
+        @keyframes logoFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-15px) scale(1.02)}}
 
         .hero-content{max-width:900px;padding:0 1rem}
         h1{font-size:clamp(2.8rem,9vw,5.5rem);margin-bottom:.5rem}
@@ -161,53 +147,54 @@
 
         /* SERVICE CONTENT */
         .service-content{padding:6rem 1.5rem}
-        .content-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:1100px;margin:0 auto;}
+        .content-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:1100px;margin:0 auto}
         .service-details h2{font-size:2.6rem;margin-bottom:1.5rem}
         .service-details p{font-size:1.15rem;margin-bottom:1.8rem;opacity:.95;line-height:1.7}
-        .service-details ul{margin:2rem 0;list-style:none;}
-        .service-details li{padding:1rem 0;display:flex;align-items:center;gap:1rem;font-size:1.15rem;opacity:.95;font-weight:500;}
-        .service-details li::before{content:'✓';font-size:1.4rem;color:#fff;}
+        .service-details ul{margin:2rem 0;list-style:none}
+        .service-details li{padding:1rem 0;display:flex;align-items:center;gap:1rem;font-size:1.15rem;opacity:.95;font-weight:500}
+        .service-details li::before{content:'✓';font-size:1.4rem;color:#fff}
 
         /* CONTACT CARD */
-        .contact-card{background:#111;padding:2.8rem 2.2rem;border-radius:16px;box-shadow:0 25px 60px rgba(0,0,0,.5);border:1px solid #222;}
-        .contact-card h3{font-size:1.6rem;text-align:center;margin-bottom:2rem;letter-spacing:-.02em;}
-        .contact-item{display:flex;justify-content:space-between;padding:1rem 0;border-bottom:1px solid #333;font-size:1.1rem;font-weight:500;}
+        .contact-card{background:#111;padding:2.8rem 2.2rem;border-radius:16px;box-shadow:0 25px 60px rgba(0,0,0,.5);border:1px solid #222}
+        .contact-card h3{font-size:1.6rem;text-align:center;margin-bottom:2rem;letter-spacing:-.02em}
+        .contact-item{display:flex;justify-content:space-between;padding:1rem 0;border-bottom:1px solid #333;font-size:1.1rem;font-weight:500}
         .contact-item:last-child{border:none}
         .contact-item strong{font-weight:900;color:#fff}
-        .contact-item a{font-weight:900;color:#fff;transition:all .3s}
+        .contact-item a{font-weight:900;color:#fff;transition:all .3s;-webkit-tap-highlight-color:transparent}
         .contact-item a:hover{color:#ccc}
 
         /* CTA */
-        .cta-service{display:block;margin:2rem auto 0;padding:1.1rem 3rem;border:2px solid #fff;font-weight:900;font-size:1.1rem;letter-spacing:1px;transition:all .4s;border-radius:50px;width:fit-content;text-align:center;}
-        .cta-service:hover{background:#fff;color:#000;transform:scale(1.05);box-shadow:0 15px 35px rgba(255,255,255,.15);}
+        .cta-service{display:block;margin:2rem auto 0;padding:1.1rem 3rem;border:2px solid #fff;font-weight:900;font-size:1.1rem;letter-spacing:1px;transition:all .4s;border-radius:50px;width:fit-content;text-align:center;-webkit-tap-highlight-color:transparent}
+        .cta-service:hover{background:#fff;color:#000;transform:scale(1.05);box-shadow:0 15px 35px rgba(255,255,255,.15)}
 
         /* TRUST GRID */
-        .trust-section{padding:6rem 1.5rem;background:#111;border-radius:16px;margin:6rem auto;max-width:1100px;}
-        .trust-section h2{font-size:2.6rem;text-align:center;margin-bottom:1.8rem;}
-        .trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;}
-        .trust-card{background:#000;padding:2.2rem 1.8rem;border-radius:14px;text-align:center;border:1px solid #222;transition:all .4s;}
+        .trust-section{padding:6rem 1.5rem;background:#111;border-radius:16px;margin:6rem auto;max-width:1100px}
+        .trust-section h2{font-size:2.6rem;text-align:center;margin-bottom:1.8rem}
+        .trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
+        .trust-card{background:#000;padding:2.2rem 1.8rem;border-radius:14px;text-align:center;border:1px solid #222;transition:all .4s}
         .trust-card:hover{transform:translateY(-10px);border-color:#fff;box-shadow:0 20px 40px rgba(255,255,255,.08)}
         .trust-card h3{font-size:1.35rem;margin-bottom:.8rem}
         .trust-card p{font-size:1rem;opacity:.9;line-height:1.5}
 
-        /* CONTACT FORM SECTION */
+        /* CONTACT FORM */
         .contact-form-section{padding:6rem 1.5rem;background:#000;text-align:center}
         .contact-form-section h2{font-size:2.8rem;margin-bottom:1rem}
         .form-subtitle{font-size:1.2rem;opacity:.9;margin-bottom:3rem;font-weight:500}
         .contact-form{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:1.5rem}
         .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-        .contact-form input, .contact-form textarea, .contact-form select{
+        .contact-form input,.contact-form textarea,.contact-form select{
             background:#111;border:2px solid #222;padding:1.3rem;color:#fff;border-radius:12px;
-            font-size:1.05rem;font-family:'Inter',sans-serif;outline:none;transition:all .3s;font-weight:500;
+            font-size:16px;font-family:'Inter',sans-serif;outline:none;transition:all .3s;font-weight:500;
+            -webkit-appearance:none;appearance:none;
         }
-        .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus{
+        .contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{
             background:#1a1a1a;border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.1);
         }
         .contact-form select{cursor:pointer}
         .contact-form select option{background:#111;color:#fff}
         .contact-form textarea{resize:vertical;min-height:140px}
         .form-notice{
-            background:linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            background:linear-gradient(135deg,#ff0000 0%,#cc0000 100%);
             padding:1.5rem;border-radius:12px;text-align:left;
         }
         .form-notice p{font-size:1rem;font-weight:700;margin:0;line-height:1.6}
@@ -215,6 +202,7 @@
             background:#fff;color:#000;font-weight:900;padding:1.4rem;border:none;
             border-radius:12px;cursor:pointer;transition:all .3s;font-size:1.2rem;
             letter-spacing:.5px;text-transform:uppercase;
+            -webkit-tap-highlight-color:transparent;-webkit-appearance:none;
         }
         .contact-form button:hover{background:#ddd;transform:scale(1.02);box-shadow:0 10px 30px rgba(255,255,255,.2)}
 
@@ -228,18 +216,19 @@
         .area-card h3{font-size:1.5rem;margin-bottom:1rem;font-weight:700}
         .area-card p{font-size:1.05rem;opacity:.9;line-height:1.6;font-weight:500}
         .outside-area{font-size:1.15rem;opacity:.95;margin-top:2rem;font-weight:500}
-        .outside-area a{text-decoration:underline;font-weight:700;transition:all .3s}
+        .outside-area a{text-decoration:underline;font-weight:700;transition:all .3s;-webkit-tap-highlight-color:transparent}
         .outside-area a:hover{color:#ddd}
 
-        /* CALL BUBBLE - MATCHING INDEX WITH HIDE CLASS */
+        /* CALL BUBBLE */
         .call-bubble{
             position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:999;
             background:rgba(255,255,255,.12);color:#fff;padding:18px 36px 18px 18px;border-radius:60px;
             font-weight:900;font-size:1.1rem;letter-spacing:.7px;
             box-shadow:0 20px 55px rgba(0,0,0,.35);cursor:pointer;
             animation:float 3s ease-in-out infinite;white-space:nowrap;
-            backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.25);
+            backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.25);
             transition:all .3s;display:flex;align-items:center;
+            -webkit-tap-highlight-color:transparent;
         }
         .call-bubble::before{
             content:'';width:12px;height:12px;background:#fff;border-radius:50%;
@@ -250,62 +239,69 @@
             background:rgba(255,255,255,.22);
             box-shadow:0 25px 65px rgba(0,0,0,.5);
         }
-        .call-bubble.hidden{
-            opacity:0;
-            visibility:hidden;
-            pointer-events:none;
-        }
+        .call-bubble.hidden{opacity:0;visibility:hidden;pointer-events:none}
         @keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-14px)}}
         @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.6);opacity:.8}}
 
-        /* FOOTER - MATCHING INDEX */
+        /* FOOTER */
         footer{background:#000;padding:6rem 0 4rem;border-top:3px solid #222}
         .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:4rem;margin-bottom:5rem}
         .footer-col h3{margin-bottom:1rem;font-size:1.2rem}
         .footer-col p{margin-bottom:0.5rem;opacity:.85}
         .footer-col a{display:block;margin-bottom:0.8rem;opacity:.85;transition:all .3s;font-weight:500}
         .footer-col a:hover{opacity:1;transform:translateX(5px)}
+        .footer-col .social-links a{display:inline-flex;margin-bottom:0}
+        .footer-col .social-links a:hover{transform:translateY(-2px)}
+
+        /* SOCIAL LINKS — matching index */
+        .social-links{display:flex;gap:0.75rem;flex-wrap:wrap}
         .social-link{
-            display:flex;
-            align-items:center;
-            gap:0.5rem;
+            display:inline-flex;align-items:center;gap:0.5rem;
+            padding:0.5rem 1rem;background:#111;border-radius:8px;
+            transition:all .3s ease;font-size:0.85rem;color:#999;
+            letter-spacing:0.02em;-webkit-tap-highlight-color:transparent;
         }
-        .social-icon{
-            width:20px;
-            height:20px;
-            opacity:.85;
-            transition:opacity .3s;
-        }
-        .social-link:hover .social-icon{
-            opacity:1;
-        }
+        .social-link:hover{background:#fff;color:#000;transform:translateY(-2px)}
+        .social-link svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;transition:fill .3s}
+
+        .footer-bottom{text-align:center;padding-top:3rem;border-top:1px solid #222;opacity:.7;font-size:.9rem}
 
         /* RESPONSIVE */
         @media(max-width:768px){
             nav{padding:1.4rem 1rem}
             nav.scrolled{padding:0.9rem 1rem;border-radius:0 0 22px 22px}
             .logo{font-size:1.85rem}
-            .logo-bubble{margin-bottom:2.5rem;border-radius:20px}
-            header{padding-top:140px}
+            .logo-bubble{margin-bottom:2.5rem;border-radius:20px;width:140px;height:140px}
+            header{padding-top:120px;min-height:65dvh}
+            h1{font-size:2.5rem}
+            .tagline{font-size:1.1rem}
             .content-grid{grid-template-columns:1fr;gap:3rem}
             .contact-card{padding:2.2rem 1.8rem}
-            .call-bubble{font-size:1rem;padding:15px 32px 15px 15px;bottom:20px}
-            .call-bubble::before{margin-right:12px}
-            .trust-section h2{font-size:2.2rem}
+            .service-details h2{font-size:2rem}
+            .trust-section{margin:3rem 1rem;padding:3rem 1.5rem}
+            .trust-section h2{font-size:2rem}
             .contact-form-section h2{font-size:2.2rem}
             .location-section h2{font-size:2.2rem}
-            h1{font-size:2.8rem}
-            .tagline{font-size:1.2rem}
-            .hamburger{padding:16px}
             .form-row{grid-template-columns:1fr;gap:1.5rem}
             .service-area-grid{grid-template-columns:1fr;gap:1.5rem}
+            .call-bubble{font-size:1rem;padding:15px 32px 15px 15px;bottom:20px}
+            .call-bubble::before{margin-right:12px}
+            .hamburger{padding:16px}
+            .footer-grid{gap:2.5rem}
         }
 
         @media(max-width:480px){
+            header{padding-top:100px;min-height:60dvh}
+            .logo-bubble{width:120px;height:120px}
+            h1{font-size:2.2rem}
+            .service-details h2{font-size:1.7rem}
+            .contact-card{padding:1.8rem 1.4rem}
+            .contact-item{flex-direction:column;gap:0.3rem}
             .call-bubble{padding:12px 28px 12px 12px;font-size:0.9rem;bottom:16px}
             .call-bubble::before{width:10px;height:10px;margin-right:10px}
             .contact-form-section h2{font-size:2rem}
             .location-section h2{font-size:2rem}
+            .trust-section{margin:2rem 0.75rem;padding:2.5rem 1.25rem;border-radius:12px}
         }
     </style>
 </head>
@@ -314,7 +310,7 @@
 <!-- OVERLAY -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<!-- NAV - MATCHING INDEX -->
+<!-- NAV -->
 <nav id="nav">
     <div class="container nav-inner">
         <a href="index.html" class="logo">tree6z</a>
@@ -324,7 +320,7 @@
     </div>
 </nav>
 
-<!-- SIDEBAR - MATCHING INDEX -->
+<!-- SIDEBAR -->
 <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Home</a>
     <a href="lawncare.html">Lawn Care</a>
@@ -461,7 +457,7 @@
     Call Now: (306) 222-9165
 </div>
 
-<!-- FOOTER - MATCHING INDEX WITH SOCIAL ICONS -->
+<!-- FOOTER -->
 <footer>
     <div class="container">
         <div class="footer-grid">
@@ -476,24 +472,20 @@
             </div>
             <div class="footer-col">
                 <h3>Follow Us</h3>
-                <a href="https://instagram.com/tree6z" target="_blank" rel="noopener" class="social-link">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                    Instagram
-                </a>
-                <a href="https://tiktok.com/@tree6z" target="_blank" rel="noopener" class="social-link">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                    </svg>
-                    TikTok
-                </a>
-                <a href="https://facebook.com/tree6z" target="_blank" rel="noopener" class="social-link">
-                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                    Facebook
-                </a>
+                <div class="social-links">
+                    <a href="https://instagram.com/tree6z" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        Instagram
+                    </a>
+                    <a href="https://tiktok.com/@tree6z" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                        TikTok
+                    </a>
+                    <a href="https://facebook.com/tree6z" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        Facebook
+                    </a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -502,36 +494,57 @@
     </div>
 </footer>
 
-<!-- JAVASCRIPT - MATCHING INDEX -->
 <script>
-    const menu = document.getElementById('mobileMenu');
-    const overlay = document.getElementById('menuOverlay');
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('nav');
-    const callBubble = document.querySelector('.call-bubble');
+    var menu = document.getElementById('mobileMenu');
+    var overlay = document.getElementById('menuOverlay');
+    var hamburger = document.getElementById('hamburger');
+    var nav = document.getElementById('nav');
+    var callBubble = document.querySelector('.call-bubble');
+    var menuOpen = false;
 
-    function toggleMenu() {
-        const isActive = menu.classList.toggle('active');
-        overlay.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        callBubble.classList.toggle('hidden');
-        hamburger.setAttribute('aria-expanded', isActive);
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    }
-
-    hamburger.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', () => {
+    function closeMenu() {
+        menuOpen = false;
         menu.classList.remove('active');
         overlay.classList.remove('active');
         hamburger.classList.remove('active');
-        callBubble.classList.remove('hidden');
+        if (callBubble) callBubble.classList.remove('hidden');
         hamburger.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
-    });
+    }
 
-    window.addEventListener('scroll', () => {
+    function openMenu() {
+        menuOpen = true;
+        menu.classList.add('active');
+        overlay.classList.add('active');
+        hamburger.classList.add('active');
+        if (callBubble) callBubble.classList.add('hidden');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function toggleMenu(e) {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        if (menuOpen) { closeMenu(); } else { openMenu(); }
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('touchend', function(e) {
+        e.preventDefault(); toggleMenu(e);
+    }, { passive: false });
+
+    overlay.addEventListener('click', closeMenu);
+    overlay.addEventListener('touchend', function(e) {
+        e.preventDefault(); closeMenu();
+    }, { passive: false });
+
+    var menuLinks = document.querySelectorAll('.mobile-menu a');
+    for (var i = 0; i < menuLinks.length; i++) {
+        menuLinks[i].addEventListener('click', closeMenu);
+    }
+
+    window.addEventListener('scroll', function() {
         nav.classList.toggle('scrolled', scrollY > 50);
-    });
+    }, { passive: true });
 </script>
 </body>
 </html>

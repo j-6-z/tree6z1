@@ -5,1011 +5,203 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
     <title>Leaf Removal | tree6z</title>
     <meta name="description" content="Saskatoon leaf removal — full yard cleanup, gutter cleaning, haul-away. Zero leaves left behind.">
-
-    <!-- Open Graph -->
     <meta property="og:title" content="Leaf Removal | tree6z" />
     <meta property="og:description" content="Full yard leaf removal, gutter cleaning, haul-away. Zero leaves left behind." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tree6z.ca/leaf.html" />
     <meta property="og:image" content="https://i.ibb.co/5XK5Zbfx/tree6z-logo.png" />
-
-    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
-        :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray-400: #a3a3a3;
-            --gray-500: #737373;
-            --gray-600: #525252;
-            --gray-800: #262626;
-            --gray-900: #171717;
-            --gray-950: #0a0a0a;
-            
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-body: 'Instrument Sans', sans-serif;
-            
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-        }
+        :root{--black:#000;--white:#fff;--g400:#a3a3a3;--g500:#737373;--g600:#525252;--g800:#262626;--g900:#171717;--g950:#0a0a0a;--font-d:'Bebas Neue',sans-serif;--font-b:'Instrument Sans',sans-serif;--ease:cubic-bezier(0.16,1,0.3,1)}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;overflow-x:hidden}
+        body{font-family:var(--font-b);background:var(--black);color:var(--white);line-height:1.6;overflow-x:hidden;min-height:100dvh}
+        a{color:inherit;text-decoration:none}
+        img{max-width:100%;display:block}
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        .noise{position:fixed;inset:0;pointer-events:none;z-index:10000;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-        html { scroll-behavior: smooth; }
+        /* Overlay */
+        .menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.95);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);opacity:0;visibility:hidden;z-index:1001;transition:all .5s var(--ease)}
+        .menu-overlay.active{opacity:1;visibility:visible}
 
-        body {
-            font-family: var(--font-body);
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        /* Nav — no mix-blend-mode */
+        nav{position:fixed;top:0;left:0;width:100%;padding:1.5rem 2rem;z-index:1003;transition:all .4s var(--ease)}
+        .nav-inner{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto}
+        .logo{font-family:var(--font-d);font-size:2rem;letter-spacing:.1em}
+        .hamburger{cursor:pointer;padding:16px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,.2);transition:all .4s var(--ease);position:relative;z-index:1004;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-width:56px;min-height:56px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+        .hamburger:hover{background:var(--white)}
+        .hamburger:hover span{background:var(--black)}
+        .hamburger span{display:block;width:24px;height:2px;background:var(--white);margin:5px 0;transition:all .4s var(--ease);pointer-events:none}
+        .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .hamburger.active span:nth-child(2){opacity:0;width:0}
+        .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
 
-        a { color: inherit; text-decoration: none; }
-        img { max-width: 100%; display: block; }
-
-        /* Noise Texture */
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 10000;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-
-        /* Page Loader */
-        .loader {
-            position: fixed;
-            inset: 0;
-            background: var(--black);
-            z-index: 10001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s var(--ease-out-expo), visibility 0.8s;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-text {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 10vw, 6rem);
-            letter-spacing: 0.05em;
-        }
-
-        .loader-text span {
-            display: inline-block;
-            animation: loaderReveal 0.6s var(--ease-out-expo) forwards;
-            opacity: 0;
-            transform: translateY(100%);
-        }
-
-        @keyframes loaderReveal {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Menu Overlay */
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(30px);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 1001;
-            transition: all 0.5s var(--ease-out-expo);
-        }
-
-        .menu-overlay.active { opacity: 1; visibility: visible; }
-
-        /* Navbar */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 2rem;
-            z-index: 1003;
-            mix-blend-mode: difference;
-            transition: all 0.4s var(--ease-out-expo);
-        }
-
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            letter-spacing: 0.1em;
-            position: relative;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--white);
-            transition: width 0.4s var(--ease-out-expo);
-        }
-
-        .logo:hover::after { width: 100%; }
-
-        .hamburger {
-            cursor: pointer;
-            padding: 16px;
-            border-radius: 50%;
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.4s var(--ease-out-expo);
-            position: relative;
-            z-index: 1004;
-        }
-
-        .hamburger:hover { background: var(--white); }
-        .hamburger:hover span { background: var(--black); }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--white);
-            margin: 5px 0;
-            transition: all 0.4s var(--ease-out-expo);
-        }
-
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; width: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            max-width: 500px;
-            height: 100dvh;
-            background: var(--black);
-            padding: 8rem 3rem 3rem;
-            z-index: 1002;
-            transition: right 0.6s var(--ease-out-expo);
-            border-left: 1px solid var(--gray-900);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .mobile-menu.active { right: 0; }
-
-        .mobile-menu a {
-            display: block;
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            letter-spacing: 0.05em;
-            padding: 0.5rem 0;
-            color: var(--gray-600);
-            transition: all 0.4s var(--ease-out-expo);
-        }
-
-        .mobile-menu a::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 3px;
-            background: var(--white);
-            transition: width 0.4s var(--ease-out-expo);
-        }
-
-        .mobile-menu a:hover {
-            color: var(--white);
-            transform: translateX(20px);
-        }
-
-        .mobile-menu a:hover::before { width: 60px; }
-
-        .menu-footer {
-            margin-top: auto;
-            padding-top: 3rem;
-            border-top: 1px solid var(--gray-900);
-        }
-
-        .menu-footer a {
-            font-family: var(--font-body);
-            font-size: 1rem;
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--gray-500);
-        }
-
-        .menu-footer a:hover {
-            color: var(--white);
-            transform: translateX(10px);
-        }
+        /* Sidebar */
+        .mobile-menu{position:fixed;top:0;right:-100%;width:100%;max-width:500px;height:100dvh;background:var(--black);padding:8rem 3rem 3rem;z-index:1002;transition:right .6s var(--ease);border-left:1px solid var(--g900);display:flex;flex-direction:column;justify-content:center;overflow-y:auto;-webkit-overflow-scrolling:touch}
+        .mobile-menu.active{right:0}
+        .mobile-menu a{display:block;font-family:var(--font-d);font-size:clamp(2.5rem,8vw,4rem);letter-spacing:.05em;padding:.5rem 0;color:var(--g600);transition:all .4s var(--ease);-webkit-tap-highlight-color:transparent}
+        .mobile-menu a:hover{color:var(--white);transform:translateX(20px)}
+        .menu-footer{margin-top:auto;padding-top:3rem;border-top:1px solid var(--g900)}
+        .menu-footer a{font-family:var(--font-b);font-size:1rem;display:block;margin-bottom:.5rem;color:var(--g500)}
 
         /* Hero */
-        header {
-            min-height: 80dvh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 140px 2rem 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 80px 80px;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(80px, 80px); }
-        }
-
-        .hero-spotlight {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 60%);
-            transform: translate(-50%, -50%);
-            animation: spotlightPulse 8s ease-in-out infinite;
-        }
-
-        @keyframes spotlightPulse {
-            0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        .logo-box {
-            width: clamp(140px, 30vw, 220px);
-            height: clamp(140px, 30vw, 220px);
-            position: relative;
-            margin-bottom: 3rem;
-            z-index: 1;
-        }
-
-        .logo-box-inner {
-            width: 100%;
-            height: 100%;
-            background: var(--black);
-            border: 1px solid var(--gray-800);
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
-            animation: logoFloat 6s ease-in-out infinite;
-        }
-
-        .logo-box-inner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.05) 100%);
-            z-index: 1;
-        }
-
-        .logo-box-glow {
-            position: absolute;
-            inset: -50px;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: glowPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(1deg); }
-        }
-
-        .logo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-            filter: drop-shadow(0 10px 40px rgba(0,0,0,0.5));
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 12vw, 7rem);
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            line-height: 0.9;
-            margin-bottom: 1.5rem;
-        }
-
-        h1 .line {
-            display: block;
-            overflow: hidden;
-        }
-
-        h1 .line span {
-            display: block;
-            transform: translateY(120%);
-            animation: lineReveal 1s var(--ease-out-expo) forwards;
-        }
-
-        @keyframes lineReveal {
-            to { transform: translateY(0); }
-        }
-
-        .tagline {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            font-weight: 400;
-            color: var(--gray-500);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s var(--ease-out-expo) 0.3s forwards;
-        }
-
-        @keyframes fadeUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        header{min-height:80dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 2rem 80px;position:relative;overflow:hidden}
+        .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:80px 80px;animation:gridMove 20s linear infinite}
+        @keyframes gridMove{to{transform:translate(80px,80px)}}
+        .hero-spotlight{position:absolute;top:50%;left:50%;width:150%;height:150%;background:radial-gradient(ellipse at center,rgba(255,255,255,.08) 0%,transparent 60%);transform:translate(-50%,-50%);animation:spotPulse 8s ease-in-out infinite}
+        @keyframes spotPulse{0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}50%{opacity:.6;transform:translate(-50%,-50%) scale(1.1)}}
+        .logo-box{width:clamp(140px,30vw,220px);height:clamp(140px,30vw,220px);position:relative;margin-bottom:3rem;z-index:1}
+        .logo-box-inner{width:100%;height:100%;background:var(--black);border:1px solid var(--g800);border-radius:24px;overflow:hidden;position:relative;animation:logoFloat 6s ease-in-out infinite}
+        .logo-box-inner::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 50%,rgba(255,255,255,.05) 100%);z-index:1}
+        .logo-box-glow{position:absolute;inset:-50px;background:radial-gradient(circle,rgba(255,255,255,.1) 0%,transparent 60%);animation:glowPulse 4s ease-in-out infinite}
+        @keyframes glowPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+        @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+        .logo-box img{width:100%;height:100%;object-fit:contain;padding:20px;position:relative;z-index:2;filter:drop-shadow(0 10px 40px rgba(0,0,0,.5))}
+        .hero-content{position:relative;z-index:1}
+        h1{font-family:var(--font-d);font-size:clamp(3rem,12vw,7rem);font-weight:400;letter-spacing:.02em;line-height:.9;margin-bottom:1.5rem}
+        .tagline{font-size:clamp(.9rem,2vw,1.1rem);color:var(--g500);letter-spacing:.2em;text-transform:uppercase;opacity:0;transform:translateY(20px);animation:fadeUp 1s var(--ease) .3s forwards}
+        @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
         /* Features Strip */
-        .features-strip {
-            padding: 3rem 2rem;
-            background: var(--gray-950);
-            border-top: 1px solid var(--gray-900);
-            border-bottom: 1px solid var(--gray-900);
-        }
-
-        .features-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4rem;
-            flex-wrap: wrap;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.9rem;
-            color: var(--gray-400);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            transition: color 0.4s;
-        }
-
-        .feature-item:hover { color: var(--white); }
-
-        .feature-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--white);
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .feature-dot::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border: 1px solid var(--gray-800);
-            border-radius: 50%;
-            animation: dotPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes dotPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0; }
-        }
+        .features-strip{padding:3rem 2rem;background:var(--g950);border-top:1px solid var(--g900);border-bottom:1px solid var(--g900)}
+        .features-row{display:flex;justify-content:center;align-items:center;gap:4rem;flex-wrap:wrap;max-width:1000px;margin:0 auto}
+        .feature-item{display:flex;align-items:center;gap:1rem;font-size:.9rem;color:var(--g400);text-transform:uppercase;letter-spacing:.15em}
+        .feature-dot{width:8px;height:8px;background:var(--white);border-radius:50%;position:relative}
+        .feature-dot::before{content:'';position:absolute;inset:-4px;border:1px solid var(--g800);border-radius:50%;animation:dotPulse 2s ease-in-out infinite}
+        @keyframes dotPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:0}}
 
         /* Sections */
-        section {
-            padding: 6rem 2rem;
-            position: relative;
-        }
+        section{padding:6rem 2rem;position:relative}
+        .section-header{text-align:center;margin-bottom:4rem}
+        .section-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.3em;color:var(--g500);margin-bottom:1rem;display:block}
+        .section-title{font-family:var(--font-d);font-size:clamp(2rem,6vw,4rem);letter-spacing:.02em;line-height:1}
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--gray-500);
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 6vw, 4rem);
-            letter-spacing: 0.02em;
-            line-height: 1;
-        }
-
-        /* Intro */
-        .intro-section {
-            background: var(--black);
-            border-bottom: 1px solid var(--gray-900);
-        }
-
-        .intro-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .intro-text {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            line-height: 1.8;
-            color: var(--gray-400);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .intro-text strong {
-            color: var(--white);
-        }
+        .intro-section{background:var(--black);border-bottom:1px solid var(--g900)}
+        .intro-text{font-size:clamp(1.1rem,2.5vw,1.3rem);line-height:1.8;color:var(--g400);margin-bottom:1.5rem;text-align:center;max-width:800px;margin-left:auto;margin-right:auto}
+        .intro-text strong{color:var(--white)}
 
         /* Pricing */
-        .pricing-section {
-            background: var(--gray-950);
-            border-bottom: 1px solid var(--gray-900);
-        }
+        .pricing-section{background:var(--g950);border-bottom:1px solid var(--g900)}
+        .pricing-table{max-width:700px;margin:0 auto;border:1px solid var(--g800);border-radius:16px;overflow:hidden}
+        .pricing-row{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;border-bottom:1px solid var(--g900);transition:all .4s}
+        .pricing-row:last-child{border-bottom:none}
+        .pricing-row:hover{background:rgba(255,255,255,.02);padding-left:2.5rem}
+        .pricing-row .label{font-size:1rem;font-weight:600}
+        .pricing-row .sublabel{font-size:.85rem;color:var(--g500);margin-top:.25rem}
+        .pricing-row .price{font-family:var(--font-d);font-size:1.5rem;letter-spacing:.02em}
+        .pricing-row.bundle{background:rgba(255,255,255,.02)}
+        .save-tag{display:inline-block;background:var(--white);color:var(--black);font-family:var(--font-d);font-size:.65rem;padding:.2rem .5rem;border-radius:4px;margin-left:.75rem;letter-spacing:.05em}
+        .pricing-note{text-align:center;margin-top:2rem;font-size:.85rem;color:var(--g600)}
 
-        .pricing-table {
-            max-width: 700px;
-            margin: 0 auto;
-            border: 1px solid var(--gray-800);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .pricing-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--gray-900);
-            transition: all 0.4s;
-        }
-
-        .pricing-row:last-child { border-bottom: none; }
-
-        .pricing-row:hover {
-            background: rgba(255,255,255,0.02);
-            padding-left: 2.5rem;
-        }
-
-        .pricing-row .label {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .pricing-row .sublabel {
-            font-size: 0.85rem;
-            color: var(--gray-500);
-            margin-top: 0.25rem;
-        }
-
-        .pricing-row .price {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            letter-spacing: 0.02em;
-        }
-
-        .pricing-row.bundle {
-            background: rgba(255,255,255,0.02);
-        }
-
-        .pricing-row.bundle .price {
-            color: var(--white);
-        }
-
-        .save-tag {
-            display: inline-block;
-            background: var(--white);
-            color: var(--black);
-            font-family: var(--font-display);
-            font-size: 0.65rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            margin-left: 0.75rem;
-            letter-spacing: 0.05em;
-        }
-
-        .pricing-note {
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 0.85rem;
-            color: var(--gray-600);
-        }
-
-        /* Why Section */
-        .why-section {
-            background: var(--black);
-            border-bottom: 1px solid var(--gray-900);
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--gray-800);
-            border: 1px solid var(--gray-800);
-            border-radius: 16px;
-            overflow: hidden;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .why-card {
-            background: var(--black);
-            padding: 2.5rem 2rem;
-            transition: background 0.4s;
-        }
-
-        .why-card:hover {
-            background: var(--gray-950);
-        }
-
-        .why-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            letter-spacing: 0.02em;
-            margin-bottom: 1rem;
-        }
-
-        .why-card p {
-            font-size: 0.9rem;
-            color: var(--gray-500);
-            line-height: 1.7;
-        }
-
-        /* Process */
-        .process-section {
-            background: var(--gray-950);
-            border-bottom: 1px solid var(--gray-900);
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--gray-800);
-            border: 1px solid var(--gray-800);
-            border-radius: 16px;
-            overflow: hidden;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .process-step {
-            background: var(--gray-950);
-            padding: 2.5rem 2rem;
-            transition: background 0.4s;
-            position: relative;
-        }
-
-        .process-step:hover {
-            background: var(--black);
-        }
-
-        .step-num {
-            font-family: var(--font-display);
-            font-size: 4rem;
-            color: var(--gray-900);
-            line-height: 1;
-            margin-bottom: 1rem;
-            transition: color 0.4s;
-        }
-
-        .process-step:hover .step-num {
-            color: var(--gray-800);
-        }
-
-        .process-step h3 {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            letter-spacing: 0.02em;
-            margin-bottom: 0.75rem;
-        }
-
-        .process-step p {
-            font-size: 0.9rem;
-            color: var(--gray-500);
-            line-height: 1.7;
-        }
-
-        /* Included */
-        .included-section {
-            background: var(--black);
-            border-bottom: 1px solid var(--gray-900);
-        }
-
-        .included-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--gray-800);
-            border: 1px solid var(--gray-800);
-            border-radius: 16px;
-            overflow: hidden;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .included-item {
-            background: var(--black);
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.4s;
-        }
-
-        .included-item:hover {
-            background: var(--gray-950);
-        }
-
-        .included-item span {
-            font-size: 0.95rem;
-            color: var(--gray-400);
-        }
+        /* Card grids */
+        .why-section{background:var(--black);border-bottom:1px solid var(--g900)}
+        .process-section{background:var(--g950);border-bottom:1px solid var(--g900)}
+        .included-section{background:var(--black);border-bottom:1px solid var(--g900)}
+        .card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--g800);border:1px solid var(--g800);border-radius:16px;overflow:hidden;max-width:1000px;margin:0 auto}
+        .card-grid.sm{max-width:900px}
+        .card-item{background:var(--black);padding:2.5rem 2rem;transition:background .4s}
+        .card-item.alt{background:var(--g950)}
+        .card-item:hover{background:var(--g950)}
+        .card-item.alt:hover{background:var(--black)}
+        .card-item h3{font-family:var(--font-d);font-size:1.2rem;letter-spacing:.02em;margin-bottom:1rem}
+        .card-item p{font-size:.9rem;color:var(--g500);line-height:1.7}
+        .step-num{font-family:var(--font-d);font-size:4rem;color:var(--g900);line-height:1;margin-bottom:1rem;transition:color .4s}
+        .card-item:hover .step-num{color:var(--g800)}
+        .included-item{background:var(--black);padding:2rem;text-align:center;transition:background .4s}
+        .included-item:hover{background:var(--g950)}
+        .included-item span{font-size:.95rem;color:var(--g400)}
 
         /* CTA */
-        .cta-section {
-            background: var(--white);
-            color: var(--black);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-bg {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            letter-spacing: 0.02em;
-            line-height: 0.95;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-subtitle {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.25rem 3rem;
-            background: var(--black);
-            color: var(--white);
-            border-radius: 100px;
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            letter-spacing: 0.05em;
-            transition: all 0.4s var(--ease-out-expo);
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .cta-button svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--white);
-            transition: transform 0.4s;
-        }
-
-        .cta-button:hover svg {
-            transform: translateX(5px);
-        }
+        .cta-section{background:var(--white);color:var(--black);text-align:center;position:relative;overflow:hidden}
+        .cta-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.03) 1px,transparent 1px);background-size:40px 40px}
+        .cta-content{position:relative;z-index:1}
+        .cta-title{font-family:var(--font-d);font-size:clamp(2.5rem,8vw,5rem);letter-spacing:.02em;line-height:.95;margin-bottom:1.5rem}
+        .cta-subtitle{font-size:1.1rem;color:var(--g600);margin-bottom:2.5rem}
+        .cta-button{display:inline-flex;align-items:center;gap:1rem;padding:1.25rem 3rem;background:var(--black);color:var(--white);border-radius:100px;font-family:var(--font-d);font-size:1.3rem;letter-spacing:.05em;transition:all .4s var(--ease);-webkit-tap-highlight-color:transparent}
+        .cta-button:hover{transform:scale(1.05);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+        .cta-button svg{width:24px;height:24px;stroke:var(--white);transition:transform .4s}
+        .cta-button:hover svg{transform:translateX(5px)}
 
         /* Call Bubble */
-        .call-bubble {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--white);
-            color: var(--black);
-            padding: 1rem 1.5rem;
-            border-radius: 100px;
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            letter-spacing: 0.05em;
-            transition: all 0.4s var(--ease-out-expo);
-            cursor: pointer;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .call-bubble:hover { transform: scale(1.05); }
-
-        .call-bubble-icon {
-            width: 24px;
-            height: 24px;
-            animation: phoneRing 1s ease-in-out infinite;
-        }
-
-        @keyframes phoneRing {
-            0%, 100% { transform: rotate(0deg); }
-            20%, 60% { transform: rotate(-10deg); }
-            40%, 80% { transform: rotate(10deg); }
-        }
-
-        .call-bubble.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        .call-bubble{position:fixed;bottom:2rem;right:2rem;z-index:999;display:flex;align-items:center;gap:1rem;background:var(--white);color:var(--black);padding:1rem 1.5rem;border-radius:100px;font-family:var(--font-d);font-size:1.1rem;letter-spacing:.05em;transition:all .4s var(--ease);cursor:pointer;box-shadow:0 10px 40px rgba(0,0,0,.3);white-space:nowrap;-webkit-tap-highlight-color:transparent}
+        .call-bubble:hover{transform:scale(1.05)}
+        .call-bubble-icon{width:24px;height:24px;flex-shrink:0;animation:phoneRing 1s ease-in-out infinite}
+        @keyframes phoneRing{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-10deg)}40%,80%{transform:rotate(10deg)}}
+        .call-bubble.hidden{opacity:0;visibility:hidden;pointer-events:none}
 
         /* Footer */
-        footer {
-            padding: 6rem 2rem 3rem;
-            background: var(--black);
-            border-top: 1px solid var(--gray-900);
-        }
-
-        .footer-top {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto 4rem;
-        }
-
-        .footer-brand .logo {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-        }
-
-        .footer-brand p {
-            color: var(--gray-500);
-            max-width: 300px;
-            line-height: 1.7;
-        }
-
-        .footer-col h4 {
-            font-family: var(--font-display);
-            font-size: 0.9rem;
-            letter-spacing: 0.15em;
-            margin-bottom: 1.5rem;
-            color: var(--gray-400);
-        }
-
-        .footer-col a {
-            display: block;
-            color: var(--gray-500);
-            margin-bottom: 0.75rem;
-            transition: all 0.3s;
-        }
-
-        .footer-col a:hover {
-            color: var(--white);
-            transform: translateX(5px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-link {
-            width: 48px;
-            height: 48px;
-            border: 1px solid var(--gray-800);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s;
-        }
-
-        .social-link:hover {
-            background: var(--white);
-            border-color: var(--white);
-            transform: translateY(-3px);
-        }
-
-        .social-link svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--white);
-            transition: fill 0.4s;
-        }
-
-        .social-link:hover svg { fill: var(--black); }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 3rem;
-            border-top: 1px solid var(--gray-900);
-            font-size: 0.85rem;
-            color: var(--gray-600);
-        }
+        footer{padding:6rem 2rem 3rem;background:var(--black);border-top:1px solid var(--g900)}
+        .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;max-width:1200px;margin:0 auto 4rem}
+        .footer-brand .logo{font-size:2.5rem;margin-bottom:1.5rem;display:inline-block}
+        .footer-brand p{color:var(--g500);max-width:300px;line-height:1.7}
+        .footer-col h4{font-family:var(--font-d);font-size:.9rem;letter-spacing:.15em;margin-bottom:1.5rem;color:var(--g400)}
+        .footer-col a{display:block;color:var(--g500);margin-bottom:.75rem;transition:all .3s}
+        .footer-col a:hover{color:var(--white);transform:translateX(5px)}
+        .footer-col .social-links a{display:inline-flex;margin-bottom:0}
+        .footer-col .social-links a:hover{transform:translateY(-2px)}
+        .social-links{display:flex;gap:.75rem;flex-wrap:wrap}
+        .social-link{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--g900);border-radius:8px;transition:all .3s var(--ease);font-size:.85rem;color:var(--g500);letter-spacing:.02em;-webkit-tap-highlight-color:transparent}
+        .social-link:hover{background:var(--white);color:var(--black);transform:translateY(-2px)}
+        .social-link svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+        .footer-bottom{text-align:center;padding-top:3rem;border-top:1px solid var(--g900);font-size:.85rem;color:var(--g600)}
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .why-grid, .process-grid { grid-template-columns: repeat(2, 1fr); }
-            .included-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-top { grid-template-columns: repeat(2, 1fr); }
+        @media(max-width:1024px){.card-grid{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:768px){
+            nav{padding:1rem 1.5rem}.logo{font-size:1.6rem}
+            header{padding:100px 1.5rem 40px;min-height:70dvh}.logo-box{width:130px;height:130px;margin-bottom:2rem}
+            section{padding:4rem 1.5rem}.section-header{margin-bottom:3rem}
+            .features-strip{padding:2.5rem 1.5rem}.features-row{gap:1.25rem 2rem;display:grid;grid-template-columns:1fr 1fr;justify-items:start;max-width:340px}.feature-item{font-size:.8rem}
+            .card-grid{grid-template-columns:1fr}
+            .footer-top{grid-template-columns:1fr;text-align:center}.footer-brand p{margin:0 auto}.social-links{justify-content:center}
+            .call-bubble{bottom:1.5rem;left:50%;right:auto;transform:translateX(-50%);padding:.875rem 1.25rem;font-size:1rem;gap:.75rem}.call-bubble:hover{transform:translateX(-50%) scale(1.05)}.call-bubble-icon{width:20px;height:20px}
+            .pricing-row{padding:1.25rem 1.5rem}.pricing-row:hover{padding-left:1.75rem}
+        }
+        @media(max-width:480px){
+            header{padding:90px 1rem 30px}.logo-box{width:110px;height:110px}
+            section{padding:3.5rem 1rem}.features-strip{padding:2rem 1rem}.features-row{max-width:280px;gap:1rem 1.5rem}
+            .card-item{padding:2rem 1.5rem}.pricing-row .price{font-size:1.25rem}
+            .call-bubble{padding:.75rem 1rem;font-size:.9rem;gap:.5rem}.call-bubble-icon{width:18px;height:18px}
         }
 
-        @media (max-width: 768px) {
-            nav { padding: 1rem 1.5rem; }
-            .logo { font-size: 1.6rem; }
-            header { padding: 120px 1.5rem 60px; min-height: 70dvh; }
-            section { padding: 5rem 1.5rem; }
-            .features-row { gap: 2rem; }
-            .why-grid, .process-grid, .included-grid { grid-template-columns: 1fr; }
-            .footer-top { grid-template-columns: 1fr; text-align: center; }
-            .footer-brand p { margin: 0 auto; }
-            .social-links { justify-content: center; }
-            .call-bubble { 
-                bottom: 1.5rem; 
-                right: 50%; 
-                transform: translateX(50%); 
-            }
-            .call-bubble:hover { transform: translateX(50%) scale(1.05); }
-            .pricing-row { padding: 1.25rem 1.5rem; }
-            .pricing-row:hover { padding-left: 1.75rem; }
-        }
-
-        @media (max-width: 480px) {
-            section { padding: 4rem 1rem; }
-            .why-card, .process-step { padding: 2rem 1.5rem; }
-            .pricing-row .price { font-size: 1.25rem; }
-        }
-
-        /* Reveal Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s var(--ease-out-expo);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s var(--ease)}
+        .reveal.active{opacity:1;transform:translateY(0)}
+        .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
     </style>
 </head>
 <body>
 
-<!-- Noise -->
 <div class="noise"></div>
-
-<!-- Loader -->
-<div class="loader" id="loader">
-    <div class="loader-text">
-        <span style="animation-delay: 0s">L</span><span style="animation-delay: 0.05s">E</span><span style="animation-delay: 0.1s">A</span><span style="animation-delay: 0.15s">V</span><span style="animation-delay: 0.2s">E</span><span style="animation-delay: 0.25s">S</span>
-    </div>
-</div>
-
-<!-- Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<!-- Nav -->
-<nav id="nav">
+<nav>
     <div class="nav-inner">
         <a href="index.html" class="logo">TREE6Z</a>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="lawncare.html">Lawn Care</a>
-    <a href="leaf.html">Leaf Removal</a>
-    <a href="spring.html">Spring Cleanup</a>
-    <a href="snow.html">Snow Removal</a>
-    <div class="menu-footer">
-        <a href="tel:+13062229165">(306) 222-9165</a>
-        <a href="mailto:tree6zlandscaping@gmail.com">tree6zlandscaping@gmail.com</a>
-    </div>
+    <a href="index.html">Home</a><a href="lawncare.html">Lawn Care</a><a href="leaf.html">Leaf Removal</a><a href="spring.html">Spring Cleanup</a><a href="snow.html">Snow Removal</a>
+    <div class="menu-footer"><a href="tel:+13062229165">(306) 222-9165</a><a href="mailto:tree6zlandscaping@gmail.com">tree6zlandscaping@gmail.com</a></div>
 </div>
 
-<!-- Hero -->
 <header>
     <div class="hero-grid"></div>
     <div class="hero-spotlight"></div>
-    
-    <div class="logo-box">
-        <div class="logo-box-glow"></div>
-        <div class="logo-box-inner">
-            <img src="https://i.ibb.co/TM5nvPyB/tree6z-logo1.jpg" alt="tree6z Logo">
-        </div>
-    </div>
-    
+    <div class="logo-box"><div class="logo-box-glow"></div><div class="logo-box-inner"><img src="https://i.ibb.co/TM5nvPyB/tree6z-logo1.jpg" alt="tree6z Logo"></div></div>
     <div class="hero-content">
-        <h1>
-            <span class="line"><span>LEAF REMOVAL</span></span>
-        </h1>
+        <h1>LEAF REMOVAL</h1>
         <p class="tagline">Every Leaf · Off Your Lawn · Gone</p>
     </div>
 </header>
 
-<!-- Features -->
 <div class="features-strip">
     <div class="features-row">
         <span class="feature-item"><span class="feature-dot"></span>Full Yard Cleanup</span>
@@ -1019,137 +211,47 @@
     </div>
 </div>
 
-<!-- Intro -->
 <section class="intro-section">
-    <div class="section-header reveal">
-        <span class="section-label">The Deal</span>
-        <h2 class="section-title">FALL CLEANUP, DONE RIGHT</h2>
-    </div>
-    <div class="intro-content">
-        <p class="intro-text reveal">
-            Saskatoon fall is short. Leaves pile up fast. Left alone, they <strong>suffocate your grass</strong>, clog your gutters, and turn into a nightmare come spring.
-        </p>
-        <p class="intro-text reveal">
-            We don't just rake and leave piles on your curb. We <strong>remove everything</strong>, haul it away, and leave your yard spotless. One visit or full-season coverage — your call.
-        </p>
-    </div>
+    <div class="section-header reveal"><span class="section-label">The Deal</span><h2 class="section-title">FALL CLEANUP, DONE RIGHT</h2></div>
+    <p class="intro-text reveal">Saskatoon fall is short. Leaves pile up fast. Left alone, they <strong>suffocate your grass</strong>, clog your gutters, and turn into a nightmare come spring.</p>
+    <p class="intro-text reveal">We don't just rake and leave piles on your curb. We <strong>remove everything</strong>, haul it away, and leave your yard spotless. One visit or full-season coverage — your call.</p>
 </section>
 
-<!-- Pricing -->
 <section class="pricing-section">
-    <div class="section-header reveal">
-        <span class="section-label">What It Costs</span>
-        <h2 class="section-title">PRICING</h2>
-    </div>
-    
+    <div class="section-header reveal"><span class="section-label">What It Costs</span><h2 class="section-title">PRICING</h2></div>
     <div class="pricing-table reveal">
-        <div class="pricing-row">
-            <div>
-                <div class="label">Small Yard</div>
-                <div class="sublabel">Under 1,000 sq ft</div>
-            </div>
-            <span class="price">$75</span>
-        </div>
-        
-        <div class="pricing-row">
-            <div>
-                <div class="label">Medium Yard</div>
-                <div class="sublabel">1,000 – 2,000 sq ft</div>
-            </div>
-            <span class="price">$120</span>
-        </div>
-        
-        <div class="pricing-row">
-            <div>
-                <div class="label">Large Yard</div>
-                <div class="sublabel">2,000 – 10,000 sq ft</div>
-            </div>
-            <span class="price">$199 – $599</span>
-        </div>
-        
-        <div class="pricing-row">
-            <div>
-                <div class="label">Gutter Cleaning</div>
-                <div class="sublabel">Add-on</div>
-            </div>
-            <span class="price">+$50</span>
-        </div>
-        
-        <div class="pricing-row bundle">
-            <div>
-                <div class="label">Full Season Package<span class="save-tag">SAVE 20%</span></div>
-                <div class="sublabel">4+ visits · Oct through Nov</div>
-            </div>
-            <span class="price">Custom</span>
-        </div>
+        <div class="pricing-row"><div><div class="label">Small Yard</div><div class="sublabel">Under 1,000 sq ft</div></div><span class="price">$75</span></div>
+        <div class="pricing-row"><div><div class="label">Medium Yard</div><div class="sublabel">1,000 – 2,000 sq ft</div></div><span class="price">$120</span></div>
+        <div class="pricing-row"><div><div class="label">Large Yard</div><div class="sublabel">2,000 – 10,000 sq ft</div></div><span class="price">$199 – $599</span></div>
+        <div class="pricing-row"><div><div class="label">Gutter Cleaning</div><div class="sublabel">Add-on</div></div><span class="price">+$50</span></div>
+        <div class="pricing-row bundle"><div><div class="label">Full Season Package<span class="save-tag">SAVE 20%</span></div><div class="sublabel">4+ visits · Oct through Nov</div></div><span class="price">Custom</span></div>
     </div>
-    
     <p class="pricing-note reveal">Acreage? We'll quote it. October fills up fast.</p>
 </section>
 
-<!-- Why -->
 <section class="why-section">
-    <div class="section-header reveal">
-        <span class="section-label">Why Bother</span>
-        <h2 class="section-title">SKIP IT AND YOU'LL REGRET IT</h2>
-    </div>
-    <div class="why-grid">
-        <div class="why-card reveal">
-            <h3>LAWN DAMAGE</h3>
-            <p>Leaves left over winter suffocate grass and create mold. Spring recovery costs way more than fall cleanup.</p>
-        </div>
-        <div class="why-card reveal reveal-delay-1">
-            <h3>GUTTER ISSUES</h3>
-            <p>Clogged gutters overflow, freeze, and crack. Water damage to your foundation starts at the roofline.</p>
-        </div>
-        <div class="why-card reveal reveal-delay-2">
-            <h3>PESTS</h3>
-            <p>Leaf piles attract mice, insects, and disease. Clean yards mean fewer unwanted visitors all winter.</p>
-        </div>
-        <div class="why-card reveal reveal-delay-3">
-            <h3>SNOW REMOVAL</h3>
-            <p>Snow plows work better on clean surfaces. Buried leaves create slippery, uneven terrain.</p>
-        </div>
+    <div class="section-header reveal"><span class="section-label">Why Bother</span><h2 class="section-title">SKIP IT AND YOU'LL REGRET IT</h2></div>
+    <div class="card-grid">
+        <div class="card-item reveal"><h3>LAWN DAMAGE</h3><p>Leaves left over winter suffocate grass and create mold. Spring recovery costs way more than fall cleanup.</p></div>
+        <div class="card-item reveal reveal-delay-1"><h3>GUTTER ISSUES</h3><p>Clogged gutters overflow, freeze, and crack. Water damage to your foundation starts at the roofline.</p></div>
+        <div class="card-item reveal reveal-delay-2"><h3>PESTS</h3><p>Leaf piles attract mice, insects, and disease. Clean yards mean fewer unwanted visitors all winter.</p></div>
+        <div class="card-item reveal reveal-delay-3"><h3>SNOW REMOVAL</h3><p>Snow plows work better on clean surfaces. Buried leaves create slippery, uneven terrain.</p></div>
     </div>
 </section>
 
-<!-- Process -->
 <section class="process-section">
-    <div class="section-header reveal">
-        <span class="section-label">How It Works</span>
-        <h2 class="section-title">THE PROCESS</h2>
-    </div>
-    <div class="process-grid">
-        <div class="process-step reveal">
-            <div class="step-num">01</div>
-            <h3>RAKE & BLOW</h3>
-            <p>Power raking and commercial blowers gather every leaf from beds, walkways, and corners.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-1">
-            <div class="step-num">02</div>
-            <h3>COLLECT & LOAD</h3>
-            <p>Bagged or loaded into our truck. No piles on your curb — everything goes immediately.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-2">
-            <div class="step-num">03</div>
-            <h3>GUTTER CLEAN</h3>
-            <p>Optional add-on. We flush downspouts, clear debris, check for blockages before winter.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-3">
-            <div class="step-num">04</div>
-            <h3>FINAL PASS</h3>
-            <p>One last blow-off to make sure your property is spotless. Quick walkthrough before we leave.</p>
-        </div>
+    <div class="section-header reveal"><span class="section-label">How It Works</span><h2 class="section-title">THE PROCESS</h2></div>
+    <div class="card-grid">
+        <div class="card-item alt reveal"><div class="step-num">01</div><h3>RAKE & BLOW</h3><p>Power raking and commercial blowers gather every leaf from beds, walkways, and corners.</p></div>
+        <div class="card-item alt reveal reveal-delay-1"><div class="step-num">02</div><h3>COLLECT & LOAD</h3><p>Bagged or loaded into our truck. No piles on your curb — everything goes immediately.</p></div>
+        <div class="card-item alt reveal reveal-delay-2"><div class="step-num">03</div><h3>GUTTER CLEAN</h3><p>Optional add-on. We flush downspouts, clear debris, check for blockages before winter.</p></div>
+        <div class="card-item alt reveal reveal-delay-3"><div class="step-num">04</div><h3>FINAL PASS</h3><p>One last blow-off to make sure your property is spotless. Quick walkthrough before we leave.</p></div>
     </div>
 </section>
 
-<!-- Included -->
 <section class="included-section">
-    <div class="section-header reveal">
-        <span class="section-label">What You Get</span>
-        <h2 class="section-title">EVERY CLEANUP INCLUDES</h2>
-    </div>
-    <div class="included-grid reveal">
+    <div class="section-header reveal"><span class="section-label">What You Get</span><h2 class="section-title">EVERY CLEANUP INCLUDES</h2></div>
+    <div class="card-grid sm reveal">
         <div class="included-item"><span>Full yard leaf removal</span></div>
         <div class="included-item"><span>Mulch bed cleanup</span></div>
         <div class="included-item"><span>Deck & patio clearing</span></div>
@@ -1161,128 +263,48 @@
     </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section">
     <div class="cta-bg"></div>
     <div class="cta-content">
         <h2 class="cta-title reveal">BOOK YOUR<br>FALL CLEANUP</h2>
         <p class="cta-subtitle reveal reveal-delay-1">October fills up fast. Call now.</p>
-        <a href="tel:+13062229165" class="cta-button reveal reveal-delay-2">
-            CALL US
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-        </a>
+        <a href="tel:+13062229165" class="cta-button reveal reveal-delay-2">CALL US <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
 </section>
 
-<!-- Call Bubble -->
 <div class="call-bubble" onclick="window.location.href='tel:+13062229165'">
-    <svg class="call-bubble-icon" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-    </svg>
+    <svg class="call-bubble-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     (306) 222-9165
 </div>
 
-<!-- Footer -->
 <footer>
     <div class="footer-top">
-        <div class="footer-brand">
-            <a href="index.html" class="logo">TREE6Z</a>
-            <p>Local Saskatoon crew taking care of yards since day one. No contracts, no BS — just good work.</p>
-        </div>
-        <div class="footer-col">
-            <h4>SERVICES</h4>
-            <a href="lawncare.html">Lawn Care</a>
-            <a href="leaf.html">Leaf Removal</a>
-            <a href="spring.html">Spring Cleanup</a>
-            <a href="snow.html">Snow Removal</a>
-        </div>
-        <div class="footer-col">
-            <h4>CONTACT</h4>
-            <a href="tel:+13062229165">(306) 222-9165</a>
-            <a href="mailto:tree6zlandscaping@gmail.com">tree6zlandscaping@gmail.com</a>
-        </div>
-        <div class="footer-col">
-            <h4>SOCIAL</h4>
+        <div class="footer-brand"><a href="index.html" class="logo">TREE6Z</a><p>Local Saskatoon crew taking care of yards since day one. No contracts, no BS — just good work.</p></div>
+        <div class="footer-col"><h4>SERVICES</h4><a href="lawncare.html">Lawn Care</a><a href="leaf.html">Leaf Removal</a><a href="spring.html">Spring Cleanup</a><a href="snow.html">Snow Removal</a></div>
+        <div class="footer-col"><h4>CONTACT</h4><a href="tel:+13062229165">(306) 222-9165</a><a href="mailto:tree6zlandscaping@gmail.com">tree6zlandscaping@gmail.com</a></div>
+        <div class="footer-col"><h4>SOCIAL</h4>
             <div class="social-links">
-                <a href="https://instagram.com/tree6z" target="_blank" rel="noopener" class="social-link">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
-                <a href="https://tiktok.com/@tree6z" target="_blank" rel="noopener" class="social-link">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                    </svg>
-                </a>
-                <a href="https://facebook.com/tree6z" target="_blank" rel="noopener" class="social-link">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </a>
+                <a href="https://instagram.com/tree6z" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
+                <a href="https://tiktok.com/@tree6z" target="_blank" rel="noopener" class="social-link" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>TikTok</a>
+                <a href="https://facebook.com/tree6z" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</a>
             </div>
         </div>
     </div>
-    <div class="footer-bottom">
-        <p>© 2026 tree6z · Fully Insured · Saskatoon, SK</p>
-    </div>
+    <div class="footer-bottom"><p>© 2026 tree6z · Fully Insured · Saskatoon, SK</p></div>
 </footer>
 
 <script>
-    // Loader
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.getElementById('loader').classList.add('hidden');
-        }, 1200);
-    });
-
-    // Menu
-    const menu = document.getElementById('mobileMenu');
-    const overlay = document.getElementById('menuOverlay');
-    const hamburger = document.getElementById('hamburger');
-    const callBubble = document.querySelector('.call-bubble');
-
-    function closeMenu() {
-        menu.classList.remove('active');
-        overlay.classList.remove('active');
-        hamburger.classList.remove('active');
-        callBubble.classList.remove('hidden');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }
-
-    function toggleMenu() {
-        const isActive = menu.classList.toggle('active');
-        overlay.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        callBubble.classList.toggle('hidden');
-        hamburger.setAttribute('aria-expanded', isActive);
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    }
-
-    hamburger.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', closeMenu);
-    document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', closeMenu));
-
-    // Reveals
-    const reveals = document.querySelectorAll('.reveal');
-    
-    const revealOnScroll = () => {
-        reveals.forEach(el => {
-            const windowHeight = window.innerHeight;
-            const elementTop = el.getBoundingClientRect().top;
-            const elementVisible = 100;
-            
-            if (elementTop < windowHeight - elementVisible) {
-                el.classList.add('active');
-            }
-        });
-    };
-
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
+    var menu=document.getElementById('mobileMenu'),overlay=document.getElementById('menuOverlay'),hamburger=document.getElementById('hamburger'),callBubble=document.querySelector('.call-bubble'),menuOpen=false;
+    function closeMenu(){menuOpen=false;menu.classList.remove('active');overlay.classList.remove('active');hamburger.classList.remove('active');if(callBubble)callBubble.classList.remove('hidden');hamburger.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+    function openMenu(){menuOpen=true;menu.classList.add('active');overlay.classList.add('active');hamburger.classList.add('active');if(callBubble)callBubble.classList.add('hidden');hamburger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}
+    function toggleMenu(e){if(e){e.preventDefault();e.stopPropagation()}if(menuOpen){closeMenu()}else{openMenu()}}
+    hamburger.addEventListener('click',toggleMenu);
+    hamburger.addEventListener('touchend',function(e){e.preventDefault();toggleMenu(e)},{passive:false});
+    overlay.addEventListener('click',closeMenu);
+    overlay.addEventListener('touchend',function(e){e.preventDefault();closeMenu()},{passive:false});
+    var menuLinks=document.querySelectorAll('.mobile-menu a');for(var i=0;i<menuLinks.length;i++){menuLinks[i].addEventListener('click',closeMenu)}
+    var reveals=document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('active');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});reveals.forEach(function(el){obs.observe(el)})}else{function revealScroll(){reveals.forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight-100)el.classList.add('active')})}window.addEventListener('scroll',revealScroll,{passive:true});revealScroll()}
 </script>
-
 </body>
 </html>
