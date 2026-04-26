@@ -17,211 +17,271 @@
 <link rel="manifest" href="/site.webmanifest"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fraunces:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#080807;
-  --ink2:#111110;
-  --paper:#eeebe3;
-  --dim:#5a5850;
-  --rule:rgba(238,235,227,0.09);
-  --green:#1c3d1c;
-  --green-bright:#2a5a2a;
-  --green-glow:#3d8b3d;
-  --ff-d:'Bebas Neue',sans-serif;
-  --ff-b:'Instrument Sans',sans-serif;
-  --ease:cubic-bezier(0.16,1,0.3,1);
+  --paper:#f3eee2;--paper-2:#e9e2d2;
+  --ink:#181816;--ink-soft:#3a3a35;--ink-mute:#7a766b;
+  --rule:rgba(24,24,22,0.12);--rule-soft:rgba(24,24,22,0.06);
+  --moss:#2d4a2b;--moss-deep:#1f361e;--moss-light:#a8d3a4;--moss-glow:#7ec77a;
+  --d:'Archivo Black',Impact,sans-serif;--s:'Fraunces',Georgia,serif;--m:'JetBrains Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(0.2,0.7,0.2,1);
 }
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:var(--ff-b);background:var(--ink);color:var(--paper);line-height:1.6;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--s);background:var(--paper);color:var(--ink);line-height:1.55;font-size:17px;overflow-x:hidden;background-image:radial-gradient(rgba(24,24,22,0.025) 1px,transparent 1px);background-size:3px 3px}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+svg{stroke:currentColor;fill:none;stroke-width:2}
+::selection{background:var(--moss);color:var(--paper)}
+em{font-style:italic}
+.it{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss);letter-spacing:-0.005em}
+.tag{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--m);font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-mute)}
+.tag::before{content:"";width:6px;height:6px;background:var(--moss);border-radius:50%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+@keyframes ring{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(-12deg)}20%,40%{transform:rotate(12deg)}50%{transform:rotate(0)}}
 
-/* ── DRAWER ── */
-.drawer{position:fixed;inset:0;z-index:600;background:var(--ink);transform:translateX(100%);transition:transform 0.55s var(--ease);display:flex;flex-direction:column;padding:5rem 2.5rem 3rem;overflow-y:auto}
+/* nav */
+.tickerbar{background:var(--ink);color:var(--paper);font-family:var(--m);font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.55rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.tickerbar .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--moss-glow);margin-right:0.55rem;animation:pulse 2.4s ease-in-out infinite}
+.tickerbar .right{display:flex;gap:1.5rem;align-items:center}
+.tickerbar .right span{opacity:0.6}
+.nav{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--rule);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:baseline;gap:0.5rem;font-family:var(--d);font-size:1.5rem;letter-spacing:-0.02em}
+.nav-logo .small{font-family:var(--m);font-size:0.6rem;font-weight:500;letter-spacing:0.15em;color:var(--ink-mute);text-transform:uppercase}
+.nav-center{display:flex;gap:0.25rem}
+.nl{font-family:var(--m);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);padding:0.5rem 0.85rem;border-radius:2px;transition:background 0.2s,color 0.2s}
+.nl:hover{background:var(--ink);color:var(--paper)}
+.nl.active{background:var(--ink);color:var(--paper)}
+.nav-right{display:flex;align-items:center;gap:0.75rem}
+.ncta{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--m);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:0.65rem 1.1rem;border-radius:2px;transition:background 0.2s}
+.ncta:hover{background:var(--moss)}
+.ncta svg{width:13px;height:13px}
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px;min-width:40px;min-height:40px;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.hbg i{display:block;width:22px;height:2px;background:var(--ink);transition:all 0.3s var(--ease)}
+.hbg.on i:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hbg.on i:nth-child(2){opacity:0}
+.hbg.on i:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.drawer{position:fixed;inset:0;z-index:80;background:var(--paper);transform:translateX(100%);transition:transform 0.45s var(--ease);display:flex;flex-direction:column;padding:5rem 2rem 3rem;overflow-y:auto}
 .drawer.on{transform:translateX(0)}
-.d-x{position:absolute;top:1.25rem;right:1.5rem;background:none;border:none;color:var(--dim);cursor:pointer;font-size:1rem;padding:0.75rem;-webkit-tap-highlight-color:transparent;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
-.d-x:hover{color:var(--paper)}
-.d-link{font-family:var(--ff-d);font-size:clamp(2.8rem,10vw,4.5rem);letter-spacing:0.02em;color:rgba(238,235,227,0.15);display:block;line-height:1.2;padding:0.3rem 0;transition:color 0.2s;-webkit-tap-highlight-color:transparent}
-.d-link:hover,.d-link:active{color:var(--paper)}
+.d-link{font-family:var(--d);font-size:clamp(2.5rem,9vw,4rem);letter-spacing:-0.02em;line-height:1.05;text-transform:uppercase;display:block;padding:0.5rem 0;border-bottom:1px solid var(--rule-soft);transition:color 0.2s,padding-left 0.25s}
+.d-link:hover,.d-link:active{color:var(--moss);padding-left:0.5rem}
 .d-foot{margin-top:auto;padding-top:2rem;border-top:1px solid var(--rule)}
-.d-foot a{display:block;font-size:0.88rem;color:var(--dim);padding:0.4rem 0;transition:color 0.2s;-webkit-tap-highlight-color:transparent}
-.d-foot a:hover{color:var(--paper)}
+.d-foot a{display:block;font-family:var(--m);font-size:0.78rem;color:var(--ink-soft);padding:0.4rem 0;letter-spacing:0.08em}
 
-/* ── NAV ── */
-.nav{position:fixed;top:0;left:0;width:100%;z-index:500;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:background 0.35s,border-color 0.35s;border-bottom:1px solid transparent}
-.nav.pinned{background:rgba(8,8,7,0.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--rule)}
-.nav-logo{font-family:var(--ff-d);font-size:1.6rem;letter-spacing:0.12em}
-.nav-center{display:flex;gap:0}
-.nl{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);padding:0.45rem 0.8rem;transition:color 0.2s}
-.nl:hover{color:var(--paper)}
-.nl.active{color:var(--paper)}
-.nav-right{display:flex;align-items:center;gap:0.85rem}
-.ntel{font-size:0.75rem;color:var(--dim);letter-spacing:0.04em;transition:color 0.2s}
-.ntel:hover{color:var(--paper)}
-.ncta{font-family:var(--ff-d);font-size:0.85rem;letter-spacing:0.08em;padding:0.45rem 1.1rem;background:var(--paper);color:var(--ink);border-radius:3px;transition:opacity 0.2s}
-.ncta:hover{opacity:0.82}
-.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:10px;-webkit-tap-highlight-color:transparent;min-width:44px;min-height:44px;align-items:center;justify-content:center}
-.hbg i{display:block;width:20px;height:1.5px;background:var(--paper);transition:all 0.35s var(--ease)}
-.hbg.on i:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
-.hbg.on i:nth-child(2){opacity:0;transform:scaleX(0)}
-.hbg.on i:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+/* page hero */
+.page-hero{padding:4rem 1.5rem 4rem;border-bottom:1px solid var(--rule);overflow:hidden}
+.page-hero-inner{max-width:1280px;margin:0 auto}
+.page-meta{display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--rule);font-family:var(--m);font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-mute);flex-wrap:wrap}
+.page-meta strong{color:var(--ink);font-weight:500}
+.page-hero-grid{display:grid;grid-template-columns:1fr 320px;gap:3rem;align-items:end}
+.page-h1{font-family:var(--d);font-size:clamp(3.2rem,11vw,9rem);line-height:0.85;letter-spacing:-0.025em;text-transform:uppercase;margin-bottom:1.25rem}
+.page-h1 .it{padding:0 0.05em}
+.page-sub{font-family:var(--s);font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.5;color:var(--ink-soft);margin-bottom:1.75rem;max-width:48ch}
+.page-sub em{color:var(--moss)}
+.feat-strip{display:flex;gap:0.45rem;flex-wrap:wrap}
+.feat-pill{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--m);font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.5rem 0.9rem;border:1px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:2px;transition:background 0.2s,color 0.2s}
+.feat-pill:hover{background:var(--ink);color:var(--paper)}
+.feat-pill::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--moss-glow);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+.hero-card{background:var(--ink);color:var(--paper);border-radius:4px;padding:1.75rem 1.5rem;position:relative;overflow:hidden}
+.hero-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--moss)}
+.hero-card-label{font-family:var(--m);font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(243,238,226,0.55);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem}
+.hero-card-label::after{content:"";flex:1;height:1px;background:rgba(243,238,226,0.15)}
+.hero-card-headline{font-family:var(--d);font-size:1.6rem;letter-spacing:-0.015em;line-height:0.95;margin-bottom:1rem;text-transform:uppercase}
+.hero-card-headline em{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss-light)}
+.hero-card-row{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 0;border-top:1px solid rgba(243,238,226,0.1);font-family:var(--m);font-size:0.7rem}
+.hero-card-row .k{color:rgba(243,238,226,0.55);text-transform:uppercase;letter-spacing:0.12em;font-size:0.62rem}
+.hero-card-row .v.ok{color:var(--moss-glow);display:inline-flex;align-items:center;gap:0.4rem}
+.hero-card-row .v.ok::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--moss-glow);animation:pulse 2s ease-in-out infinite}
 
-/* ── PAGE HERO ── */
-.page-hero{padding:130px 2rem 70px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
-.page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green-bright),var(--green-glow),var(--green-bright),transparent)}
-.page-hero-inner{max-width:1100px;margin:0 auto}
-.page-eyebrow{font-size:0.62rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--dim);margin-bottom:1rem;display:flex;align-items:center;gap:0.65rem}
-.page-eyebrow::before{content:'';width:16px;height:1px;background:var(--dim);flex-shrink:0}
-.page-h1{font-family:var(--ff-d);font-size:clamp(3.5rem,11vw,9rem);line-height:0.87;letter-spacing:-0.01em;font-weight:400}
-.page-h1 em{color:rgba(238,235,227,0.18);font-style:normal;display:block}
-.page-sub{font-size:0.88rem;color:var(--dim);margin-top:1.25rem;letter-spacing:0.22em;text-transform:uppercase}
-.feat-strip{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:2rem}
-.feat-pill{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.42rem 0.9rem;border:1px solid rgba(238,235,227,0.1);border-radius:100px;color:var(--dim)}
-.feat-pill::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green-glow);flex-shrink:0;animation:dp 2s ease-in-out infinite}
-@keyframes dp{0%,100%{opacity:1}50%{opacity:0.3}}
+/* sec shell */
+.sec{padding:6rem 1.5rem}
+.sec-inner{max-width:1280px;margin:0 auto}
+.sec-head{display:grid;grid-template-columns:200px 1fr;gap:3rem;margin-bottom:4rem;align-items:end;padding-bottom:2rem;border-bottom:1px solid var(--rule)}
+.sec-head .num{font-family:var(--d);font-size:1rem;color:var(--ink-mute)}
+.sec-head .ttl{font-family:var(--d);font-size:clamp(2.5rem,7vw,5.5rem);line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase}
 
-/* ── SHARED ── */
-.sec{padding:5.5rem 2rem;position:relative}
-.sec-inner{max-width:1100px;margin:0 auto}
-.lbl{font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:0.5rem}
-.ttl{font-family:var(--ff-d);font-size:clamp(2rem,5.5vw,4rem);letter-spacing:0.01em;line-height:0.93;margin-bottom:2.5rem}
-.green-divider{height:3px;background:linear-gradient(90deg,transparent,var(--green-bright),var(--green-glow),var(--green-bright),transparent)}
-
-/* ── INTRO ── */
-.intro-body{max-width:800px;margin:0 auto;text-align:center}
-.intro-body p{font-size:clamp(1rem,2vw,1.2rem);line-height:1.82;color:rgba(238,235,227,0.52);margin-bottom:1.35rem}
+/* intro */
+.intro-pull{font-family:var(--d);font-size:clamp(1.6rem,3.5vw,2.8rem);line-height:1.05;letter-spacing:-0.015em;text-transform:uppercase;color:var(--ink);max-width:900px;margin:0 auto 3rem;border-left:3px solid var(--moss);padding:0.5rem 0 0.5rem 2rem}
+.intro-pull em{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss)}
+.intro-body{max-width:780px;margin:0 auto}
+.intro-body p{font-family:var(--s);font-size:clamp(1.05rem,1.7vw,1.18rem);line-height:1.7;color:var(--ink-soft);margin-bottom:1.4rem}
+.intro-body p strong{font-weight:600;color:var(--ink)}
+.intro-body p em{color:var(--moss)}
 .intro-body p:last-child{margin-bottom:0}
-.intro-body p strong{color:var(--paper)}
 
-/* ── PRICING ── */
-.pricing-table{max-width:680px;margin:0 auto;border:1px solid rgba(238,235,227,0.09);border-radius:8px;overflow:hidden}
-.pr{display:flex;justify-content:space-between;align-items:center;padding:1.4rem 2rem;border-bottom:1px solid rgba(238,235,227,0.07);transition:background 0.3s,padding-left 0.3s}
-.pr:last-child{border-bottom:none}
-.pr:hover{background:rgba(238,235,227,0.03);padding-left:2.4rem}
-.pr.bundle{background:rgba(238,235,227,0.02)}
-.pr-label{font-size:0.95rem;font-weight:500}
-.pr-sub{font-size:0.8rem;color:var(--dim);margin-top:0.2rem}
-.pr-price{font-family:var(--ff-d);font-size:1.5rem;letter-spacing:0.02em;white-space:nowrap}
-.save-tag{display:inline-block;background:var(--green-glow);color:#fff;font-family:var(--ff-d);font-size:0.62rem;padding:0.18rem 0.5rem;border-radius:3px;margin-left:0.65rem;letter-spacing:0.05em;vertical-align:middle}
-.pricing-note{text-align:center;margin-top:1.75rem;font-size:0.82rem;color:var(--dim)}
+/* pricing */
+.pricing{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.pricing-table{max-width:780px;margin:0 auto;border-top:1px solid var(--ink);border-left:1px solid var(--ink);border-right:1px solid var(--ink);background:var(--paper)}
+.pr{display:grid;grid-template-columns:60px 1fr auto;gap:1.5rem;align-items:center;padding:1.6rem 1.75rem;border-bottom:1px solid var(--ink);transition:background 0.25s,padding-left 0.25s}
+.pr:hover{background:var(--ink);color:var(--paper);padding-left:2.25rem}
+.pr:hover .pr-num{color:var(--moss-glow)}
+.pr:hover .pr-sub{color:rgba(243,238,226,0.55)}
+.pr:hover .pr-label .it{color:var(--moss-light)}
+.pr.bundle{background:var(--moss);color:var(--paper);border-bottom:1px solid var(--ink)}
+.pr.bundle .pr-num{color:var(--moss-light)}
+.pr.bundle .pr-label .it{color:var(--moss-light)}
+.pr.bundle .pr-sub{color:rgba(243,238,226,0.7)}
+.pr.bundle:hover{background:var(--moss-deep);padding-left:2.25rem}
+.pr-num{font-family:var(--m);font-size:0.72rem;letter-spacing:0.16em;color:var(--moss);font-weight:500;transition:color 0.25s}
+.pr-label{font-family:var(--d);font-size:1.15rem;letter-spacing:-0.005em;text-transform:uppercase;line-height:1.1;display:flex;align-items:center;flex-wrap:wrap;gap:0.5rem}
+.pr-label .it{color:var(--moss);transition:color 0.25s}
+.pr-sub{font-family:var(--s);font-size:0.92rem;color:var(--ink-mute);margin-top:0.35rem;transition:color 0.25s}
+.pr-price{font-family:var(--d);font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:-0.02em;white-space:nowrap}
+.save-tag{display:inline-flex;align-items:center;gap:0.35rem;background:var(--paper);color:var(--moss);font-family:var(--m);font-size:0.6rem;padding:0.3rem 0.6rem;border-radius:2px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;line-height:1}
+.save-tag::before{content:"";width:5px;height:5px;background:var(--moss-glow);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+.pricing-note{text-align:center;margin-top:1.75rem;font-family:var(--s);font-style:italic;font-size:0.95rem;color:var(--ink-mute);max-width:600px;margin-left:auto;margin-right:auto}
 
-/* ── CARD GRIDS ── */
-.card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(238,235,227,0.08);border:1px solid rgba(238,235,227,0.08);border-radius:8px;overflow:hidden;max-width:1000px;margin:0 auto}
-.ci{background:var(--ink);padding:2.25rem 1.75rem;transition:background 0.3s}
-.ci.alt{background:var(--ink2)}
-.ci:hover{background:var(--ink2)}
-.ci.alt:hover{background:var(--ink)}
-.ci h3{font-family:var(--ff-d);font-size:1.15rem;letter-spacing:0.04em;margin-bottom:0.75rem}
-.ci p{font-size:0.85rem;color:var(--dim);line-height:1.7}
-.step-n{font-family:var(--ff-d);font-size:3.5rem;color:rgba(238,235,227,0.07);line-height:1;margin-bottom:0.75rem;transition:color 0.3s}
-.ci:hover .step-n{color:rgba(238,235,227,0.12)}
+/* card grids */
+.card-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.ci{background:var(--paper);padding:2rem 1.5rem;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);position:relative;overflow:hidden;transition:background 0.3s var(--ease)}
+.ci::after{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform 0.4s var(--ease);z-index:0}
+.ci>*{position:relative;z-index:1;transition:color 0.4s var(--ease)}
+.ci:hover::after{transform:translateY(0)}
+.ci:hover .ci-num{color:var(--moss-glow)}
+.ci:hover h3,.ci:hover p{color:var(--paper)}
+.ci:hover .step-n{color:var(--paper-2);-webkit-text-stroke-color:var(--moss-glow)}
+.ci-num{font-family:var(--m);font-size:0.66rem;letter-spacing:0.16em;color:var(--moss);font-weight:500;margin-bottom:0.85rem;text-transform:uppercase}
+.ci h3{font-family:var(--d);font-size:1.5rem;letter-spacing:-0.015em;text-transform:uppercase;margin-bottom:0.65rem;line-height:0.95}
+.ci h3 em{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss)}
+.ci p{font-family:var(--s);font-size:0.92rem;color:var(--ink-soft);line-height:1.55}
+.step-n{font-family:var(--d);font-size:5rem;line-height:0.85;letter-spacing:-0.04em;color:var(--paper-2);-webkit-text-stroke:1px var(--ink);margin-bottom:1.25rem;transition:color 0.4s var(--ease),-webkit-text-stroke-color 0.4s var(--ease)}
 
 /* included grid */
-.inc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(238,235,227,0.08);border:1px solid rgba(238,235,227,0.08);border-radius:8px;overflow:hidden;max-width:900px;margin:0 auto}
-.inc{background:var(--ink);padding:1.75rem;text-align:center;transition:background 0.3s}
-.inc:hover{background:var(--ink2)}
-.inc span{font-size:0.88rem;color:rgba(238,235,227,0.55)}
+.inc-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-left:1px solid var(--ink);max-width:1100px;margin:0 auto}
+.inc{background:var(--paper);padding:1.5rem 1.25rem;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);display:flex;align-items:center;gap:0.85rem;transition:background 0.2s}
+.inc:hover{background:var(--paper-2)}
+.inc svg{width:18px;height:18px;color:var(--moss);flex-shrink:0}
+.inc span{font-family:var(--s);font-size:0.96rem;color:var(--ink)}
 
-/* ── GREEN STRIP ── */
-.green-strip{background:var(--green);padding:3rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;border-top:1px solid rgba(61,139,61,0.3);border-bottom:1px solid rgba(61,139,61,0.3)}
-.green-strip-txt{font-family:var(--ff-d);font-size:clamp(1.5rem,3.5vw,2.5rem);letter-spacing:0.02em;line-height:1.1}
-.green-strip-txt span{color:rgba(255,255,255,0.45);display:block;font-size:0.75rem;font-family:var(--ff-b);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.4rem}
-.green-strip-btn{display:inline-flex;align-items:center;gap:0.65rem;padding:0.9rem 2rem;background:var(--paper);color:var(--ink);border-radius:3px;font-family:var(--ff-d);font-size:1.05rem;letter-spacing:0.07em;white-space:nowrap;transition:opacity 0.2s;flex-shrink:0}
-.green-strip-btn:hover{opacity:0.85}
-.green-strip-btn svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:2}
+/* green strip */
+.green-strip{background:var(--moss-deep);color:var(--paper);padding:4rem 1.5rem;position:relative;overflow:hidden}
+.green-strip::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(243,238,226,0.04) 1px,transparent 1px);background-size:4px 4px}
+.green-strip-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap;position:relative}
+.green-strip h3{font-family:var(--d);font-size:clamp(2rem,5vw,3.8rem);letter-spacing:-0.02em;line-height:0.92;text-transform:uppercase;max-width:18ch}
+.green-strip h3 em{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss-light)}
+.green-strip-side{display:flex;flex-direction:column;gap:1rem;align-items:flex-end}
+.green-strip .label{font-family:var(--m);font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(243,238,226,0.5)}
+.green-strip-cta{display:inline-flex;align-items:center;gap:0.7rem;background:var(--paper);color:var(--ink);padding:1.1rem 1.75rem;font-family:var(--m);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;border-radius:2px;transition:background 0.2s,color 0.2s}
+.green-strip-cta:hover{background:var(--ink);color:var(--paper)}
+.green-strip-cta svg{width:14px;height:14px}
 
-/* ── CTA ── */
-.cta-band{background:var(--paper);color:var(--ink);padding:7rem 2rem;text-align:center}
-.cta-title{font-family:var(--ff-d);font-size:clamp(3rem,10vw,8rem);line-height:0.89;letter-spacing:0.01em;margin-bottom:1.5rem}
-.cta-sub{font-size:0.9rem;color:#6e6b60;margin-bottom:2.25rem;letter-spacing:0.04em}
-.cta-btn{display:inline-flex;align-items:center;gap:0.7rem;padding:0.95rem 2.25rem;background:var(--ink);color:var(--paper);border-radius:100px;font-family:var(--ff-d);font-size:1.1rem;letter-spacing:0.07em;transition:transform 0.3s var(--ease),box-shadow 0.3s;-webkit-tap-highlight-color:transparent}
-.cta-btn:hover{transform:scale(1.04);box-shadow:0 14px 40px rgba(0,0,0,0.2)}
-.cta-btn svg{width:17px;height:17px;stroke:var(--paper);fill:none;stroke-width:2;transition:transform 0.3s}
+/* cta band */
+.cta-band{background:var(--ink);color:var(--paper);padding:7rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.cta-band::before,.cta-band::after{content:"tree6z · tree6z · tree6z · tree6z · ";position:absolute;font-family:var(--d);font-size:1rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(243,238,226,0.07);white-space:nowrap;left:0;right:0}
+.cta-band::before{top:1rem}.cta-band::after{bottom:1rem}
+.cta-band-inner{max-width:1100px;margin:0 auto;position:relative}
+.cta-tag{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--m);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(243,238,226,0.5);margin-bottom:1.5rem}
+.cta-tag::before{content:"";width:6px;height:6px;background:var(--moss-glow);border-radius:50%}
+.cta-title{font-family:var(--d);font-size:clamp(3rem,12vw,9rem);line-height:0.85;letter-spacing:-0.025em;text-transform:uppercase;margin-bottom:1.5rem}
+.cta-title em{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss-light)}
+.cta-sub{font-family:var(--s);font-size:1.15rem;color:rgba(243,238,226,0.55);margin:0 auto 3rem;max-width:50ch}
+.cta-sub em{color:var(--moss-light)}
+.cta-btn{display:inline-flex;align-items:center;gap:0.7rem;padding:1.15rem 2rem;background:var(--paper);color:var(--ink);border-radius:3px;font-family:var(--m);font-size:0.85rem;letter-spacing:0.16em;text-transform:uppercase;transition:transform 0.3s var(--ease),background 0.25s}
+.cta-btn:hover{transform:scale(1.03);background:var(--moss-glow)}
+.cta-btn svg{width:15px;height:15px;transition:transform 0.3s}
 .cta-btn:hover svg{transform:translateX(4px)}
 
-/* ── BUBBLE ── */
-.bubble{position:fixed;bottom:max(1.5rem,env(safe-area-inset-bottom,1.5rem));right:1.5rem;z-index:400;display:flex;align-items:center;gap:0.65rem;background:var(--paper);color:var(--ink);padding:0.78rem 1.2rem;border-radius:100px;font-family:var(--ff-d);font-size:0.95rem;letter-spacing:0.05em;cursor:pointer;box-shadow:0 6px 28px rgba(0,0,0,0.45);white-space:nowrap;transition:transform 0.25s;-webkit-tap-highlight-color:transparent;text-decoration:none}
-.bubble:hover{transform:scale(1.04)}
-.bubble:active{transform:scale(0.97)}
-.bubble svg{width:16px;height:16px;fill:var(--ink);flex-shrink:0;animation:ring 2.5s ease-in-out infinite}
-@keyframes ring{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(-12deg)}20%,40%{transform:rotate(12deg)}50%{transform:rotate(0)}}
+/* bubble */
+.bubble{position:fixed;bottom:max(1.25rem,env(safe-area-inset-bottom,1.25rem));right:1.25rem;z-index:60;display:flex;align-items:center;gap:0.6rem;background:var(--ink);color:var(--paper);padding:0.85rem 1.25rem;border-radius:100px;font-family:var(--m);font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;box-shadow:0 8px 28px rgba(24,24,22,0.35);white-space:nowrap;transition:transform 0.25s,background 0.2s;-webkit-tap-highlight-color:transparent}
+.bubble:hover{transform:scale(1.04);background:var(--moss)}
+.bubble svg{width:14px;height:14px;fill:currentColor;stroke:none;animation:ring 2.5s ease-in-out infinite}
 .bubble.gone{opacity:0;visibility:hidden;pointer-events:none}
 
-/* ── FOOTER ── */
-footer{background:var(--ink2);border-top:1px solid var(--rule)}
-.ft-top{max-width:1200px;margin:0 auto;padding:4.5rem 2rem 3rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;border-bottom:1px solid var(--rule)}
-.ft-logo{font-family:var(--ff-d);font-size:2.2rem;letter-spacing:0.1em;display:block;margin-bottom:0.85rem}
-.ft-tag{font-size:0.83rem;color:var(--dim);line-height:1.75;max-width:260px;margin-bottom:1.75rem}
-.ft-cl{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;font-size:0.8rem;color:var(--dim);transition:color 0.2s}
-.ft-cl:hover{color:var(--paper)}
-.ft-cl svg{width:11px;height:11px;stroke:currentColor;stroke-width:1.5;fill:none;flex-shrink:0}
-.ft-col h5{font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:rgba(238,235,227,0.2);margin-bottom:1.1rem;padding-bottom:0.65rem;border-bottom:1px solid rgba(238,235,227,0.05)}
+/* footer */
+footer{background:var(--ink);color:var(--paper)}
+.ft-mega{padding:4rem 1.5rem 2rem;border-bottom:1px solid rgba(243,238,226,0.1)}
+.ft-mega-inner{max-width:1280px;margin:0 auto}
+.ft-wordmark{font-family:var(--d);font-size:clamp(5rem,18vw,16rem);line-height:0.85;letter-spacing:-0.04em;text-transform:uppercase}
+.ft-wordmark em{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss-glow);letter-spacing:-0.02em}
+.ft-cols{max-width:1280px;margin:0 auto;padding:3rem 1.5rem;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.5rem;border-bottom:1px solid rgba(243,238,226,0.1)}
+.ft-col h5{font-family:var(--m);font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(243,238,226,0.4);margin-bottom:1.1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(243,238,226,0.1)}
+.ft-col p{font-family:var(--s);font-size:0.95rem;line-height:1.6;color:rgba(243,238,226,0.6);margin-bottom:1.5rem;max-width:32ch}
 .ft-col ul{list-style:none}
-.ft-col li{margin-bottom:0.4rem}
-.ft-col li a{font-size:0.8rem;color:var(--dim);transition:color 0.2s}
-.ft-col li a:hover{color:var(--paper)}
-.ft-areas{display:flex;flex-wrap:wrap;gap:0.28rem;margin-top:0.1rem}
-.ft-ar{font-size:0.65rem;color:var(--dim);padding:0.2rem 0.5rem;border:1px solid rgba(238,235,227,0.07);border-radius:2px;transition:all 0.2s}
-.ft-ar:hover{border-color:rgba(61,139,61,0.5);color:var(--green-glow)}
-.ft-mid{max-width:1200px;margin:0 auto;padding:1.4rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.85rem;border-bottom:1px solid var(--rule)}
-.ft-trust{display:flex;gap:0.45rem;flex-wrap:wrap}
-.tr{display:inline-flex;align-items:center;gap:0.32rem;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);padding:0.26rem 0.7rem;border:1px solid rgba(238,235,227,0.07);border-radius:2px}
-.tr svg{width:9px;height:9px;stroke:currentColor;stroke-width:2;fill:none}
-.ft-live{display:flex;align-items:center;gap:0.45rem;font-size:0.7rem;color:var(--dim)}
-.ldot{width:5px;height:5px;border-radius:50%;background:#4ade80;animation:ldp 2.5s ease-in-out infinite;flex-shrink:0}
-@keyframes ldp{0%,100%{opacity:1}50%{opacity:0.25}}
-.ft-bot{max-width:1200px;margin:0 auto;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.85rem}
-.ft-copy{font-size:0.68rem;color:rgba(238,235,227,0.17)}
-.ft-sm{display:flex;gap:1.4rem}
-.ft-sm a{font-size:0.68rem;color:rgba(238,235,227,0.17);transition:color 0.2s}
-.ft-sm a:hover{color:var(--dim)}
+.ft-col li{margin-bottom:0.45rem}
+.ft-col li a{font-size:0.88rem;color:rgba(243,238,226,0.6);transition:color 0.2s,padding-left 0.2s}
+.ft-col li a:hover{color:var(--paper);padding-left:0.3rem}
+.ft-cl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;font-family:var(--m);font-size:0.78rem;letter-spacing:0.06em;color:rgba(243,238,226,0.7);transition:color 0.2s}
+.ft-cl:hover{color:var(--moss-glow)}
+.ft-cl svg{width:13px;height:13px}
+.ft-areas{display:flex;flex-wrap:wrap;gap:0.3rem}
+.ft-ar{font-family:var(--m);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.55rem;border:1px solid rgba(243,238,226,0.1);border-radius:2px;color:rgba(243,238,226,0.55);transition:all 0.2s}
+.ft-ar:hover{border-color:var(--moss-glow);color:var(--moss-glow)}
+.ft-bot{max-width:1280px;margin:0 auto;padding:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-family:var(--m);font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(243,238,226,0.4)}
+.ft-sm{display:flex;gap:1.5rem}
+.ft-sm a{transition:color 0.2s}
+.ft-sm a:hover{color:var(--paper)}
 
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease)}
+/* reveal */
+.rv{opacity:0;transform:translateY(20px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease)}
 .rv.on{opacity:1;transform:translateY(0)}
-.d1{transition-delay:0.1s}.d2{transition-delay:0.2s}.d3{transition-delay:0.3s}
+.d1{transition-delay:0.08s}.d2{transition-delay:0.16s}.d3{transition-delay:0.24s}.d4{transition-delay:0.32s}
 
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
+@media(max-width:1100px){
+  .page-hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero-card{max-width:480px}
   .card-grid{grid-template-columns:repeat(2,1fr)}
   .inc-grid{grid-template-columns:repeat(2,1fr)}
-  .ft-top{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .ft-cols{grid-template-columns:1fr 1fr;gap:2rem}
+  .sec-head{grid-template-columns:1fr;gap:0.5rem;align-items:start}
 }
 @media(max-width:768px){
-  .nav-center,.ntel,.ncta{display:none}
+  .nav-center,.ncta{display:none}
   .hbg{display:flex}
-  .nav{padding:0 1.25rem}
-  .page-hero{padding:100px 1.25rem 55px}
-  .sec{padding:4rem 1.25rem}
+  .tickerbar{padding:0.5rem 1rem;font-size:0.6rem;letter-spacing:0.12em}
+  .tickerbar .right{gap:0.75rem}
+  .tickerbar .right span{display:none}
+  .nav{padding:0.85rem 1rem}
+  .nav-logo{font-size:1.3rem}
+  .page-hero{padding:3rem 1rem}
+  .page-meta{flex-wrap:wrap;gap:0.85rem}
+  .sec{padding:4rem 1rem}
+  .intro-pull{padding-left:1.25rem;margin-bottom:2.5rem}
+  .pr{grid-template-columns:1fr auto;padding:1.3rem 1.25rem}
+  .pr .pr-num{display:none}
+  .pr:hover{padding-left:1.6rem}
   .card-grid{grid-template-columns:1fr}
-  .inc-grid{grid-template-columns:repeat(2,1fr)}
-  .green-strip{flex-direction:column;align-items:flex-start;padding:2.5rem 1.25rem}
-  .ft-top{grid-template-columns:1fr;padding:3rem 1.25rem 2rem}
-  .ft-mid,.ft-bot{padding:1.1rem 1.25rem}
-  .bubble{bottom:max(1rem,env(safe-area-inset-bottom,1rem));left:50%;right:auto;transform:translateX(-50%)}
-  .bubble:active{transform:translateX(-50%) scale(0.97)}
-  .cta-band{padding:5rem 1.25rem}
-  .pr{padding:1.2rem 1.5rem}
-  .pr:hover{padding-left:1.75rem}
+  .inc-grid{grid-template-columns:1fr}
+  .green-strip{padding:3rem 1rem}
+  .green-strip-inner{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .green-strip-side{align-items:flex-start;width:100%}
+  .ft-cols{grid-template-columns:1fr;padding:2rem 1rem;gap:2rem}
+  .ft-mega{padding:2.5rem 1rem 1rem}
+  .ft-bot{padding:1rem;font-size:0.6rem}
+  .bubble{bottom:max(0.85rem,env(safe-area-inset-bottom,0.85rem));left:50%;right:auto;transform:translateX(-50%)}
+  .bubble:hover{transform:translateX(-50%) scale(1.04)}
+  .cta-band{padding:5rem 1rem}
 }
 @media(max-width:480px){
-  .page-h1{font-size:clamp(2.8rem,12vw,4.5rem)}
-  .sec{padding:3.5rem 1rem}
-  .ttl{margin-bottom:2rem}
-  .inc-grid{grid-template-columns:1fr}
-  .ci{padding:2rem 1.5rem}
-  .ft-top{padding:2.5rem 1rem 1.75rem}
-  .ft-mid,.ft-bot{padding:1rem}
+  .page-h1{font-size:clamp(2.8rem,14vw,5rem)}
+  .sec-head .ttl{font-size:clamp(2rem,9vw,3.5rem)}
+  .ft-wordmark{font-size:clamp(3.5rem,22vw,7rem)}
 }
 </style>
 </head>
 <body>
 
-<!-- DRAWER -->
+<div class="tickerbar">
+  <span><span class="dot"></span>Open · Mon–Sun 6am–10pm</span>
+  <div class="right"><span>Snow line 24/7</span><a href="tel:+13062229165">(306) 222-9165</a></div>
+</div>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><span>tree6z</span><span class="small">est. saskatoon</span></a>
+  <div class="nav-center">
+    <a href="lawncare.html" class="nl">Lawn</a>
+    <a href="leaf.html" class="nl">Leaf</a>
+    <a href="spring.html" class="nl active">Spring</a>
+    <a href="snow.html" class="nl">Snow</a>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+13062229165" class="ncta"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>(306) 222-9165</a>
+    <button class="hbg" id="hbg" onclick="tog()" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </div>
+</nav>
+
 <div class="drawer" id="drawer">
-  <button class="d-x" onclick="tog()" aria-label="Close">✕</button>
   <a href="index.html" class="d-link" onclick="tog()">Home</a>
   <a href="lawncare.html" class="d-link" onclick="tog()">Lawn Care</a>
   <a href="leaf.html" class="d-link" onclick="tog()">Leaf Removal</a>
@@ -233,218 +293,200 @@ footer{background:var(--ink2);border-top:1px solid var(--rule)}
   </div>
 </div>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">TREE6Z</a>
-  <div class="nav-center">
-    <a href="lawncare.html" class="nl">Lawn Care</a>
-    <a href="leaf.html" class="nl">Leaf Removal</a>
-    <a href="spring.html" class="nl active">Spring Cleanup</a>
-    <a href="snow.html" class="nl">Snow Removal</a>
-  </div>
-  <div class="nav-right">
-    <a href="tel:+13062229165" class="ntel">(306) 222-9165</a>
-    <a href="tel:+13062229165" class="ncta">Call Now</a>
-    <button class="hbg" id="hbg" onclick="tog()" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
-  </div>
-</nav>
-
-<!-- PAGE HERO -->
-<div class="page-hero">
+<header class="page-hero">
   <div class="page-hero-inner">
-    <p class="page-eyebrow">tree6z · Saskatoon, SK</p>
-    <h1 class="page-h1">
-      SPRING<br>
-      <em>CLEANUP</em>
-    </h1>
-    <p class="page-sub">Undo Winter · Reset Your Lawn</p>
-    <div class="feat-strip">
-      <span class="feat-pill">Dethatching</span>
-      <span class="feat-pill">Aeration</span>
-      <span class="feat-pill">Fertilizer</span>
-      <span class="feat-pill">Debris Removal</span>
+    <div class="page-meta">
+      <span><strong>Service /03</strong> &nbsp;·&nbsp; Apr – May</span>
+      <span>Saskatoon, SK</span>
+      <span>Spring Cleanup</span>
+    </div>
+    <div class="page-hero-grid">
+      <div>
+        <h1 class="page-h1">Spring <span class="it">cleanup.</span></h1>
+        <p class="page-sub">Undo <em>five months of winter</em> in a single visit. Dethatching, aeration, fertilizer, debris removal &mdash; the full reset.</p>
+        <div class="feat-strip">
+          <span class="feat-pill">Dethatching</span>
+          <span class="feat-pill">Aeration</span>
+          <span class="feat-pill">Fertilizer</span>
+          <span class="feat-pill">Debris removal</span>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="hero-card-label">From</div>
+        <div class="hero-card-headline">$85 <em>/ visit</em></div>
+        <div class="hero-card-row"><span class="k">Season</span><span class="v">Apr &ndash; May</span></div>
+        <div class="hero-card-row"><span class="k">Bundle</span><span class="v">Save up to $55</span></div>
+        <div class="hero-card-row"><span class="k">Status</span><span class="v ok">Booking</span></div>
+      </aside>
     </div>
   </div>
-</div>
+</header>
 
-<!-- INTRO -->
-<section class="sec" style="background:var(--ink);border-top:1px solid var(--rule)">
+<section class="sec">
   <div class="sec-inner">
-    <span class="lbl rv">The Problem</span>
-    <div class="ttl rv">YOUR LAWN<br>TOOK A BEATING</div>
+    <div class="sec-head">
+      <div class="num rv">01 / The problem</div>
+      <h2 class="ttl rv d1">Your lawn <span class="it">took</span><br>a beating.</h2>
+    </div>
+    <div class="intro-pull rv">Five months of <em>snow, ice,</em><br>and freeze-thaw cycles.<br>Time to <em>reset.</em></div>
     <div class="intro-body">
-      <p class="rv">Five months of snow, ice, and freeze-thaw cycles. <strong>Compacted soil, dead thatch, suffocated roots.</strong> Without proper spring care, your lawn struggles all summer.</p>
-      <p class="rv d1">We fix that. Dethatching clears the dead layer. Aeration opens up the soil. Fertilizer feeds the roots. <strong>Your lawn comes back stronger.</strong></p>
+      <p class="rv">Compacted soil, dead thatch, suffocated roots. <strong>Without proper spring care, your lawn struggles all summer</strong> &mdash; thin patches, weak grass, weeds taking over.</p>
+      <p class="rv d1">We fix that. <em>Dethatching</em> clears the dead layer. <em>Aeration</em> opens up the soil. <em>Fertilizer</em> feeds the roots. <strong>Your lawn comes back stronger than last year.</strong></p>
     </div>
   </div>
 </section>
 
-<div class="green-divider"></div>
-
-<!-- PRICING -->
-<section class="sec" style="background:var(--ink2);border-top:1px solid rgba(238,235,227,0.06)">
+<section class="sec pricing">
   <div class="sec-inner">
-    <span class="lbl rv">What It Costs</span>
-    <div class="ttl rv">PRICING</div>
+    <div class="sec-head">
+      <div class="num rv">02 / What it costs</div>
+      <h2 class="ttl rv d1">Pricing <span class="it">straight up.</span></h2>
+    </div>
     <div class="pricing-table rv">
-      <div class="pr"><div><div class="pr-label">Dethatching</div><div class="pr-sub">Under 2,000 sq ft</div></div><span class="pr-price">$120</span></div>
-      <div class="pr"><div><div class="pr-label">Dethatching</div><div class="pr-sub">2,000+ sq ft</div></div><span class="pr-price">$180</span></div>
-      <div class="pr"><div><div class="pr-label">Core Aeration</div><div class="pr-sub">Under 2,000 sq ft</div></div><span class="pr-price">$110</span></div>
-      <div class="pr"><div><div class="pr-label">Core Aeration</div><div class="pr-sub">2,000+ sq ft</div></div><span class="pr-price">$170</span></div>
-      <div class="pr"><div><div class="pr-label">Fertilizer</div><div class="pr-sub">Under 2,000 sq ft</div></div><span class="pr-price">$85</span></div>
-      <div class="pr"><div><div class="pr-label">Fertilizer</div><div class="pr-sub">2,000+ sq ft</div></div><span class="pr-price">$130</span></div>
-      <div class="pr bundle"><div><div class="pr-label">Full Reset Bundle<span class="save-tag">SAVE $40</span></div><div class="pr-sub">Under 2,000 sq ft · All 3 + debris cleanup</div></div><span class="pr-price">$275</span></div>
-      <div class="pr bundle"><div><div class="pr-label">Full Reset Bundle<span class="save-tag">SAVE $55</span></div><div class="pr-sub">2,000+ sq ft · All 3 + debris cleanup</div></div><span class="pr-price">$425</span></div>
+      <div class="pr"><span class="pr-num">/01</span><div><div class="pr-label">Dethatching <span class="it">/ small</span></div><div class="pr-sub">Under 2,000 sq ft</div></div><span class="pr-price">$120</span></div>
+      <div class="pr"><span class="pr-num">/02</span><div><div class="pr-label">Dethatching <span class="it">/ large</span></div><div class="pr-sub">2,000+ sq ft</div></div><span class="pr-price">$180</span></div>
+      <div class="pr"><span class="pr-num">/03</span><div><div class="pr-label">Core aeration <span class="it">/ small</span></div><div class="pr-sub">Under 2,000 sq ft</div></div><span class="pr-price">$110</span></div>
+      <div class="pr"><span class="pr-num">/04</span><div><div class="pr-label">Core aeration <span class="it">/ large</span></div><div class="pr-sub">2,000+ sq ft</div></div><span class="pr-price">$170</span></div>
+      <div class="pr"><span class="pr-num">/05</span><div><div class="pr-label">Fertilizer <span class="it">/ small</span></div><div class="pr-sub">Under 2,000 sq ft</div></div><span class="pr-price">$85</span></div>
+      <div class="pr"><span class="pr-num">/06</span><div><div class="pr-label">Fertilizer <span class="it">/ large</span></div><div class="pr-sub">2,000+ sq ft</div></div><span class="pr-price">$130</span></div>
+      <div class="pr bundle"><span class="pr-num">/07</span><div><div class="pr-label">Full reset <span class="it">/ small</span><span class="save-tag">Save $40</span></div><div class="pr-sub">Under 2,000 sq ft &middot; All 3 + debris cleanup</div></div><span class="pr-price">$275</span></div>
+      <div class="pr bundle" style="border-bottom:1px solid var(--ink)"><span class="pr-num">/08</span><div><div class="pr-label">Full reset <span class="it">/ large</span><span class="save-tag">Save $55</span></div><div class="pr-sub">2,000+ sq ft &middot; All 3 + debris cleanup</div></div><span class="pr-price">$425</span></div>
     </div>
-    <p class="pricing-note rv">Bundle = Dethatching + Aeration + Fertilizer + Debris Removal</p>
+    <p class="pricing-note rv">Bundle &equals; Dethatching + Aeration + Fertilizer + Debris removal. <em>Best results.</em></p>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="sec" style="background:var(--ink);border-top:1px solid var(--rule)">
+<section class="sec">
   <div class="sec-inner">
-    <span class="lbl rv">What We Do</span>
-    <div class="ttl rv">THE SERVICES</div>
+    <div class="sec-head">
+      <div class="num rv">03 / What we do</div>
+      <h2 class="ttl rv d1">The <span class="it">services.</span></h2>
+    </div>
     <div class="card-grid">
-      <div class="ci rv"><h3>DETHATCHING</h3><p>Power rakes remove dead grass buildup. Lets oxygen reach roots. Your grass grows thicker.</p></div>
-      <div class="ci rv d1"><h3>AERATION</h3><p>Pulls small plugs from soil to reduce compaction. Water and nutrients reach deep. The #1 service for healthy grass.</p></div>
-      <div class="ci rv d2"><h3>FERTILIZER</h3><p>Slow-release nitrogen for spring growth. Green-up in 7-10 days. Lasts 8-10 weeks.</p></div>
-      <div class="ci rv d3"><h3>WHY BUNDLE?</h3><p>Aeration opens soil. Fertilizer gets deep. Dethatching removes competition. Together = best results.</p></div>
-    </div>
-  </div>
-</section>
-
-<div class="green-divider"></div>
-
-<!-- PROCESS -->
-<section class="sec" style="background:var(--ink2);border-top:1px solid rgba(238,235,227,0.06)">
-  <div class="sec-inner">
-    <span class="lbl rv">How It Works</span>
-    <div class="ttl rv">THE PROCESS</div>
-    <div class="card-grid">
-      <div class="ci alt rv"><div class="step-n">01</div><h3>CLEAR DEBRIS</h3><p>Remove sticks, leaves, dead branches. Rake beds, clear walkways, haul everything away.</p></div>
-      <div class="ci alt rv d1"><div class="step-n">02</div><h3>DETHATCH</h3><p>Break up compacted thatch with commercial equipment. Grass breathes again.</p></div>
-      <div class="ci alt rv d2"><div class="step-n">03</div><h3>AERATE</h3><p>Pull plugs across entire lawn. Opens soil for water, oxygen, and fertilizer.</p></div>
-      <div class="ci alt rv d3"><div class="step-n">04</div><h3>FERTILIZE</h3><p>Apply slow-release fertilizer. Full blow-off. Walkthrough before we leave.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- BUNDLE INCLUDES -->
-<section class="sec" style="background:var(--ink);border-top:1px solid var(--rule)">
-  <div class="sec-inner">
-    <span class="lbl rv">What You Get</span>
-    <div class="ttl rv">BUNDLE INCLUDES</div>
-    <div class="inc-grid rv d1">
-      <div class="inc"><span>Winter debris removal</span></div>
-      <div class="inc"><span>Power rake dethatching</span></div>
-      <div class="inc"><span>Core aeration</span></div>
-      <div class="inc"><span>Fertilizer application</span></div>
-      <div class="inc"><span>Bed cleanup</span></div>
-      <div class="inc"><span>Full property blow-off</span></div>
-      <div class="inc"><span>Debris haul-away</span></div>
-      <div class="inc"><span>Final walkthrough</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- GREEN STRIP -->
-<div class="green-strip rv">
-  <div class="green-strip-txt">
-    <span>April fills up fast</span>
-    Book your spring cleanup now.
-  </div>
-  <a href="tel:+13062229165" class="green-strip-btn">
-    (306) 222-9165
-    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
-</div>
-
-<!-- CTA -->
-<div class="cta-band">
-  <h2 class="cta-title rv">READY FOR<br>A FRESH START?</h2>
-  <p class="cta-sub rv d1">April fills up fast. Book now.</p>
-  <a href="tel:+13062229165" class="cta-btn rv d2">CALL US <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-</div>
-
-<!-- BUBBLE -->
-<a href="tel:+13062229165" class="bubble" id="bubble">
-  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
-  (306) 222-9165
-</a>
-
-<!-- FOOTER -->
-<footer>
-  <div class="ft-top">
-    <div>
-      <span class="ft-logo">TREE6Z</span>
-      <p class="ft-tag">Local Saskatoon crew taking care of yards year-round. No contracts, no runaround — just good people doing good work.</p>
-      <a href="tel:+13062229165" class="ft-cl"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>(306) 222-9165</a>
-      <a href="mailto:tree6zlandscaping@gmail.com" class="ft-cl"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>tree6zlandscaping@gmail.com</a>
-      <a href="#" class="ft-cl"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Saskatoon, SK</a>
-    </div>
-    <div class="ft-col">
-      <h5>Services</h5>
-      <ul>
-        <li><a href="lawncare.html">Lawn Care</a></li>
-        <li><a href="leaf.html">Leaf Removal</a></li>
-        <li><a href="spring.html">Spring Cleanup</a></li>
-        <li><a href="snow.html">Snow Removal</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="faq.html">About</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="faq.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h5>Service Areas</h5>
-      <div class="ft-areas">
-        <span class="ft-ar">Stonebridge</span><span class="ft-ar">Willowgrove</span><span class="ft-ar">Briarwood</span><span class="ft-ar">Evergreen</span><span class="ft-ar">Warman</span><span class="ft-ar">Martensville</span><span class="ft-ar">Dalmeny</span>
+      <div class="ci rv">
+        <div class="ci-num">/01</div>
+        <h3>Dethatching</h3>
+        <p>Power rakes remove the dead grass buildup. Lets oxygen reach roots. Your grass grows back thicker.</p>
+      </div>
+      <div class="ci rv d1">
+        <div class="ci-num">/02</div>
+        <h3>Aeration</h3>
+        <p>Pulls small plugs from soil to reduce compaction. Water and nutrients reach deep. The #1 service for healthy grass.</p>
+      </div>
+      <div class="ci rv d2">
+        <div class="ci-num">/03</div>
+        <h3>Fertilizer</h3>
+        <p>Slow-release nitrogen for spring growth. Green-up in 7&ndash;10 days. Lasts 8&ndash;10 weeks.</p>
+      </div>
+      <div class="ci rv d3">
+        <div class="ci-num">/04</div>
+        <h3>Why <span class="it">bundle?</span></h3>
+        <p>Aeration opens soil. Fertilizer gets deep. Dethatching removes competition. Together = best results.</p>
       </div>
     </div>
   </div>
-  <div class="ft-mid">
-    <div class="ft-trust">
-      <span class="tr"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Fully Insured</span>
-      <span class="tr"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>City Licensed</span>
-      <span class="tr"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Family-Run</span>
-      <span class="tr"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>No Contracts</span>
+</section>
+
+<section class="sec" style="background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="num rv">04 / How it works</div>
+      <h2 class="ttl rv d1">The <span class="it">process.</span></h2>
     </div>
-    <div class="ft-live"><span class="ldot"></span>Mon–Sun 6am–10pm &nbsp;·&nbsp; Snow 24/7</div>
+    <div class="card-grid">
+      <div class="ci rv">
+        <div class="step-n">01</div>
+        <h3>Clear <span class="it">debris</span></h3>
+        <p>Remove sticks, leaves, dead branches. Rake beds, clear walkways, haul everything away.</p>
+      </div>
+      <div class="ci rv d1">
+        <div class="step-n">02</div>
+        <h3>Dethatch</h3>
+        <p>Break up compacted thatch with commercial equipment. Grass breathes again.</p>
+      </div>
+      <div class="ci rv d2">
+        <div class="step-n">03</div>
+        <h3>Aerate</h3>
+        <p>Pull plugs across the entire lawn. Opens soil for water, oxygen, and fertilizer.</p>
+      </div>
+      <div class="ci rv d3">
+        <div class="step-n">04</div>
+        <h3>Fertilize</h3>
+        <p>Apply slow-release fertilizer. Full blow-off. Walkthrough before we leave.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="num rv">05 / What you get</div>
+      <h2 class="ttl rv d1">Bundle <span class="it">includes.</span></h2>
+    </div>
+    <div class="inc-grid rv d1">
+      <div class="inc"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Winter debris removal</span></div>
+      <div class="inc"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Power rake dethatching</span></div>
+      <div class="inc"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Core aeration</span></div>
+      <div class="inc"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Fertilizer application</span></div>
+      <div class="inc"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Bed cleanup</span></div>
+      <div class="inc"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Full property blow-off</span></div>
+      <div class="inc"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Debris haul-away</span></div>
+      <div class="inc"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Final walkthrough</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="green-strip">
+  <div class="green-strip-inner">
+    <h3 class="rv">April fills up <em>fast.</em><br>Book your spring reset.</h3>
+    <div class="green-strip-side rv d1">
+      <span class="label">Limited spring slots</span>
+      <a href="tel:+13062229165" class="green-strip-cta">Call (306) 222-9165<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <div class="cta-band-inner">
+    <span class="cta-tag rv">Booking now &mdash; April through May</span>
+    <h2 class="cta-title rv d1">Ready for a<br><em>fresh</em> start?</h2>
+    <p class="cta-sub rv d2">April fills up fast. Get on the list, get your <em>full reset,</em> and watch your lawn come back stronger.</p>
+    <a href="tel:+13062229165" class="cta-btn rv d3">Call (306) 222-9165<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</div>
+
+<a href="tel:+13062229165" class="bubble" id="bubble">
+  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>Call now
+</a>
+
+<footer>
+  <div class="ft-mega"><div class="ft-mega-inner"><div class="ft-wordmark">tree6z<em>.</em></div></div></div>
+  <div class="ft-cols">
+    <div class="ft-col">
+      <h5>The Crew</h5>
+      <p>Local Saskatoon family-run property maintenance &mdash; year-round, no contracts, just good people doing good work.</p>
+      <a href="tel:+13062229165" class="ft-cl"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>(306) 222-9165</a><br>
+      <a href="mailto:tree6zlandscaping@gmail.com" class="ft-cl"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>tree6zlandscaping@gmail.com</a>
+    </div>
+    <div class="ft-col"><h5>Services</h5><ul><li><a href="lawncare.html">Lawn care</a></li><li><a href="leaf.html">Leaf removal</a></li><li><a href="spring.html">Spring cleanup</a></li><li><a href="snow.html">Snow removal</a></li></ul></div>
+    <div class="ft-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="faq.html#about">About</a></li><li><a href="faq.html#faq">FAQ</a></li><li><a href="faq.html#contact">Contact</a></li></ul></div>
+    <div class="ft-col"><h5>Service Areas</h5><div class="ft-areas"><span class="ft-ar">Stonebridge</span><span class="ft-ar">Willowgrove</span><span class="ft-ar">Briarwood</span><span class="ft-ar">Evergreen</span><span class="ft-ar">Warman</span><span class="ft-ar">Martensville</span><span class="ft-ar">Dalmeny</span></div></div>
   </div>
   <div class="ft-bot">
-    <span class="ft-copy">&copy; 2026 tree6z &nbsp;·&nbsp; Saskatoon, SK &nbsp;·&nbsp; Fully Insured</span>
-    <div class="ft-sm"><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:tree6zlandscaping@gmail.com">Email Us</a></div>
+    <span>&copy; 2026 tree6z &nbsp;·&nbsp; Saskatoon, SK &nbsp;·&nbsp; Fully insured &amp; licensed</span>
+    <div class="ft-sm"><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:tree6zlandscaping@gmail.com">Email us</a></div>
   </div>
 </footer>
 
 <script>
 var mOpen=false,bub=document.getElementById('bubble');
-function tog(){
-  mOpen=!mOpen;
-  document.getElementById('drawer').classList.toggle('on',mOpen);
-  document.getElementById('hbg').classList.toggle('on',mOpen);
-  document.getElementById('hbg').setAttribute('aria-expanded',String(mOpen));
-  if(bub)bub.classList.toggle('gone',mOpen);
-  document.body.style.overflow=mOpen?'hidden':'';
-}
-var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){nav.classList.toggle('pinned',window.scrollY>50)},{passive:true});
+function tog(){mOpen=!mOpen;document.getElementById('drawer').classList.toggle('on',mOpen);document.getElementById('hbg').classList.toggle('on',mOpen);if(bub)bub.classList.toggle('gone',mOpen);document.body.style.overflow=mOpen?'hidden':'';}
 var rvs=document.querySelectorAll('.rv');
-if('IntersectionObserver' in window){
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
-  },{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
-  rvs.forEach(function(el){io.observe(el)});
-}else{
-  function chk(){rvs.forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight-50)el.classList.add('on')})}
-  window.addEventListener('scroll',chk,{passive:true});chk();
-}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:0.06,rootMargin:'0px 0px -40px 0px'});rvs.forEach(function(el){io.observe(el)})}
+else{rvs.forEach(function(el){el.classList.add('on')})}
+var ftr=document.querySelector('footer');
+window.addEventListener('scroll',function(){if(!ftr||!bub)return;var r=ftr.getBoundingClientRect();if(r.top<window.innerHeight-50)bub.classList.add('gone');else if(!mOpen)bub.classList.remove('gone');},{passive:true});
 </script>
 </body>
 </html>

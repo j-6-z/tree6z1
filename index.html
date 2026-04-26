@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
-<title>tree6z | Year-Round Property Maintenance in Saskatoon</title>
-<meta name="description" content="Family-run property maintenance in Saskatoon: lawn care, snow removal, leaf removal, spring cleanup. No contracts, same crew every time.">
+<title>tree6z — Saskatoon Property Maintenance · Lawn, Snow, Cleanup</title>
+<meta name="description" content="Family-run property maintenance in Saskatoon. Lawn care, snow removal, leaf cleanup, spring cleanup. No contracts. Same crew every time. (306) 222-9165.">
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17580740260"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-17580740260');</script>
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
@@ -12,437 +12,317 @@
 <link rel="shortcut icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
-<meta property="og:title" content="tree6z | Year-Round Property Maintenance in Saskatoon"/>
-<meta property="og:description" content="Lawn care, snow removal, spring cleanup — one crew, one call."/>
+<meta property="og:title" content="tree6z — Saskatoon Property Maintenance"/>
+<meta property="og:description" content="Lawn care, snow removal, spring cleanup. One crew, one call. (306) 222-9165."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://tree6z.ca"/>
 <meta property="og:image" content="https://i.ibb.co/5XK5Zbfx/tree6z-logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fraunces:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"tree6z","image":"https://i.ibb.co/5XK5Zbfx/tree6z-logo.png","url":"https://tree6z.ca","telephone":"+13062229165","email":"tree6zlandscaping@gmail.com","description":"Year-round property maintenance in Saskatoon: lawn care, snow removal, spring cleanup.","address":{"@type":"PostalAddress","addressLocality":"Saskatoon","addressRegion":"SK","addressCountry":"CA"},"openingHours":"Mo-Su 06:00-22:00"}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#080807;
-  --ink2:#111110;
-  --paper:#eeebe3;
-  --dim:#5a5850;
-  --rule:rgba(238,235,227,0.09);
-  --green:#1c3d1c;
-  --green-bright:#2a5a2a;
-  --green-glow:#3d8b3d;
-  --ff-d:'Bebas Neue',sans-serif;
-  --ff-b:'Instrument Sans',sans-serif;
-  --ease:cubic-bezier(0.16,1,0.3,1);
+  --paper:#f3eee2;--paper-2:#e9e2d2;
+  --ink:#181816;--ink-soft:#3a3a35;--ink-mute:#7a766b;
+  --rule:rgba(24,24,22,0.12);--rule-soft:rgba(24,24,22,0.06);
+  --moss:#2d4a2b;--moss-deep:#1f361e;--moss-light:#a8d3a4;--moss-glow:#7ec77a;
+  --d:'Archivo Black',Impact,sans-serif;--s:'Fraunces',Georgia,serif;--m:'JetBrains Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(0.2,0.7,0.2,1);
 }
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:var(--ff-b);background:var(--ink);color:var(--paper);line-height:1.6;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--s);background:var(--paper);color:var(--ink);line-height:1.55;font-size:17px;overflow-x:hidden;background-image:radial-gradient(rgba(24,24,22,0.025) 1px,transparent 1px);background-size:3px 3px}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+svg{stroke:currentColor;fill:none;stroke-width:2}
+::selection{background:var(--moss);color:var(--paper)}
+em{font-style:italic}
+.it{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss);letter-spacing:-0.005em}
+.tag{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--m);font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-mute)}
+.tag::before{content:"";width:6px;height:6px;background:var(--moss);border-radius:50%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+@keyframes ring{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(-12deg)}20%,40%{transform:rotate(12deg)}50%{transform:rotate(0)}}
 
-
-
-/* ── DRAWER ── */
-.drawer{position:fixed;inset:0;z-index:600;background:var(--ink);transform:translateX(100%);transition:transform 0.55s var(--ease);display:flex;flex-direction:column;padding:5rem 2.5rem 3rem;overflow-y:auto}
+.tickerbar{background:var(--ink);color:var(--paper);font-family:var(--m);font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.55rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.tickerbar .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--moss-glow);margin-right:0.55rem;animation:pulse 2.4s ease-in-out infinite}
+.tickerbar .right{display:flex;gap:1.5rem;align-items:center}
+.tickerbar .right span{opacity:0.6}
+.nav{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--rule);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:baseline;gap:0.5rem;font-family:var(--d);font-size:1.5rem;letter-spacing:-0.02em}
+.nav-logo .small{font-family:var(--m);font-size:0.6rem;font-weight:500;letter-spacing:0.15em;color:var(--ink-mute);text-transform:uppercase}
+.nav-center{display:flex;gap:0.25rem}
+.nl{font-family:var(--m);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);padding:0.5rem 0.85rem;border-radius:2px;transition:background 0.2s,color 0.2s}
+.nl:hover{background:var(--ink);color:var(--paper)}
+.nav-right{display:flex;align-items:center;gap:0.75rem}
+.ncta{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--m);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:0.65rem 1.1rem;border-radius:2px;transition:background 0.2s}
+.ncta:hover{background:var(--moss)}
+.ncta svg{width:13px;height:13px}
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px;min-width:40px;min-height:40px;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.hbg i{display:block;width:22px;height:2px;background:var(--ink);transition:all 0.3s var(--ease)}
+.hbg.on i:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hbg.on i:nth-child(2){opacity:0}
+.hbg.on i:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.drawer{position:fixed;inset:0;z-index:80;background:var(--paper);transform:translateX(100%);transition:transform 0.45s var(--ease);display:flex;flex-direction:column;padding:5rem 2rem 3rem;overflow-y:auto}
 .drawer.on{transform:translateX(0)}
-.d-x{position:absolute;top:1.25rem;right:1.5rem;background:none;border:none;color:var(--dim);cursor:pointer;font-size:1rem;padding:0.75rem;-webkit-tap-highlight-color:transparent;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
-.d-x:hover{color:var(--paper)}
-.d-link{font-family:var(--ff-d);font-size:clamp(2.8rem,10vw,4.5rem);letter-spacing:0.02em;color:rgba(238,235,227,0.15);display:block;line-height:1.2;padding:0.3rem 0;transition:color 0.2s;-webkit-tap-highlight-color:transparent}
-.d-link:hover,.d-link:active{color:var(--paper)}
+.d-link{font-family:var(--d);font-size:clamp(2.5rem,9vw,4rem);letter-spacing:-0.02em;line-height:1.05;text-transform:uppercase;display:block;padding:0.5rem 0;border-bottom:1px solid var(--rule-soft);transition:color 0.2s,padding-left 0.25s}
+.d-link:hover,.d-link:active{color:var(--moss);padding-left:0.5rem}
 .d-foot{margin-top:auto;padding-top:2rem;border-top:1px solid var(--rule)}
-.d-foot a{display:block;font-size:0.88rem;color:var(--dim);padding:0.4rem 0;transition:color 0.2s;-webkit-tap-highlight-color:transparent}
-.d-foot a:hover{color:var(--paper)}
+.d-foot a{display:block;font-family:var(--m);font-size:0.78rem;color:var(--ink-soft);padding:0.4rem 0;letter-spacing:0.08em}
 
-/* ── NAV ── */
-.nav{position:fixed;top:0;left:0;width:100%;z-index:500;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;transition:background 0.35s,border-color 0.35s;border-bottom:1px solid transparent}
-.nav.pinned{background:rgba(8,8,7,0.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--rule)}
-.nav-logo{font-family:var(--ff-d);font-size:1.6rem;letter-spacing:0.12em}
-.nav-center{display:flex;gap:0}
-.nl{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);padding:0.45rem 0.8rem;transition:color 0.2s}
-.nl:hover{color:var(--paper)}
-.nav-right{display:flex;align-items:center;gap:0.85rem}
-.ntel{font-size:0.75rem;color:var(--dim);letter-spacing:0.04em;transition:color 0.2s}
-.ntel:hover{color:var(--paper)}
-.ncta{font-family:var(--ff-d);font-size:0.85rem;letter-spacing:0.08em;padding:0.45rem 1.1rem;background:var(--paper);color:var(--ink);border-radius:3px;transition:opacity 0.2s}
-.ncta:hover{opacity:0.82}
-.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:10px;-webkit-tap-highlight-color:transparent;min-width:44px;min-height:44px;align-items:center;justify-content:center}
-.hbg i{display:block;width:20px;height:1.5px;background:var(--paper);transition:all 0.35s var(--ease)}
-.hbg.on i:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
-.hbg.on i:nth-child(2){opacity:0;transform:scaleX(0)}
-.hbg.on i:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.hero{padding:3rem 1.5rem 5rem;border-bottom:1px solid var(--rule);overflow:hidden}
+.hero-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:3rem;align-items:start}
+.hero-meta{display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--rule);font-family:var(--m);font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-mute)}
+.hero-meta strong{color:var(--ink);font-weight:500}
+.hero-h1{font-family:var(--d);font-size:clamp(3.2rem,12vw,10rem);line-height:0.85;letter-spacing:-0.025em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-h1 .swap{display:inline-block;padding:0 0.05em}
+.hero-h1 .underline{position:relative;display:inline-block}
+.hero-h1 .underline::after{content:"";position:absolute;left:0;right:0;bottom:0.08em;height:0.08em;background:var(--moss)}
+.hero-lede{font-family:var(--s);font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.5;max-width:580px;color:var(--ink-soft);margin-bottom:2rem}
+.hero-lede em{color:var(--moss)}
+.hero-cta-row{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:0.65rem;background:var(--ink);color:var(--paper);padding:1rem 1.5rem;font-family:var(--m);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;border-radius:2px;transition:background 0.25s,transform 0.25s var(--ease)}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px)}
+.btn-primary svg{width:14px;height:14px}
+.btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--m);font-size:0.74rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft);padding:0.85rem 0.5rem;border-bottom:1px solid var(--ink);transition:color 0.2s,border-color 0.2s}
+.btn-ghost:hover{color:var(--moss);border-color:var(--moss)}
+.hero-card{background:var(--ink);color:var(--paper);border-radius:4px;padding:2rem 1.75rem;position:relative;overflow:hidden}
+.hero-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--moss)}
+.hero-card-label{font-family:var(--m);font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(243,238,226,0.55);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.hero-card-label::after{content:"";flex:1;height:1px;background:rgba(243,238,226,0.15)}
+.hero-card-phone{font-family:var(--d);font-size:clamp(2.2rem,4.5vw,3rem);letter-spacing:-0.02em;line-height:1;margin-bottom:1.2rem;display:block}
+.hero-card-phone:hover{color:var(--moss-light)}
+.hero-card-row{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 0;border-top:1px solid rgba(243,238,226,0.1);font-family:var(--m);font-size:0.72rem}
+.hero-card-row .k{color:rgba(243,238,226,0.55);text-transform:uppercase;letter-spacing:0.12em;font-size:0.66rem}
+.hero-card-row .v.ok{color:var(--moss-glow);display:inline-flex;align-items:center;gap:0.4rem}
+.hero-card-row .v.ok::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--moss-glow);animation:pulse 2s ease-in-out infinite}
+.hero-banner{max-width:1280px;margin:3rem auto 0;border-top:1px solid var(--rule);padding-top:2rem;display:grid;grid-template-columns:repeat(4,1fr)}
+.banner-cell{padding:1.5rem 1.25rem;border-right:1px solid var(--rule-soft);display:flex;flex-direction:column;gap:0.4rem}
+.banner-cell:last-child{border-right:none}
+.banner-num{font-family:var(--d);font-size:clamp(2.5rem,5vw,3.5rem);letter-spacing:-0.025em;line-height:1}
+.banner-num .unit{font-family:var(--s);font-style:italic;font-size:0.5em;color:var(--moss);margin-left:0.1em}
+.banner-label{font-family:var(--m);font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-mute)}
 
-/* ════════════════════════════
-   HERO
-════════════════════════════ */
-.hero{
-  min-height:100svh;
-  display:flex;
-  flex-direction:column;
-  background:var(--ink);
-  position:relative;
-  overflow:hidden;
-}
+.sec{padding:6rem 1.5rem}
+.sec-inner{max-width:1280px;margin:0 auto}
+.sec-head{display:grid;grid-template-columns:200px 1fr;gap:3rem;margin-bottom:4rem;align-items:end;padding-bottom:2rem;border-bottom:1px solid var(--rule)}
+.sec-head .num{font-family:var(--d);font-size:1rem;color:var(--ink-mute)}
+.sec-head .ttl{font-family:var(--d);font-size:clamp(2.5rem,7vw,5.5rem);line-height:0.88;letter-spacing:-0.02em;text-transform:uppercase}
 
-/* ── CANVAS: grass scene lives here ── */
-.hero-scene{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-}
-.hero-scene canvas{
-  position:absolute;
-  bottom:0;left:0;
-  width:100%;height:220px;
-}
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:5rem;align-items:start}
+.about-copy{font-family:var(--s);font-size:clamp(1.1rem,1.8vw,1.4rem);line-height:1.55;color:var(--ink-soft)}
+.about-copy p{margin-bottom:1.5rem}
+.about-copy strong{font-weight:600;color:var(--ink)}
+.about-copy em{color:var(--moss)}
+.about-copy .dropcap{float:left;font-family:var(--d);font-size:5.5rem;line-height:0.85;margin:0.05em 0.6rem 0 0;color:var(--moss)}
+.about-stack{border-top:1px solid var(--rule)}
+.about-stack-row{display:flex;justify-content:space-between;align-items:baseline;padding:1.25rem 0;border-bottom:1px solid var(--rule);gap:1rem}
+.about-stack-row .l{font-family:var(--m);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);flex-shrink:0}
+.about-stack-row .v{font-family:var(--d);font-size:clamp(1.4rem,2.5vw,2rem);letter-spacing:-0.02em;text-transform:uppercase;text-align:right}
 
-/* green ambient from ground */
-.hero-glow{
-  position:absolute;
-  bottom:0;left:50%;
-  transform:translateX(-50%);
-  width:100%;height:280px;
-  background:radial-gradient(ellipse 90% 60% at 50% 100%,rgba(30,70,30,0.35) 0%,transparent 70%);
-  pointer-events:none;
-  z-index:0;
-}
+.services{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.svc-card{display:block;background:var(--paper);padding:2.5rem 2rem;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);position:relative;overflow:hidden}
+.svc-card::after{content:"";position:absolute;inset:0;background:var(--ink);transform:translateY(101%);transition:transform 0.4s var(--ease);z-index:0}
+.svc-card>*{position:relative;z-index:1;transition:color 0.4s var(--ease)}
+.svc-card:hover::after{transform:translateY(0)}
+.svc-card:hover .svc-name,.svc-card:hover .svc-desc,.svc-card:hover .svc-meta,.svc-card:hover .svc-arrow{color:var(--paper)}
+.svc-card:hover .svc-arrow{border-color:var(--paper);transform:rotate(-45deg)}
+.svc-card:hover .svc-num{color:var(--moss-glow)}
+.svc-top{display:flex;justify-content:space-between;align-items:start;margin-bottom:2rem}
+.svc-num{font-family:var(--m);font-size:0.72rem;letter-spacing:0.16em;color:var(--moss);font-weight:500}
+.svc-meta{font-family:var(--m);font-size:0.66rem;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase}
+.svc-name{font-family:var(--d);font-size:clamp(2rem,4vw,3rem);letter-spacing:-0.02em;line-height:0.92;text-transform:uppercase;margin-bottom:1rem}
+.svc-desc{font-family:var(--s);font-size:1.02rem;line-height:1.55;color:var(--ink-soft);margin-bottom:2rem;max-width:42ch}
+.svc-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;border-top:1px dashed var(--rule)}
+.svc-tags{display:flex;gap:0.4rem;flex-wrap:wrap}
+.svc-tag{font-family:var(--m);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mute);padding:0.25rem 0.5rem;border:1px solid var(--rule);border-radius:2px}
+.svc-arrow{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--ink);border-radius:50%;flex-shrink:0;color:var(--ink);transition:transform 0.3s var(--ease),color 0.4s var(--ease),border-color 0.4s var(--ease)}
+.svc-arrow svg{width:14px;height:14px}
 
-/* ── LOGO ── */
-.hero-logo-zone{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding-top:60px;
-  position:relative;
-  z-index:2;
-}
-.hero-logo-img{
-  width:clamp(95px,13vw,150px);
-  animation:logoFloat 7s ease-in-out infinite;
-  filter:drop-shadow(0 20px 60px rgba(0,0,0,0.9));
-}
-.hero-logo-img img{width:100%;height:auto;display:block}
-@keyframes logoFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
-}
+.process{border-bottom:1px solid var(--rule)}
+.process-list{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule)}
+.proc{padding:2.5rem 2rem 2.5rem 0;border-right:1px solid var(--rule)}
+.proc:last-child{border-right:none;padding-right:0}
+.proc:nth-child(n+2){padding-left:2rem}
+.proc-num{font-family:var(--d);font-size:6rem;line-height:0.85;letter-spacing:-0.04em;color:var(--paper-2);-webkit-text-stroke:1px var(--ink);margin-bottom:1.5rem}
+.proc-title{font-family:var(--d);font-size:1.5rem;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:0.75rem}
+.proc-desc{font-family:var(--s);font-size:1rem;line-height:1.55;color:var(--ink-soft)}
 
-/* ── TITLE — bottom left, massive, no row overflow tricks ── */
-.hero-body{
-  position:relative;
-  z-index:2;
-  padding:0 2rem 0;
-  /* enough bottom space so text clears the grass */
-  padding-bottom:180px;
-}
-.hero-eyebrow{
-  font-size:0.62rem;letter-spacing:0.38em;text-transform:uppercase;
-  color:var(--dim);margin-bottom:1rem;
-  display:flex;align-items:center;gap:0.65rem;
-  animation:hfade 1s var(--ease) 0.3s both;
-}
-.hero-eyebrow::before{content:'';width:16px;height:1px;background:var(--dim);flex-shrink:0}
+.green-strip{background:var(--moss-deep);color:var(--paper);padding:4rem 1.5rem;position:relative;overflow:hidden}
+.green-strip::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(243,238,226,0.04) 1px,transparent 1px);background-size:4px 4px}
+.green-strip-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:3rem;flex-wrap:wrap;position:relative}
+.green-strip h3{font-family:var(--d);font-size:clamp(2rem,5vw,3.8rem);letter-spacing:-0.02em;line-height:0.92;text-transform:uppercase;max-width:18ch}
+.green-strip h3 em{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss-light)}
+.green-strip-side{display:flex;flex-direction:column;gap:1rem;align-items:flex-end}
+.green-strip .label{font-family:var(--m);font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(243,238,226,0.5)}
+.green-strip-cta{display:inline-flex;align-items:center;gap:0.7rem;background:var(--paper);color:var(--ink);padding:1.1rem 1.75rem;font-family:var(--m);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;border-radius:2px;transition:background 0.2s,color 0.2s}
+.green-strip-cta:hover{background:var(--ink);color:var(--paper)}
+.green-strip-cta svg{width:14px;height:14px}
 
-.hero-h1{
-  font-family:var(--ff-d);
-  font-size:clamp(4rem,13vw,12rem);
-  line-height:0.85;
-  letter-spacing:-0.01em;
-  font-weight:400;
-  animation:hfade 1s var(--ease) 0.1s both;
-}
-.hero-h1 em{
-  display:block;
-  color:rgba(238,235,227,0.16);
-  font-style:normal;
-}
-@keyframes hfade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── STATS BAR ── */
-.hero-stats{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid var(--rule);
-  position:relative;z-index:3;
-  background:rgba(8,8,7,0.7);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  animation:hfade 1s var(--ease) 0.5s both;
-}
-.hs{padding:1.2rem 0;border-right:1px solid var(--rule);text-align:center;transition:background 0.25s}
-.hs:last-child{border-right:none}
-.hs:hover{background:rgba(238,235,227,0.04)}
-.hs-n{font-family:var(--ff-d);font-size:1.65rem;letter-spacing:0.04em;line-height:1}
-.hs-l{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--dim);margin-top:0.2rem}
-
-
-/* ── SHARED ── */
-.sec{padding:6rem 2rem;position:relative}
-.sec-inner{max-width:1100px;margin:0 auto}
-.lbl{font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:0.5rem}
-.ttl{font-family:var(--ff-d);font-size:clamp(2rem,5.5vw,4rem);letter-spacing:0.01em;line-height:0.93;margin-bottom:3rem}
-
-/* ── GREEN ACCENT DIVIDER ── */
-.green-divider{
-  height:3px;
-  background:linear-gradient(90deg,transparent,var(--green-bright),var(--green-glow),var(--green-bright),transparent);
-}
-
-/* ── ABOUT ── */
-.about{background:var(--ink);border-top:1px solid var(--rule)}
-.about-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:5rem;align-items:start}
-.about-copy p{font-size:clamp(0.95rem,1.8vw,1.15rem);line-height:1.82;color:rgba(238,235,227,0.52);margin-bottom:1.35rem}
-.about-copy p strong{color:var(--paper)}
-.about-nums{border-top:1px solid var(--rule)}
-.anum{padding:1.4rem 0;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;gap:1rem}
-.anum-n{font-family:var(--ff-d);font-size:2.8rem;letter-spacing:0.03em;line-height:1;color:var(--paper)}
-.anum-l{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);text-align:right}
-
-/* ── SERVICES ── */
-.services{background:var(--ink2);border-top:1px solid rgba(238,235,227,0.06)}
-.svc-list{border-top:1px solid rgba(238,235,227,0.07);max-width:1100px;margin:0 auto}
-.svc-row{
-  display:grid;
-  grid-template-columns:72px 1fr 1fr 44px;
-  gap:2rem;
-  align-items:center;
-  padding:2.2rem 0;
-  border-bottom:1px solid rgba(238,235,227,0.07);
-  color:inherit;
-  transition:background 0.3s;
-  border-radius:0;
-}
-.svc-row:hover{background:rgba(238,235,227,0.025)}
-.svc-row:hover .svc-arrow{opacity:1;transform:none}
-.svc-row:hover .svc-img img{filter:grayscale(0%)}
-.svc-row:hover .svc-name{color:var(--paper)}
-.svc-img{width:64px;height:64px;border-radius:50%;overflow:hidden;border:1px solid rgba(238,235,227,0.1);flex-shrink:0}
-.svc-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%);transition:filter 0.5s}
-.svc-name{font-family:var(--ff-d);font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:0.02em;line-height:1;color:rgba(238,235,227,0.85);transition:color 0.3s}
-.svc-desc{font-size:0.85rem;color:var(--dim);line-height:1.65}
-.svc-arrow{width:44px;height:44px;border-radius:50%;border:1px solid rgba(238,235,227,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:0;transform:translateX(-6px);transition:all 0.3s var(--ease)}
-.svc-arrow svg{width:15px;height:15px;stroke:var(--paper);fill:none;stroke-width:2}
-
-/* ── GREEN CTA STRIP ── */
-.green-strip{
-  background:var(--green);
-  padding:3rem 2rem;
-  display:flex;align-items:center;justify-content:space-between;gap:2rem;
-  flex-wrap:wrap;
-  border-top:1px solid rgba(61,139,61,0.3);
-  border-bottom:1px solid rgba(61,139,61,0.3);
-}
-.green-strip-txt{font-family:var(--ff-d);font-size:clamp(1.5rem,3.5vw,2.5rem);letter-spacing:0.02em;line-height:1.1}
-.green-strip-txt span{color:rgba(255,255,255,0.45);display:block;font-size:0.75rem;font-family:var(--ff-b);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.4rem}
-.green-strip-btn{display:inline-flex;align-items:center;gap:0.65rem;padding:0.9rem 2rem;background:var(--paper);color:var(--ink);border-radius:3px;font-family:var(--ff-d);font-size:1.05rem;letter-spacing:0.07em;white-space:nowrap;transition:opacity 0.2s;flex-shrink:0}
-.green-strip-btn:hover{opacity:0.85}
-.green-strip-btn svg{width:16px;height:16px;stroke:var(--ink);fill:none;stroke-width:2}
-
-/* ── LICENSE ── */
-.license{background:var(--ink);border-top:1px solid var(--rule)}
-.lic-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1000px;margin:0 auto}
-.lic-copy h3{font-family:var(--ff-d);font-size:clamp(1.7rem,3.5vw,2.8rem);margin-bottom:0.85rem}
-.lic-copy p{font-size:0.9rem;color:var(--dim);line-height:1.8;margin-bottom:1.75rem}
+.license{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.lic-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.lic-copy h3{font-family:var(--d);font-size:clamp(2rem,5vw,3.5rem);line-height:0.92;letter-spacing:-0.02em;text-transform:uppercase;margin:1rem 0 1.25rem}
+.lic-copy p{font-family:var(--s);font-size:1.1rem;line-height:1.55;color:var(--ink-soft);margin-bottom:2rem;max-width:48ch}
 .lic-badges{display:flex;gap:0.6rem;flex-wrap:wrap}
-.lic-b{display:flex;align-items:center;gap:0.4rem;padding:0.5rem 0.9rem;border:1px solid rgba(238,235,227,0.1);border-radius:3px;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);transition:all 0.25s}
-.lic-b:hover{border-color:var(--green-glow);color:var(--paper)}
-.lic-b svg{width:11px;height:11px;stroke:currentColor;stroke-width:1.5;fill:none}
-.lic-img img{width:100%;border:1px solid rgba(238,235,227,0.1);border-radius:6px}
+.lic-b{display:inline-flex;align-items:center;gap:0.5rem;padding:0.65rem 1rem;border:1px solid var(--ink);background:var(--paper);font-family:var(--m);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;transition:background 0.2s,color 0.2s}
+.lic-b:hover{background:var(--ink);color:var(--paper)}
+.lic-b svg{width:13px;height:13px}
+.lic-img{border:1px solid var(--ink);background:var(--paper-2);padding:1rem;position:relative;transform:rotate(-1deg);box-shadow:8px 8px 0 var(--ink);transition:transform 0.3s var(--ease)}
+.lic-img:hover{transform:rotate(0)}
+.lic-img::before{content:"VERIFIED";position:absolute;top:1rem;right:1rem;background:var(--moss);color:var(--paper);font-family:var(--m);font-size:0.62rem;letter-spacing:0.18em;padding:0.3rem 0.6rem;border-radius:2px;z-index:2}
 
-/* ── FAQ ── */
-.faq{background:var(--ink2);border-top:1px solid rgba(238,235,227,0.06)}
-.faq-list{border-top:1px solid rgba(238,235,227,0.08);max-width:860px;margin:0 auto}
-.faq-row{border-bottom:1px solid rgba(238,235,227,0.08);cursor:pointer;-webkit-tap-highlight-color:transparent}
-.faq-head{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;padding:1.6rem 0;min-height:64px}
-.faq-q{font-family:var(--ff-d);font-size:clamp(1rem,2.5vw,1.2rem);letter-spacing:0.02em;line-height:1.2;flex:1}
-.faq-row:hover .faq-q{color:rgba(238,235,227,0.7)}
-.faq-ic{width:28px;height:28px;border-radius:50%;border:1px solid rgba(238,235,227,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s}
-.faq-ic svg{width:11px;height:11px;stroke:var(--dim);fill:none;stroke-width:2;transition:transform 0.3s}
-.faq-row.open .faq-ic{background:var(--green-glow);border-color:var(--green-glow)}
-.faq-row.open .faq-ic svg{stroke:#fff;transform:rotate(45deg)}
-.faq-body{font-size:0.88rem;color:var(--dim);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.45s var(--ease),padding-bottom 0.3s}
-.faq-row.open .faq-body{max-height:500px;padding-bottom:1.5rem}
+.faq{background:var(--paper-2);border-bottom:1px solid var(--rule)}
+.faq-list{max-width:920px;margin:0 auto;border-top:1px solid var(--ink)}
+.faq-row{border-bottom:1px solid var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background 0.25s}
+.faq-row:hover{background:var(--paper)}
+.faq-head{display:grid;grid-template-columns:60px 1fr 40px;gap:1.5rem;align-items:center;padding:1.5rem 0.5rem}
+.faq-num{font-family:var(--m);font-size:0.72rem;letter-spacing:0.14em;color:var(--moss);font-weight:500}
+.faq-q{font-family:var(--d);font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.2;text-transform:uppercase}
+.faq-ic{width:32px;height:32px;border:1px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.3s,transform 0.3s,color 0.3s}
+.faq-row.open .faq-ic{background:var(--moss);transform:rotate(45deg);color:var(--paper)}
+.faq-ic svg{width:12px;height:12px}
+.faq-body{font-family:var(--s);font-size:1.02rem;line-height:1.6;color:var(--ink-soft);max-height:0;overflow:hidden;padding:0 calc(40px + 1.5rem) 0 calc(60px + 1.5rem);transition:max-height 0.4s var(--ease),padding 0.3s var(--ease)}
+.faq-row.open .faq-body{max-height:400px;padding-bottom:1.5rem}
 
-/* ── CONTACT ── */
-.contact{background:var(--ink);border-top:1px solid var(--rule)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;max-width:1000px;margin:0 auto}
-.contact-grid h3{font-family:var(--ff-d);font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:0.75rem}
-.contact-grid>div>p{font-size:0.88rem;color:var(--dim);line-height:1.8;margin-bottom:1.75rem}
-.cmethods{display:flex;flex-direction:column;gap:0.6rem}
-.cm{display:flex;align-items:center;gap:0.9rem;padding:1rem 1.1rem;border:1px solid rgba(238,235,227,0.08);border-radius:4px;transition:border-color 0.25s;-webkit-tap-highlight-color:transparent}
-.cm:hover{border-color:rgba(238,235,227,0.22)}
-.cm-ic{width:36px;height:36px;background:rgba(238,235,227,0.05);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.cm-ic svg{width:14px;height:14px;stroke:var(--paper);fill:none;stroke-width:1.5}
-.cm-tag{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--dim);margin-bottom:0.1rem}
-.cm-val{font-size:0.92rem}
-.cform{display:flex;flex-direction:column;gap:0.8rem}
-.cform input,.cform textarea{
-  width:100%;background:rgba(238,235,227,0.04);
-  border:1px solid rgba(238,235,227,0.1);
-  padding:0.9rem 1rem;color:var(--paper);
-  border-radius:4px;font-size:16px;
-  font-family:var(--ff-b);outline:none;
-  transition:border-color 0.25s;
-  -webkit-appearance:none;appearance:none;
-}
-.cform input:focus,.cform textarea:focus{border-color:var(--green-glow)}
-.cform input::placeholder,.cform textarea::placeholder{color:rgba(238,235,227,0.2)}
-.cform textarea{resize:none;min-height:130px}
-.csend{
-  width:100%;padding:0.9rem;
-  background:var(--paper);color:var(--ink);
-  border:none;border-radius:4px;
-  font-family:var(--ff-d);font-size:1rem;
-  letter-spacing:0.07em;cursor:pointer;
-  transition:opacity 0.2s;
-  -webkit-appearance:none;-webkit-tap-highlight-color:transparent;
-}
-.csend:hover{opacity:0.82}
+.contact{border-top:1px solid var(--rule)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1100px;margin:0 auto}
+.contact-copy>p{font-family:var(--s);font-size:1.1rem;line-height:1.6;color:var(--ink-soft);margin-bottom:2rem}
+.cmethods{display:flex;flex-direction:column;gap:0.5rem}
+.cm{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;background:var(--paper-2);border:1px solid transparent;border-radius:3px;transition:border-color 0.2s,transform 0.2s}
+.cm:hover{border-color:var(--ink);transform:translateX(3px)}
+.cm-ic{width:42px;height:42px;background:var(--ink);color:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cm-ic svg{width:16px;height:16px}
+.cm-tag{font-family:var(--m);font-size:0.62rem;letter-spacing:0.14em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:0.15rem}
+.cm-val{font-family:var(--d);font-size:1.05rem;letter-spacing:-0.005em}
+.cform{display:flex;flex-direction:column;gap:0.85rem;background:var(--paper-2);padding:2rem;border-radius:3px;border:1px solid var(--rule)}
+.cform .row{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem}
+.cform label{display:block;font-family:var(--m);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:0.4rem}
+.cform input,.cform textarea,.cform select{width:100%;background:var(--paper);border:1px solid var(--rule);padding:0.85rem 1rem;color:var(--ink);border-radius:2px;font-size:16px;font-family:var(--s);outline:none;transition:border-color 0.2s;-webkit-appearance:none}
+.cform input:focus,.cform textarea:focus,.cform select:focus{border-color:var(--moss)}
+.cform textarea{resize:none;min-height:120px}
+.csend{width:100%;padding:1.05rem;background:var(--ink);color:var(--paper);border:none;border-radius:2px;font-family:var(--m);font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;margin-top:0.5rem}
+.csend:hover{background:var(--moss)}
 
-/* ── CTA BAND ── */
-.cta-band{background:var(--paper);color:var(--ink);padding:7rem 2rem;text-align:center}
-.cta-title{font-family:var(--ff-d);font-size:clamp(3rem,10vw,8rem);line-height:0.89;letter-spacing:0.01em;margin-bottom:1.5rem}
-.cta-sub{font-size:0.9rem;color:#6e6b60;margin-bottom:2.25rem;letter-spacing:0.04em}
-.cta-btn{
-  display:inline-flex;align-items:center;gap:0.7rem;
-  padding:0.95rem 2.25rem;
-  background:var(--ink);color:var(--paper);
-  border-radius:100px;font-family:var(--ff-d);
-  font-size:1.1rem;letter-spacing:0.07em;
-  transition:transform 0.3s var(--ease),box-shadow 0.3s;
-  -webkit-tap-highlight-color:transparent;
-}
-.cta-btn:hover{transform:scale(1.04);box-shadow:0 14px 40px rgba(0,0,0,0.2)}
-.cta-btn svg{width:17px;height:17px;stroke:var(--paper);fill:none;stroke-width:2;transition:transform 0.3s}
+.cta-band{background:var(--ink);color:var(--paper);padding:7rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.cta-band::before,.cta-band::after{content:"tree6z · tree6z · tree6z · tree6z · ";position:absolute;font-family:var(--d);font-size:1rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(243,238,226,0.07);white-space:nowrap;left:0;right:0}
+.cta-band::before{top:1rem}.cta-band::after{bottom:1rem}
+.cta-band-inner{max-width:1100px;margin:0 auto;position:relative}
+.cta-tag{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--m);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(243,238,226,0.5);margin-bottom:1.5rem}
+.cta-tag::before{content:"";width:6px;height:6px;background:var(--moss-glow);border-radius:50%}
+.cta-title{font-family:var(--d);font-size:clamp(3rem,12vw,9rem);line-height:0.85;letter-spacing:-0.025em;text-transform:uppercase;margin-bottom:1.5rem}
+.cta-title em{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss-light)}
+.cta-sub{font-family:var(--s);font-size:1.15rem;color:rgba(243,238,226,0.55);margin:0 auto 3rem;max-width:50ch}
+.cta-sub em{color:var(--moss-light)}
+.cta-btn{display:inline-flex;align-items:center;gap:0.7rem;padding:1.15rem 2rem;background:var(--paper);color:var(--ink);border-radius:3px;font-family:var(--m);font-size:0.85rem;letter-spacing:0.16em;text-transform:uppercase;transition:transform 0.3s var(--ease),background 0.25s}
+.cta-btn:hover{transform:scale(1.03);background:var(--moss-glow)}
+.cta-btn svg{width:15px;height:15px;transition:transform 0.3s}
 .cta-btn:hover svg{transform:translateX(4px)}
 
-/* ── CALL BUBBLE ── */
-.bubble{
-  position:fixed;
-  bottom:max(1.5rem,env(safe-area-inset-bottom,1.5rem));
-  right:1.5rem;
-  z-index:400;
-  display:flex;align-items:center;gap:0.65rem;
-  background:var(--paper);color:var(--ink);
-  padding:0.78rem 1.2rem;border-radius:100px;
-  font-family:var(--ff-d);font-size:0.95rem;
-  letter-spacing:0.05em;cursor:pointer;
-  box-shadow:0 6px 28px rgba(0,0,0,0.45);
-  white-space:nowrap;transition:transform 0.25s;
-  -webkit-tap-highlight-color:transparent;text-decoration:none;
-}
-.bubble:hover{transform:scale(1.04)}
-.bubble:active{transform:scale(0.97)}
-.bubble svg{width:16px;height:16px;fill:var(--ink);flex-shrink:0;animation:ring 2.5s ease-in-out infinite}
-@keyframes ring{0%,100%{transform:rotate(0)}10%,30%{transform:rotate(-12deg)}20%,40%{transform:rotate(12deg)}50%{transform:rotate(0)}}
+.bubble{position:fixed;bottom:max(1.25rem,env(safe-area-inset-bottom,1.25rem));right:1.25rem;z-index:60;display:flex;align-items:center;gap:0.6rem;background:var(--ink);color:var(--paper);padding:0.85rem 1.25rem;border-radius:100px;font-family:var(--m);font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;box-shadow:0 8px 28px rgba(24,24,22,0.35);white-space:nowrap;transition:transform 0.25s,background 0.2s;-webkit-tap-highlight-color:transparent}
+.bubble:hover{transform:scale(1.04);background:var(--moss)}
+.bubble svg{width:14px;height:14px;fill:currentColor;stroke:none;animation:ring 2.5s ease-in-out infinite}
 .bubble.gone{opacity:0;visibility:hidden;pointer-events:none}
 
-/* ── FOOTER ── */
-footer{background:var(--ink2);border-top:1px solid var(--rule)}
-.ft-top{
-  max-width:1200px;margin:0 auto;
-  padding:4.5rem 2rem 3rem;
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
-  border-bottom:1px solid var(--rule);
-}
-.ft-logo{font-family:var(--ff-d);font-size:2.2rem;letter-spacing:0.1em;display:block;margin-bottom:0.85rem}
-.ft-tag{font-size:0.83rem;color:var(--dim);line-height:1.75;max-width:260px;margin-bottom:1.75rem}
-.ft-cl{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;font-size:0.8rem;color:var(--dim);transition:color 0.2s}
-.ft-cl:hover{color:var(--paper)}
-.ft-cl svg{width:11px;height:11px;stroke:currentColor;stroke-width:1.5;fill:none;flex-shrink:0}
-.ft-col h5{font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:rgba(238,235,227,0.2);margin-bottom:1.1rem;padding-bottom:0.65rem;border-bottom:1px solid rgba(238,235,227,0.05)}
+footer{background:var(--ink);color:var(--paper)}
+.ft-mega{padding:4rem 1.5rem 2rem;border-bottom:1px solid rgba(243,238,226,0.1)}
+.ft-mega-inner{max-width:1280px;margin:0 auto}
+.ft-wordmark{font-family:var(--d);font-size:clamp(5rem,18vw,16rem);line-height:0.85;letter-spacing:-0.04em;text-transform:uppercase}
+.ft-wordmark em{font-family:var(--s);font-style:italic;font-weight:400;text-transform:lowercase;color:var(--moss-glow);letter-spacing:-0.02em}
+.ft-cols{max-width:1280px;margin:0 auto;padding:3rem 1.5rem;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.5rem;border-bottom:1px solid rgba(243,238,226,0.1)}
+.ft-col h5{font-family:var(--m);font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(243,238,226,0.4);margin-bottom:1.1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(243,238,226,0.1)}
+.ft-col p{font-family:var(--s);font-size:0.95rem;line-height:1.6;color:rgba(243,238,226,0.6);margin-bottom:1.5rem;max-width:32ch}
 .ft-col ul{list-style:none}
-.ft-col li{margin-bottom:0.4rem}
-.ft-col li a{font-size:0.8rem;color:var(--dim);transition:color 0.2s}
-.ft-col li a:hover{color:var(--paper)}
-.ft-areas{display:flex;flex-wrap:wrap;gap:0.28rem;margin-top:0.1rem}
-.ft-ar{font-size:0.65rem;color:var(--dim);padding:0.2rem 0.5rem;border:1px solid rgba(238,235,227,0.07);border-radius:2px;transition:all 0.2s}
-.ft-ar:hover{border-color:rgba(61,139,61,0.5);color:var(--green-glow)}
-.ft-mid{
-  max-width:1200px;margin:0 auto;padding:1.4rem 2rem;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:0.85rem;border-bottom:1px solid var(--rule);
-}
-.ft-trust{display:flex;gap:0.45rem;flex-wrap:wrap}
-.tr{display:inline-flex;align-items:center;gap:0.32rem;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);padding:0.26rem 0.7rem;border:1px solid rgba(238,235,227,0.07);border-radius:2px}
-.tr svg{width:9px;height:9px;stroke:currentColor;stroke-width:2;fill:none}
-.ft-live{display:flex;align-items:center;gap:0.45rem;font-size:0.7rem;color:var(--dim)}
-.ldot{width:5px;height:5px;border-radius:50%;background:#4ade80;animation:ldp 2.5s ease-in-out infinite;flex-shrink:0}
-@keyframes ldp{0%,100%{opacity:1}50%{opacity:0.25}}
-.ft-bot{max-width:1200px;margin:0 auto;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.85rem}
-.ft-copy{font-size:0.68rem;color:rgba(238,235,227,0.17)}
-.ft-sm{display:flex;gap:1.4rem}
-.ft-sm a{font-size:0.68rem;color:rgba(238,235,227,0.17);transition:color 0.2s}
-.ft-sm a:hover{color:var(--dim)}
+.ft-col li{margin-bottom:0.45rem}
+.ft-col li a{font-size:0.88rem;color:rgba(243,238,226,0.6);transition:color 0.2s,padding-left 0.2s}
+.ft-col li a:hover{color:var(--paper);padding-left:0.3rem}
+.ft-cl{display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;font-family:var(--m);font-size:0.78rem;letter-spacing:0.06em;color:rgba(243,238,226,0.7);transition:color 0.2s}
+.ft-cl:hover{color:var(--moss-glow)}
+.ft-cl svg{width:13px;height:13px}
+.ft-areas{display:flex;flex-wrap:wrap;gap:0.3rem}
+.ft-ar{font-family:var(--m);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.55rem;border:1px solid rgba(243,238,226,0.1);border-radius:2px;color:rgba(243,238,226,0.55);transition:all 0.2s}
+.ft-ar:hover{border-color:var(--moss-glow);color:var(--moss-glow)}
+.ft-bot{max-width:1280px;margin:0 auto;padding:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-family:var(--m);font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(243,238,226,0.4)}
+.ft-sm{display:flex;gap:1.5rem}
+.ft-sm a{transition:color 0.2s}
+.ft-sm a:hover{color:var(--paper)}
 
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease)}
+.rv{opacity:0;transform:translateY(20px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease)}
 .rv.on{opacity:1;transform:translateY(0)}
-.d1{transition-delay:0.1s}.d2{transition-delay:0.2s}.d3{transition-delay:0.3s}
+.d1{transition-delay:0.08s}.d2{transition-delay:0.16s}.d3{transition-delay:0.24s}.d4{transition-delay:0.32s}
 
-/* ════════════════════════════
-   RESPONSIVE
-════════════════════════════ */
-@media(max-width:1024px){
-  .about-grid{grid-template-columns:1fr;gap:3rem}
-  .lic-grid{grid-template-columns:1fr;gap:3rem}
-  .contact-grid{grid-template-columns:1fr;gap:3rem}
-  .ft-top{grid-template-columns:1fr 1fr;gap:2.5rem}
-  /* services: hide desc on mid, keep image+name+arrow */
-  .svc-row{grid-template-columns:64px 1fr 44px;gap:1.5rem}
-  .svc-desc{display:none}
+@media(max-width:1100px){
+  .hero-grid,.about-grid,.lic-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
+  .hero-card{max-width:480px}
+  .ft-cols{grid-template-columns:1fr 1fr;gap:2rem}
+  .sec-head{grid-template-columns:1fr;gap:0.5rem;align-items:start}
 }
 @media(max-width:768px){
-  .nav-center,.ntel,.ncta{display:none}
+  .nav-center,.ncta{display:none}
   .hbg{display:flex}
-  .nav{padding:0 1.25rem}
-  /* hero mobile */
-  .hero-logo-zone{padding-top:60px}
-  .hero-body{padding:0 1.25rem 140px}
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
-  .hero-stats .hs:nth-child(2){border-right:none}
-  .hs{padding:1rem 0}
-  .hs-n{font-size:1.4rem}
-  .sec{padding:4.5rem 1.25rem}
-  /* services mobile: image + name + arrow, full width */
-  .svc-row{grid-template-columns:56px 1fr 40px;gap:1.25rem;padding:1.6rem 0}
-  .svc-arrow{opacity:1;transform:none}
-  .svc-desc{display:none}
-  .green-strip{flex-direction:column;align-items:flex-start;gap:1.5rem;padding:2.5rem 1.25rem}
-  .ft-top{grid-template-columns:1fr;padding:3rem 1.25rem 2rem}
-  .ft-mid,.ft-bot{padding:1.1rem 1.25rem}
-  .bubble{
-    bottom:max(1rem,env(safe-area-inset-bottom,1rem));
-    left:50%;right:auto;
-    transform:translateX(-50%);
-  }
-  .bubble:active{transform:translateX(-50%) scale(0.97)}
-  .cta-band{padding:5rem 1.25rem}
+  .tickerbar{padding:0.5rem 1rem;font-size:0.6rem;letter-spacing:0.12em}
+  .tickerbar .right{gap:0.75rem}
+  .tickerbar .right span{display:none}
+  .nav{padding:0.85rem 1rem}
+  .nav-logo{font-size:1.3rem}
+  .hero{padding:2rem 1rem 3rem}
+  .hero-meta{flex-wrap:wrap;gap:0.85rem}
+  .hero-banner{grid-template-columns:1fr 1fr;padding-top:1.5rem;margin-top:2rem}
+  .banner-cell{padding:1.25rem 1rem;border-bottom:1px solid var(--rule-soft)}
+  .banner-cell:nth-child(2){border-right:none}
+  .banner-cell:nth-child(3),.banner-cell:nth-child(4){border-bottom:none}
+  .sec{padding:4rem 1rem}
+  .svc-grid{grid-template-columns:1fr}
+  .svc-card{padding:2rem 1.5rem}
+  .process-list{grid-template-columns:1fr}
+  .proc{padding:2rem 0;border-right:none;border-bottom:1px solid var(--rule)}
+  .proc:last-child{border-bottom:none}
+  .proc:nth-child(n+2){padding-left:0}
+  .green-strip{padding:3rem 1rem}
+  .green-strip-inner{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .green-strip-side{align-items:flex-start;width:100%}
+  .lic-img{transform:rotate(0)}
+  .cform .row{grid-template-columns:1fr}
+  .ft-cols{grid-template-columns:1fr;padding:2rem 1rem;gap:2rem}
+  .ft-mega{padding:2.5rem 1rem 1rem}
+  .ft-bot{padding:1rem;font-size:0.6rem}
+  .bubble{bottom:max(0.85rem,env(safe-area-inset-bottom,0.85rem));left:50%;right:auto;transform:translateX(-50%)}
+  .bubble:hover{transform:translateX(-50%) scale(1.04)}
+  .cta-band{padding:5rem 1rem}
+  .faq-head{grid-template-columns:40px 1fr 32px;gap:1rem;padding:1.25rem 0}
+  .faq-num{font-size:0.62rem}
+  .faq-body{padding-left:calc(40px + 1rem);padding-right:0}
 }
 @media(max-width:480px){
-  .hero-h1{font-size:clamp(3.2rem,13vw,5.5rem)}
-  .hero-logo-img{width:clamp(70px,16vw,100px)}
-  .hero-body{padding-bottom:120px}
-  .sec{padding:3.5rem 1rem}
-  .ttl{margin-bottom:2rem}
-  .svc-row{grid-template-columns:48px 1fr 36px;gap:1rem;padding:1.35rem 0}
-  .svc-img{width:48px;height:48px}
-  .svc-name{font-size:1.3rem}
-  .svc-arrow{width:36px;height:36px}
-  .svc-arrow svg{width:12px;height:12px}
-  .ft-top{padding:2.5rem 1rem 1.75rem}
-  .ft-mid,.ft-bot{padding:1rem}
-  .anum-n{font-size:2.2rem}
+  .hero-h1{font-size:clamp(2.8rem,15vw,4.5rem)}
+  .sec-head .ttl{font-size:clamp(2rem,9vw,3.5rem)}
+  .ft-wordmark{font-size:clamp(3.5rem,22vw,7rem)}
 }
 </style>
 </head>
 <body>
 
+<div class="tickerbar">
+  <span><span class="dot"></span>Open · Mon–Sun 6am–10pm</span>
+  <div class="right"><span>Snow line 24/7</span><a href="tel:+13062229165">(306) 222-9165</a></div>
+</div>
 
-<!-- DRAWER -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><span>tree6z</span><span class="small">est. saskatoon</span></a>
+  <div class="nav-center">
+    <a href="lawncare.html" class="nl">Lawn</a>
+    <a href="leaf.html" class="nl">Leaf</a>
+    <a href="spring.html" class="nl">Spring</a>
+    <a href="snow.html" class="nl">Snow</a>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+13062229165" class="ncta"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>(306) 222-9165</a>
+    <button class="hbg" id="hbg" onclick="tog()" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </div>
+</nav>
+
 <div class="drawer" id="drawer">
-  <button class="d-x" onclick="tog()" aria-label="Close menu">✕</button>
   <a href="index.html" class="d-link" onclick="tog()">Home</a>
   <a href="lawncare.html" class="d-link" onclick="tog()">Lawn Care</a>
   <a href="leaf.html" class="d-link" onclick="tog()">Leaf Removal</a>
@@ -454,421 +334,225 @@ footer{background:var(--ink2);border-top:1px solid var(--rule)}
   </div>
 </div>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">TREE6Z</a>
-  <div class="nav-center">
-    <a href="lawncare.html" class="nl">Lawn Care</a>
-    <a href="leaf.html" class="nl">Leaf Removal</a>
-    <a href="spring.html" class="nl">Spring Cleanup</a>
-    <a href="snow.html" class="nl">Snow Removal</a>
-  </div>
-  <div class="nav-right">
-    <a href="tel:+13062229165" class="ntel">(306) 222-9165</a>
-    <a href="tel:+13062229165" class="ncta">Call Now</a>
-    <button class="hbg" id="hbg" onclick="tog()" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
-  </div>
-</nav>
-
-<!-- ════════════ HERO ════════════ -->
 <header class="hero">
-
-  <!-- grass canvas scene -->
-  <div class="hero-scene">
-    <canvas id="grassCanvas"></canvas>
-  </div>
-  <div class="hero-glow"></div>
-
-  <!-- logo center -->
-  <div class="hero-logo-zone">
-    <div class="hero-logo-img">
-      <img src="https://i.ibb.co/TM5nvPyB/tree6z-logo1.jpg" alt="tree6z logo">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-meta">
+        <span><strong>Vol. 06</strong> &nbsp;·&nbsp; Issue 26</span>
+        <span>Saskatoon, SK</span>
+        <span>Year-Round</span>
+      </div>
+      <h1 class="hero-h1">We <span class="swap it">handle</span><br>your <span class="underline">yard.</span><br>Every season.</h1>
+      <p class="hero-lede">Family-run. <em>No contracts.</em> Same crew every time. Lawn care in summer, leaves in fall, snow at 5am all winter long &mdash; one phone number for the whole year.</p>
+      <div class="hero-cta-row">
+        <a href="tel:+13062229165" class="btn-primary"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>Call Now</a>
+        <a href="#services" class="btn-ghost">See services →</a>
+      </div>
     </div>
+    <aside class="hero-card">
+      <div class="hero-card-label">Direct Line</div>
+      <a href="tel:+13062229165" class="hero-card-phone">(306)<br>222-9165</a>
+      <div class="hero-card-row"><span class="k">Status</span><span class="v ok">On call</span></div>
+      <div class="hero-card-row"><span class="k">Coverage</span><span class="v">Saskatoon &amp; area</span></div>
+      <div class="hero-card-row"><span class="k">Insurance</span><span class="v">Fully covered</span></div>
+      <div class="hero-card-row"><span class="k">Response</span><span class="v">Same day</span></div>
+    </aside>
   </div>
-
-  <!-- title bottom left -->
-  <div class="hero-body">
-    <p class="hero-eyebrow">Saskatoon, SK &nbsp;·&nbsp; All four seasons</p>
-    <h1 class="hero-h1">
-      WE TAKE<br>
-      <em>CARE OF</em>
-      YOUR YARD
-    </h1>
-  </div>
-
-  <!-- stats bar anchored to bottom -->
-  <div class="hero-stats">
-    <div class="hs"><div class="hs-n">365</div><div class="hs-l">Days a Year</div></div>
-    <div class="hs"><div class="hs-n">24/7</div><div class="hs-l">Snow Calls</div></div>
-    <div class="hs"><div class="hs-n">4</div><div class="hs-l">Services</div></div>
-    <div class="hs"><div class="hs-n">100%</div><div class="hs-l">Insured</div></div>
+  <div class="hero-banner">
+    <div class="banner-cell"><div class="banner-num">365<span class="unit">days</span></div><div class="banner-label">a year on call</div></div>
+    <div class="banner-cell"><div class="banner-num">24<span class="unit">/7</span></div><div class="banner-label">snow line</div></div>
+    <div class="banner-cell"><div class="banner-num">04<span class="unit">core</span></div><div class="banner-label">services</div></div>
+    <div class="banner-cell"><div class="banner-num">100<span class="unit">%</span></div><div class="banner-label">insured &amp; licensed</div></div>
   </div>
 </header>
 
-
-<!-- ABOUT -->
-<section class="sec about" id="about">
+<section class="sec" id="about">
   <div class="sec-inner">
-    <span class="lbl rv">Who We Are</span>
-    <div class="ttl rv">HEY, WE'RE<br>TREE6Z</div>
+    <div class="sec-head">
+      <div class="num rv">01 / About</div>
+      <h2 class="ttl rv d1">Hey &mdash; <span class="it">we're</span><br>tree6z.</h2>
+    </div>
     <div class="about-grid">
-      <div class="about-copy">
-        <p class="rv">We're a <strong>local family crew</strong> that's been taking care of yards around Saskatoon for years. No fancy corporate office — just us, our equipment, and a lot of early mornings.</p>
-        <p class="rv d1">We've done the -40° snow calls. We've mowed in the summer heat. <strong>We show up and we do it right.</strong></p>
-        <p class="rv d2">No contracts. No runaround. You call, we come.</p>
+      <div class="about-copy rv">
+        <p><span class="dropcap">W</span>e're a <strong>local family crew</strong> that's been taking care of yards around Saskatoon for years. No fancy corporate office. No call centre. Just us, our equipment, and a lot of early mornings.</p>
+        <p>We've done the <em>&minus;40°</em> snow calls. We've mowed in the heat. We've raked yards down to the dirt in November. <strong>We show up and we do it right.</strong></p>
+        <p>No contracts. No runaround. <em>You call, we come.</em></p>
       </div>
-      <div class="about-nums rv d1">
-        <div class="anum"><div class="anum-n">365</div><div class="anum-l">Days a Year</div></div>
-        <div class="anum"><div class="anum-n">24/7</div><div class="anum-l">Snow Calls</div></div>
-        <div class="anum"><div class="anum-n">Same</div><div class="anum-l">Crew Every Time</div></div>
+      <div class="about-stack rv d1">
+        <div class="about-stack-row"><span class="l">Founded</span><span class="v">Saskatoon</span></div>
+        <div class="about-stack-row"><span class="l">Crew</span><span class="v"><span class="it">same</span> every time</span></div>
+        <div class="about-stack-row"><span class="l">Hours</span><span class="v">6am – 10pm</span></div>
+        <div class="about-stack-row"><span class="l">Snow line</span><span class="v">24 / 7</span></div>
+        <div class="about-stack-row"><span class="l">Areas</span><span class="v">Saskatoon &amp; area</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="green-divider"></div>
-
-<!-- SERVICES -->
 <section class="sec services" id="services">
   <div class="sec-inner">
-    <span class="lbl rv">What We Do</span>
-    <div class="ttl rv">OUR SERVICES</div>
-  </div>
-  <div class="svc-list">
-    <a href="lawncare.html" class="svc-row rv">
-      <div class="svc-img"><img src="https://i.ibb.co/jv08qXQs/lawn.jpg" alt="Lawn Care" loading="lazy"></div>
-      <div class="svc-name">LAWN CARE</div>
-      <div class="svc-desc">Weekly mowing, edging, trimming — the whole deal. We'll make your grass look better than your neighbor's.</div>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </a>
-    <a href="leaf.html" class="svc-row rv d1">
-      <div class="svc-img"><img src="https://i.ibb.co/dsNFXs8T/leaf.jpg" alt="Leaf Removal" loading="lazy"></div>
-      <div class="svc-name">LEAF CLEANUP</div>
-      <div class="svc-desc">Fall in Saskatoon means leaves everywhere. We clean your whole yard and gutters — not a single one left.</div>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </a>
-    <a href="spring.html" class="svc-row rv d2">
-      <div class="svc-img"><img src="https://i.ibb.co/SDWS5Yfm/spring.jpg" alt="Spring Cleanup" loading="lazy"></div>
-      <div class="svc-name">SPRING CLEANUP</div>
-      <div class="svc-desc">Dethatch, aerate, fertilize — basically undo five months of Saskatchewan winter damage.</div>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </a>
-    <a href="snow.html" class="svc-row rv d3">
-      <div class="svc-img"><img src="https://i.ibb.co/WvPV55XF/snow.jpg" alt="Snow Removal" loading="lazy"></div>
-      <div class="svc-name">SNOW REMOVAL</div>
-      <div class="svc-desc">We're up before you are. Call us at 5am and your driveway is clear before you leave for work.</div>
-      <div class="svc-arrow"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-    </a>
+    <div class="sec-head">
+      <div class="num rv">02 / Services</div>
+      <h2 class="ttl rv d1">What <span class="it">we</span><br>handle.</h2>
+    </div>
+    <div class="svc-grid">
+      <a href="lawncare.html" class="svc-card rv">
+        <div class="svc-top"><span class="svc-num">/01</span><span class="svc-meta">May – Sept</span></div>
+        <h3 class="svc-name">Lawn <span class="it">care</span></h3>
+        <p class="svc-desc">Weekly mowing, edging, trimming &mdash; the whole deal. We&rsquo;ll make your grass look better than your neighbour&rsquo;s.</p>
+        <div class="svc-bottom"><div class="svc-tags"><span class="svc-tag">Mowing</span><span class="svc-tag">Edging</span><span class="svc-tag">Trimming</span></div><div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+      </a>
+      <a href="leaf.html" class="svc-card rv d1">
+        <div class="svc-top"><span class="svc-num">/02</span><span class="svc-meta">Sept – Nov</span></div>
+        <h3 class="svc-name">Leaf <span class="it">cleanup</span></h3>
+        <p class="svc-desc">Fall in Saskatoon means leaves everywhere. We clean your whole yard and your gutters &mdash; not a single one left behind.</p>
+        <div class="svc-bottom"><div class="svc-tags"><span class="svc-tag">Yard</span><span class="svc-tag">Gutters</span><span class="svc-tag">Hauled away</span></div><div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+      </a>
+      <a href="spring.html" class="svc-card rv d2">
+        <div class="svc-top"><span class="svc-num">/03</span><span class="svc-meta">Apr – May</span></div>
+        <h3 class="svc-name">Spring <span class="it">cleanup</span></h3>
+        <p class="svc-desc">Dethatch, aerate, fertilize &mdash; basically undo five months of Saskatchewan winter damage in a single visit.</p>
+        <div class="svc-bottom"><div class="svc-tags"><span class="svc-tag">Dethatch</span><span class="svc-tag">Aerate</span><span class="svc-tag">Fertilize</span></div><div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+      </a>
+      <a href="snow.html" class="svc-card rv d3">
+        <div class="svc-top"><span class="svc-num">/04</span><span class="svc-meta">Nov – Apr · 24/7</span></div>
+        <h3 class="svc-name">Snow <span class="it">removal</span></h3>
+        <p class="svc-desc">We&rsquo;re up before you are. Call us at 5am and your driveway is clear before you leave for work. No exceptions.</p>
+        <div class="svc-bottom"><div class="svc-tags"><span class="svc-tag">Driveway</span><span class="svc-tag">Walks</span><span class="svc-tag">Salt</span></div><div class="svc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- GREEN CTA STRIP -->
-<div class="green-strip rv">
-  <div class="green-strip-txt">
-    <span>Available 24/7 for snow emergencies</span>
-    Call us anytime — we answer.
+<section class="sec process">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="num rv">03 / How it works</div>
+      <h2 class="ttl rv d1">Easy <span class="it">as</span><br>three steps.</h2>
+    </div>
+    <div class="process-list">
+      <div class="proc rv"><div class="proc-num">01</div><h3 class="proc-title">Call or text</h3><p class="proc-desc">One number, year-round. Tell us your address and what you need. We&rsquo;ll quote you on the spot.</p></div>
+      <div class="proc rv d1"><div class="proc-num">02</div><h3 class="proc-title">We show up</h3><p class="proc-desc">Same-day for snow, 2&ndash;3 days for everything else. Same crew every visit &mdash; nobody random.</p></div>
+      <div class="proc rv d2"><div class="proc-num">03</div><h3 class="proc-title">You pay easy</h3><p class="proc-desc">E-Transfer or cash. Invoice by email so you know exactly what you&rsquo;re paying for. No hidden fees, ever.</p></div>
+    </div>
   </div>
-  <a href="tel:+13062229165" class="green-strip-btn">
-    (306) 222-9165
-    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
+</section>
+
+<div class="green-strip">
+  <div class="green-strip-inner">
+    <h3 class="rv">Snow at <em>4am?</em><br>We're already up.</h3>
+    <div class="green-strip-side rv d1">
+      <span class="label">24/7 snow line</span>
+      <a href="tel:+13062229165" class="green-strip-cta">Call (306) 222-9165<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
 </div>
 
-<!-- LICENSE -->
 <section class="sec license">
-  <div class="lic-grid">
-    <div class="lic-copy rv">
-      <span class="lbl">Legit Operation</span>
-      <h3>YEAH, WE'RE LICENSED</h3>
-      <p>Registered with the City of Saskatoon and fully insured. We're not some random guy with a truck — we run a proper business.</p>
-      <div class="lic-badges">
-        <div class="lic-b"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Insured</div>
-        <div class="lic-b"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>Licensed</div>
+  <div class="sec-inner">
+    <div class="lic-grid">
+      <div class="lic-copy rv">
+        <span class="tag">Legit operation</span>
+        <h3>Yeah, <span class="it">we're</span><br>licensed.</h3>
+        <p>Registered with the City of Saskatoon and fully insured. We&rsquo;re not some random guy with a truck &mdash; we run a proper business with proper paperwork.</p>
+        <div class="lic-badges">
+          <span class="lic-b"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Fully insured</span>
+          <span class="lic-b"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>City licensed</span>
+          <span class="lic-b"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Family-run</span>
+        </div>
       </div>
-    </div>
-    <div class="lic-img rv d1">
-      <img src="https://i.ibb.co/vCwScfXN/bl-t6z.jpg" alt="tree6z Business License" loading="lazy">
+      <div class="lic-img rv d1"><img src="https://i.ibb.co/vCwScfXN/bl-t6z.jpg" alt="tree6z business license — City of Saskatoon" loading="lazy"></div>
     </div>
   </div>
 </section>
 
-<div class="green-divider"></div>
-
-<!-- FAQ -->
 <section class="sec faq" id="faq">
   <div class="sec-inner">
-    <span class="lbl rv">Quick Answers</span>
-    <div class="ttl rv">FAQ</div>
-  </div>
-  <div class="faq-list">
-    <div class="faq-row rv" onclick="faqT(this)"><div class="faq-head"><span class="faq-q">Do I have to sign a contract?</span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">Nope. You call when you need us, we show up. If you don't like our work, you don't have to call again. Simple.</div></div>
-    <div class="faq-row rv" onclick="faqT(this)"><div class="faq-head"><span class="faq-q">Where do you work?</span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">All over Saskatoon — Stonebridge, Willowgrove, Briarwood, Evergreen, and more. We also cover Warman, Martensville, and Dalmeny.</div></div>
-    <div class="faq-row rv" onclick="faqT(this)"><div class="faq-head"><span class="faq-q">How do I pay you?</span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">E-Transfer is easiest, but we take cash too. We always send an invoice by email first so you know exactly what you're paying for.</div></div>
-    <div class="faq-row rv" onclick="faqT(this)"><div class="faq-head"><span class="faq-q">You actually work in winter?</span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">Yeah, that's kind of our thing. Snow removal is 24/7 from November until spring. We've been out at 4am more times than we can count.</div></div>
-    <div class="faq-row rv" onclick="faqT(this)"><div class="faq-head"><span class="faq-q">How fast can you get here?</span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">For snow, usually same day — often within a few hours. For lawn care and cleanups, typically within 2-3 days.</div></div>
-    <div class="faq-row rv" onclick="faqT(this)"><div class="faq-head"><span class="faq-q">What if something gets damaged?</span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">We're fully insured so you're covered. Honestly though — we're careful. We treat your yard like it's our own.</div></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="sec contact" id="contact">
-  <div class="contact-grid">
-    <div class="rv">
-      <h3>REACH OUT</h3>
-      <p>Got questions? Need a quote? Shoot us a text, give us a call, or fill out the form. We usually get back within a couple hours.</p>
-      <div class="cmethods">
-        <a href="tel:+13062229165" class="cm">
-          <div class="cm-ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-          <div><div class="cm-tag">Call or Text</div><div class="cm-val">(306) 222-9165</div></div>
-        </a>
-        <a href="mailto:tree6zlandscaping@gmail.com" class="cm">
-          <div class="cm-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div><div class="cm-tag">Email</div><div class="cm-val">tree6zlandscaping@gmail.com</div></div>
-        </a>
-      </div>
+    <div class="sec-head">
+      <div class="num rv">04 / Common questions</div>
+      <h2 class="ttl rv d1">Quick <span class="it">answers.</span></h2>
     </div>
-    <form class="cform rv d1" action="https://formsubmit.co/tree6zlandscaping@gmail.com" method="POST">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="email" placeholder="Your email" required>
-      <textarea name="message" placeholder="What do you need help with?" rows="5" required></textarea>
-      <button type="submit" class="csend">SEND IT</button>
-    </form>
+    <div class="faq-list">
+      <div class="faq-row rv" onclick="faqT(this)"><div class="faq-head"><span class="faq-num">01</span><span class="faq-q">Do I have to sign a <span class="it">contract?</span></span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">Nope. You call when you need us, we show up. If you don&rsquo;t like our work, you don&rsquo;t have to call again. Simple.</div></div>
+      <div class="faq-row rv d1" onclick="faqT(this)"><div class="faq-head"><span class="faq-num">02</span><span class="faq-q">Where do you <span class="it">work?</span></span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">All over Saskatoon &mdash; Stonebridge, Willowgrove, Briarwood, Evergreen and the rest. We also cover Warman, Martensville, and Dalmeny.</div></div>
+      <div class="faq-row rv d2" onclick="faqT(this)"><div class="faq-head"><span class="faq-num">03</span><span class="faq-q">How do I <span class="it">pay?</span></span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">E-Transfer is easiest, but we take cash too. We always send an invoice by email first so you know exactly what you&rsquo;re paying for.</div></div>
+      <div class="faq-row rv d3" onclick="faqT(this)"><div class="faq-head"><span class="faq-num">04</span><span class="faq-q">You actually work in <span class="it">winter?</span></span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">Yeah, that&rsquo;s kind of our thing. Snow removal is 24/7 from November until spring. We&rsquo;ve been out at 4am more times than we can count.</div></div>
+      <div class="faq-row rv d4" onclick="faqT(this)"><div class="faq-head"><span class="faq-num">05</span><span class="faq-q">How <span class="it">fast</span> can you get here?</span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">For snow, usually same day &mdash; often within a few hours. For lawn care and cleanups, typically within 2&ndash;3 days.</div></div>
+      <div class="faq-row rv d4" onclick="faqT(this)"><div class="faq-head"><span class="faq-num">06</span><span class="faq-q">What if something gets <span class="it">damaged?</span></span><span class="faq-ic"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div><div class="faq-body">We&rsquo;re fully insured so you&rsquo;re covered. Honestly though &mdash; we&rsquo;re careful. We treat your yard like it&rsquo;s our own.</div></div>
+    </div>
   </div>
 </section>
 
-<!-- CTA BAND -->
+<section class="sec contact" id="contact">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="num rv">05 / Get in touch</div>
+      <h2 class="ttl rv d1">Reach <span class="it">out.</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-copy rv">
+        <p>Got questions? Need a quote? Shoot us a text, give us a call, or fill out the form. We usually get back within a couple hours.</p>
+        <div class="cmethods">
+          <a href="tel:+13062229165" class="cm"><div class="cm-ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="cm-tag">Call or text</div><div class="cm-val">(306) 222-9165</div></div></a>
+          <a href="mailto:tree6zlandscaping@gmail.com" class="cm"><div class="cm-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cm-tag">Email</div><div class="cm-val">tree6zlandscaping@gmail.com</div></div></a>
+          <a href="#" class="cm"><div class="cm-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="cm-tag">Service area</div><div class="cm-val">Saskatoon &amp; area</div></div></a>
+        </div>
+      </div>
+      <form class="cform rv d1" action="https://formsubmit.co/tree6zlandscaping@gmail.com" method="POST">
+        <div><label>Name</label><input type="text" name="name" placeholder="Your full name" required></div>
+        <div class="row">
+          <div><label>Email</label><input type="email" name="email" placeholder="you@email.com" required></div>
+          <div><label>Phone</label><input type="tel" name="phone" placeholder="(306) 555-1234"></div>
+        </div>
+        <div><label>What do you need?</label><select name="service"><option>Lawn care</option><option>Snow removal</option><option>Leaf cleanup</option><option>Spring cleanup</option><option>Something else</option></select></div>
+        <div><label>Message</label><textarea name="message" placeholder="Address, timing, anything we should know..." required></textarea></div>
+        <button type="submit" class="csend">Send it →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 <div class="cta-band">
-  <h2 class="cta-title rv">NEED HELP<br>WITH YOUR YARD?</h2>
-  <p class="cta-sub rv d1">We answer the phone 365 days a year.</p>
-  <a href="tel:+13062229165" class="cta-btn rv d2">CALL NOW <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  <div class="cta-band-inner">
+    <span class="cta-tag rv">365 days · 24/7 snow line</span>
+    <h2 class="cta-title rv d1">Need help<br><em>with your</em><br>yard?</h2>
+    <p class="cta-sub rv d2">We answer the phone <em>365 days a year.</em> Same crew, same number, every season.</p>
+    <a href="tel:+13062229165" class="cta-btn rv d3">Call (306) 222-9165<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
 </div>
 
-<!-- BUBBLE -->
 <a href="tel:+13062229165" class="bubble" id="bubble">
-  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
-  (306) 222-9165
+  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>Call now
 </a>
 
-<!-- FOOTER -->
 <footer>
-  <div class="ft-top">
-    <div>
-      <span class="ft-logo">TREE6Z</span>
-      <p class="ft-tag">Local Saskatoon crew taking care of yards year-round. No contracts, no runaround — just good people doing good work.</p>
-      <a href="tel:+13062229165" class="ft-cl"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>(306) 222-9165</a>
+  <div class="ft-mega"><div class="ft-mega-inner"><div class="ft-wordmark">tree6z<em>.</em></div></div></div>
+  <div class="ft-cols">
+    <div class="ft-col">
+      <h5>The Crew</h5>
+      <p>Local Saskatoon family-run property maintenance &mdash; year-round, no contracts, just good people doing good work.</p>
+      <a href="tel:+13062229165" class="ft-cl"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>(306) 222-9165</a><br>
       <a href="mailto:tree6zlandscaping@gmail.com" class="ft-cl"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>tree6zlandscaping@gmail.com</a>
-      <a href="#" class="ft-cl"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Saskatoon, SK</a>
     </div>
-    <div class="ft-col">
-      <h5>Services</h5>
-      <ul>
-        <li><a href="lawncare.html">Lawn Care</a></li>
-        <li><a href="leaf.html">Leaf Removal</a></li>
-        <li><a href="spring.html">Spring Cleanup</a></li>
-        <li><a href="snow.html">Snow Removal</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="faq.html">About</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="faq.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h5>Service Areas</h5>
-      <div class="ft-areas">
-        <span class="ft-ar">Stonebridge</span><span class="ft-ar">Willowgrove</span><span class="ft-ar">Briarwood</span><span class="ft-ar">Evergreen</span><span class="ft-ar">Warman</span><span class="ft-ar">Martensville</span><span class="ft-ar">Dalmeny</span>
-      </div>
-    </div>
-  </div>
-  <div class="ft-mid">
-    <div class="ft-trust">
-      <span class="tr"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Fully Insured</span>
-      <span class="tr"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>City Licensed</span>
-      <span class="tr"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Family-Run</span>
-      <span class="tr"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>No Contracts</span>
-    </div>
-    <div class="ft-live"><span class="ldot"></span>Mon–Sun 6am–10pm &nbsp;·&nbsp; Snow 24/7</div>
+    <div class="ft-col"><h5>Services</h5><ul><li><a href="lawncare.html">Lawn care</a></li><li><a href="leaf.html">Leaf removal</a></li><li><a href="spring.html">Spring cleanup</a></li><li><a href="snow.html">Snow removal</a></li></ul></div>
+    <div class="ft-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="ft-col"><h5>Service Areas</h5><div class="ft-areas"><span class="ft-ar">Stonebridge</span><span class="ft-ar">Willowgrove</span><span class="ft-ar">Briarwood</span><span class="ft-ar">Evergreen</span><span class="ft-ar">Warman</span><span class="ft-ar">Martensville</span><span class="ft-ar">Dalmeny</span></div></div>
   </div>
   <div class="ft-bot">
-    <span class="ft-copy">&copy; 2026 tree6z &nbsp;·&nbsp; Saskatoon, SK &nbsp;·&nbsp; Fully Insured</span>
-    <div class="ft-sm"><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:tree6zlandscaping@gmail.com">Email Us</a></div>
+    <span>&copy; 2026 tree6z &nbsp;·&nbsp; Saskatoon, SK &nbsp;·&nbsp; Fully insured &amp; licensed</span>
+    <div class="ft-sm"><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:tree6zlandscaping@gmail.com">Email us</a></div>
   </div>
 </footer>
 
 <script>
-
-/* MENU */
 var mOpen=false,bub=document.getElementById('bubble');
-function tog(){
-  mOpen=!mOpen;
-  document.getElementById('drawer').classList.toggle('on',mOpen);
-  document.getElementById('hbg').classList.toggle('on',mOpen);
-  document.getElementById('hbg').setAttribute('aria-expanded',String(mOpen));
-  if(bub)bub.classList.toggle('gone',mOpen);
-  document.body.style.overflow=mOpen?'hidden':'';
-}
-
-/* STICKY NAV */
-var nav=document.getElementById('nav');
-window.addEventListener('scroll',function(){nav.classList.toggle('pinned',window.scrollY>50)},{passive:true});
-
-/* SCROLL REVEAL */
+function tog(){mOpen=!mOpen;document.getElementById('drawer').classList.toggle('on',mOpen);document.getElementById('hbg').classList.toggle('on',mOpen);if(bub)bub.classList.toggle('gone',mOpen);document.body.style.overflow=mOpen?'hidden':'';}
 var rvs=document.querySelectorAll('.rv');
-if('IntersectionObserver' in window){
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
-  },{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
-  rvs.forEach(function(el){io.observe(el)});
-}else{
-  function chk(){rvs.forEach(function(el){if(el.getBoundingClientRect().top<window.innerHeight-50)el.classList.add('on')})}
-  window.addEventListener('scroll',chk,{passive:true});chk();
-}
-
-/* FAQ */
-function faqT(row){
-  var isOpen=row.classList.contains('open');
-  document.querySelectorAll('.faq-row.open').forEach(function(r){r.classList.remove('open')});
-  if(!isOpen)row.classList.add('open');
-}
-
-/* ════════════════════════════════════
-   GRASS SCENE — top-to-bottom cut
-   Blades start tall. A horizontal cut line
-   descends from top → bottom, trimming each
-   blade progressively shorter as it passes.
-════════════════════════════════════ */
-(function(){
-  var c=document.getElementById('grassCanvas');
-  if(!c)return;
-  var ctx=c.getContext('2d');
-  var W,H,blades=[];
-  // cutProg: 0=no cut, 1=fully mowed (tracks how far the cut line has descended)
-  var cutProg=0;
-  var cutDir=1; // 1=cutting down, -1=growing back up slowly
-  var lastTime=0;
-  var CUT_SPEED=0.08; // fraction of blade height per second going down
-  var GROW_SPEED=0.025; // grow back up slowly
-
-  function Blade(x){
-    this.x=x;
-    this.maxH=0;
-    this.phase=Math.random()*Math.PI*2;
-    this.freq=0.55+Math.random()*0.7;
-    this.amp=0;
-    this.w=0;
-    this.r=0;this.g=0; // color components
-  }
-
-  function resize(){
-    W=c.offsetWidth||window.innerWidth;
-    H=c.offsetHeight||180;
-    c.width=W;
-    c.height=H;
-    blades=[];
-    var density=Math.floor(W/4.5);
-    for(var i=0;i<density;i++){
-      var b=new Blade((i/density)*W + (Math.random()-0.5)*3);
-      b.maxH = H*0.5 + Math.random()*H*0.42; // 50–92% canvas height
-      b.w = 1.8 + Math.random()*2.2;
-      b.phase = Math.random()*Math.PI*2;
-      b.freq = 0.5+Math.random()*0.9;
-      b.amp = 6+Math.random()*16;
-      b.r=8+Math.floor(Math.random()*12);
-      b.g=45+Math.floor(Math.random()*40);
-      blades.push(b);
-    }
-  }
-
-  function draw(ts){
-    var dt=(ts-lastTime)/1000;
-    lastTime=ts;
-    if(dt>0.12)dt=0.12;
-
-    // advance cut line
-    cutProg += (cutDir===1 ? CUT_SPEED : -GROW_SPEED) * dt;
-    if(cutProg>=1){cutProg=1;cutDir=-1;}
-    if(cutProg<=0){cutProg=0;cutDir=1;}
-
-    ctx.clearRect(0,0,W,H);
-
-    // ground
-    var grd=ctx.createLinearGradient(0,H-10,0,H);
-    grd.addColorStop(0,'#1d3d1d');
-    grd.addColorStop(1,'#0e200e');
-    ctx.fillStyle=grd;
-    ctx.fillRect(0,H-10,W,10);
-
-    var t=ts/1000;
-
-    for(var i=0;i<blades.length;i++){
-      var b=blades[i];
-      // Each blade's current height:
-      // cutProg=0 → full height. cutProg=1 → stubble (6% of max).
-      // The cut descends from TIP to BASE: at cutProg, the blade
-      // is trimmed so its visible height = maxH * (1 - cutProg) + stubble
-      var stubble=b.maxH*0.06;
-      var currentH = b.maxH*(1-cutProg) + stubble;
-      // slightly randomise per blade so cut looks natural not perfectly flat
-      currentH += (Math.random()-0.5)*b.maxH*0.02;
-
-      var sway = Math.sin(t*b.freq+b.phase)*b.amp*(cutProg>0.85?0.15:1-cutProg*0.9);
-      var baseY=H-10;
-      var tipX=b.x+sway;
-      var tipY=baseY-currentH;
-
-      // color: tall=dark green, short=lighter yellowish green
-      var mix=1-cutProg;
-      var rr=Math.round(b.r*(1+cutProg*3));
-      var gg=Math.round(b.g*(0.7+mix*0.3+cutProg*0.5));
-      var bb=Math.round(b.r*(0.5+cutProg));
-      ctx.strokeStyle='rgb('+Math.min(rr,120)+','+Math.min(gg,160)+','+Math.min(bb,30)+')';
-      ctx.lineWidth=b.w*(0.6+mix*0.4);
-      ctx.lineCap='round';
-      ctx.beginPath();
-      ctx.moveTo(b.x,baseY);
-      ctx.bezierCurveTo(
-        b.x+sway*0.15, baseY-currentH*0.35,
-        b.x+sway*0.55, baseY-currentH*0.68,
-        tipX, tipY
-      );
-      ctx.stroke();
-    }
-
-    // horizontal cut line — glowing streak descending
-    if(cutDir===1 && cutProg>0 && cutProg<1){
-      // cut line Y position = bottom of canvas - (1-cutProg)*maxPossibleH
-      // approximate: line sits at average blade tip of just-cut blades
-      var avgMaxH=H*0.71;
-      var lineY=(H-10) - avgMaxH*(1-cutProg);
-      var lg=ctx.createLinearGradient(0,lineY-3,0,lineY+3);
-      lg.addColorStop(0,'rgba(140,255,140,0)');
-      lg.addColorStop(0.5,'rgba(140,255,140,0.22)');
-      lg.addColorStop(1,'rgba(140,255,140,0)');
-      ctx.fillStyle=lg;
-      ctx.fillRect(0,lineY-3,W,6);
-    }
-
-    requestAnimationFrame(draw);
-  }
-
-  function init(){
-    resize();
-    lastTime=performance.now();
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize',function(){resize();cutProg=0;cutDir=1;},false);
-  // wait for layout
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',init);
-  } else {
-    setTimeout(init,50);
-  }
-})();
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:0.06,rootMargin:'0px 0px -40px 0px'});rvs.forEach(function(el){io.observe(el)})}
+else{rvs.forEach(function(el){el.classList.add('on')})}
+function faqT(row){var o=row.classList.contains('open');document.querySelectorAll('.faq-row.open').forEach(function(r){r.classList.remove('open')});if(!o)row.classList.add('open');}
+var ftr=document.querySelector('footer');
+window.addEventListener('scroll',function(){if(!ftr||!bub)return;var r=ftr.getBoundingClientRect();if(r.top<window.innerHeight-50)bub.classList.add('gone');else if(!mOpen)bub.classList.remove('gone');},{passive:true});
 </script>
 </body>
 </html>
