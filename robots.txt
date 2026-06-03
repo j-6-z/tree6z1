@@ -1,0 +1,7 @@
+# tree6z — Saskatoon property maintenance
+# https://tree6z.ca
+
+User-agent: *
+Allow: /
+
+Sitemap: https://tree6z.ca/sitemap.xml
