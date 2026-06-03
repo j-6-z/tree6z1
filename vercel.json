@@ -1,19 +1,69 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "headers": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
-      ]
+      "src": "*.html",
+      "use": "@vercel/static"
     },
     {
-      "source": "/(.*).(js|css|png|jpg|jpeg|svg|webp|ico|woff2)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "src": "images/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/windows",
+      "destination": "/windows.html"
+    },
+    {
+      "source": "/lawn-care",
+      "destination": "/lawn-care.html"
+    },
+    {
+      "source": "/leaf-removal",
+      "destination": "/leaf-removal.html"
+    },
+    {
+      "source": "/spring-cleanup",
+      "destination": "/spring-cleanup.html"
+    },
+    {
+      "source": "/snow-removal",
+      "destination": "/snow-removal.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/images/(.*)",
+      "destination": "/images/$1"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/public/favicon.ico"
+    },
+    {
+      "source": "/favicon.svg",
+      "destination": "/public/favicon.svg"
+    },
+    {
+      "source": "/favicon-96x96.png",
+      "destination": "/public/favicon-96x96.png"
+    },
+    {
+      "source": "/apple-touch-icon.png",
+      "destination": "/public/apple-touch-icon.png"
+    },
+    {
+      "source": "/site.webmanifest",
+      "destination": "/public/site.webmanifest"
     }
   ]
 }
