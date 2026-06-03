@@ -1,69 +1,31 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "images/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    }
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/static" },
+    { "src": "*.xml", "use": "@vercel/static" },
+    { "src": "*.txt", "use": "@vercel/static" },
+    { "src": "images/**", "use": "@vercel/static" },
+    { "src": "public/**", "use": "@vercel/static" }
   ],
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/favicon.ico", "destination": "/public/favicon.ico" },
+    { "source": "/favicon.svg", "destination": "/public/favicon.svg" },
+    { "source": "/favicon-96x96.png", "destination": "/public/favicon-96x96.png" },
+    { "source": "/apple-touch-icon.png", "destination": "/public/apple-touch-icon.png" },
+    { "source": "/site.webmanifest", "destination": "/public/site.webmanifest" }
+  ],
+  "headers": [
     {
-      "source": "/windows",
-      "destination": "/windows.html"
-    },
-    {
-      "source": "/lawn-care",
-      "destination": "/lawn-care.html"
-    },
-    {
-      "source": "/leaf-removal",
-      "destination": "/leaf-removal.html"
-    },
-    {
-      "source": "/spring-cleanup",
-      "destination": "/spring-cleanup.html"
-    },
-    {
-      "source": "/snow-removal",
-      "destination": "/snow-removal.html"
-    },
-    {
-      "source": "/",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/images/(.*)",
-      "destination": "/images/$1"
-    },
-    {
-      "source": "/favicon.ico",
-      "destination": "/public/favicon.ico"
-    },
-    {
-      "source": "/favicon.svg",
-      "destination": "/public/favicon.svg"
-    },
-    {
-      "source": "/favicon-96x96.png",
-      "destination": "/public/favicon-96x96.png"
-    },
-    {
-      "source": "/apple-touch-icon.png",
-      "destination": "/public/apple-touch-icon.png"
-    },
-    {
-      "source": "/site.webmanifest",
-      "destination": "/public/site.webmanifest"
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
     }
   ]
 }
