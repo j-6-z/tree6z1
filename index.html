@@ -53,8 +53,10 @@ svg{stroke:currentColor;fill:none;stroke-width:2}
 .btn-line:hover{background:var(--ink);color:var(--paper)}
 
 /* hero */
-.hero{padding:4rem 1.5rem 4.5rem;border-bottom:1px solid var(--rule)}
-.hero-grid{display:grid;grid-template-columns:1fr 360px;gap:3.5rem;align-items:center}
+.hero{position:relative;overflow:hidden;padding:4rem 1.5rem 4.5rem;border-bottom:1px solid var(--rule)}
+.hero::before{content:"";position:absolute;top:50%;right:-6%;width:680px;height:680px;transform:translateY(-50%);background:radial-gradient(circle,rgba(126,199,122,0.18),rgba(126,199,122,0) 60%);pointer-events:none;z-index:0}
+.hero-grid{position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:1fr 420px;gap:3.5rem;align-items:center}
 .hero h1{font-family:var(--d);font-size:clamp(2.6rem,7vw,5.2rem);line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:1.25rem}
 .hero h1 .u{position:relative}
 .hero h1 .u::after{content:"";position:absolute;left:0;right:0;bottom:0.06em;height:0.07em;background:var(--moss)}
@@ -263,13 +265,13 @@ svg{stroke:currentColor;fill:none;stroke-width:2}
 
 /* hero grass globe */
 .hero-globe{display:flex;flex-direction:column;align-items:center;gap:1rem}
-.t6globe{width:100%;max-width:340px;height:auto;overflow:visible}
+.t6globe{width:100%;max-width:430px;height:auto;overflow:visible;filter:drop-shadow(0 18px 40px rgba(20,40,18,0.22))}
 .hero-globe .cap{display:flex;gap:0.65rem;flex-wrap:wrap;justify-content:center;font-family:var(--m);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mute)}
 .hero-globe .cap span{display:inline-flex;align-items:center;gap:0.35rem}
 .hero-globe .cap span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--moss)}
 .hero-globe .cap b{color:var(--moss);font-weight:500}
-@media(max-width:1000px){.t6globe{max-width:300px}}
-@media(max-width:520px){.t6globe{max-width:248px}.hero-grid{gap:2rem}}
+@media(max-width:1000px){.t6globe{max-width:360px}.hero::before{width:480px;height:480px;right:-20%}}
+@media(max-width:520px){.t6globe{max-width:300px}.hero-grid{gap:1.5rem}.hero::before{display:none}}
 @media(prefers-reduced-motion:reduce){.t6globe *{animation:none!important}}
 </style>
 </head>
@@ -289,237 +291,303 @@ svg{stroke:currentColor;fill:none;stroke-width:2}
       </div>
     </div>
     <div class="hero-globe">
-      <svg class="t6globe" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rotating grassy globe with wildflowers">
+      <svg class="t6globe" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Glowing rotating grass planet with wildflowers">
         <defs>
-          <clipPath id="gclip"><circle cx="180" cy="180" r="148"/></clipPath>
-          <linearGradient id="gfield" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#3f7235"/>
-            <stop offset="1" stop-color="#22451e"/>
-          </linearGradient>
-          <radialGradient id="gshade" cx="0.36" cy="0.30" r="0.9">
-            <stop offset="0" stop-color="#d8f0d2" stop-opacity="0.55"/>
-            <stop offset="0.38" stop-color="#d8f0d2" stop-opacity="0"/>
-            <stop offset="0.74" stop-color="#0b1c0a" stop-opacity="0"/>
-            <stop offset="1" stop-color="#0b1c0a" stop-opacity="0.72"/>
-          </radialGradient>
-          <!-- one grass blade, tip up, base at origin -->
+          <clipPath id="gclip"><circle cx="220" cy="206" r="148"/></clipPath>
+          <linearGradient id="gfield" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4e8443"/><stop offset="1" stop-color="#1d3c19"/></linearGradient>
+          <radialGradient id="gshade" cx="0.34" cy="0.27" r="0.92"><stop offset="0" stop-color="#e0f6da" stop-opacity="0.6"/><stop offset="0.36" stop-color="#e0f6da" stop-opacity="0"/><stop offset="0.72" stop-color="#081807" stop-opacity="0"/><stop offset="1" stop-color="#08160a" stop-opacity="0.78"/></radialGradient>
+          <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5"><stop offset="0.45" stop-color="#7ec77a" stop-opacity="0.0"/><stop offset="0.62" stop-color="#7ec77a" stop-opacity="0.28"/><stop offset="0.8" stop-color="#7ec77a" stop-opacity="0.08"/><stop offset="1" stop-color="#7ec77a" stop-opacity="0"/></radialGradient>
+          <linearGradient id="rimgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ecffe7" stop-opacity="0.95"/><stop offset="0.42" stop-color="#bfe9b9" stop-opacity="0.2"/><stop offset="0.7" stop-color="#bfe9b9" stop-opacity="0"/></linearGradient>
+          <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4"/></filter>
           <g id="bl"><path d="M0 0 C -1.4 -6 -0.9 -12 0 -18 C 0.9 -12 1.4 -6 0 0 Z" fill="currentColor"/></g>
-          <!-- flowers -->
           <g id="fl1"><g fill="#f3eee2"><ellipse cx="0" cy="-4" rx="1.9" ry="3.4"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(72)"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(144)"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(216)"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(288)"/></g><circle r="2.1" fill="#e8c45f"/></g>
           <g id="fl2"><g fill="#f7d6e0"><ellipse cx="0" cy="-4" rx="1.9" ry="3.4"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(72)"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(144)"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(216)"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(288)"/></g><circle r="2.1" fill="#e8c45f"/></g>
           <g id="fl3"><g fill="#fff3c4"><ellipse cx="0" cy="-4" rx="1.9" ry="3.4"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(72)"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(144)"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(216)"/><ellipse cx="0" cy="-4" rx="1.9" ry="3.4" transform="rotate(288)"/></g><circle r="2" fill="#c98a2e"/></g>
-          <!-- the scrolling surface, authored once -->
-          <g id="t6strip">
-            <circle cx="261.2" cy="280.5" r="0.7" fill="#1f361e" opacity="0.35"/>
-            <circle cx="262.8" cy="225.2" r="1.1" fill="#1f361e" opacity="0.23"/>
-            <circle cx="325.6" cy="204.5" r="1.1" fill="#1f361e" opacity="0.21"/>
-            <circle cx="77.0" cy="99.2" r="0.8" fill="#1f361e" opacity="0.23"/>
-            <circle cx="42.1" cy="254.6" r="1.4" fill="#1f361e" opacity="0.22"/>
-            <circle cx="164.7" cy="229.3" r="0.6" fill="#1f361e" opacity="0.32"/>
-            <circle cx="307.1" cy="142.0" r="0.7" fill="#1f361e" opacity="0.21"/>
-            <circle cx="296.1" cy="217.8" r="1.0" fill="#1f361e" opacity="0.25"/>
-            <circle cx="228.2" cy="81.1" r="0.7" fill="#1f361e" opacity="0.33"/>
-            <circle cx="102.5" cy="249.3" r="0.9" fill="#1f361e" opacity="0.23"/>
-            <circle cx="271.4" cy="160.4" r="1.2" fill="#1f361e" opacity="0.22"/>
-            <circle cx="187.0" cy="168.0" r="0.6" fill="#1f361e" opacity="0.23"/>
-            <circle cx="57.3" cy="249.1" r="0.9" fill="#1f361e" opacity="0.34"/>
-            <circle cx="148.6" cy="189.4" r="1.3" fill="#1f361e" opacity="0.21"/>
-            <circle cx="234.6" cy="253.0" r="1.1" fill="#1f361e" opacity="0.19"/>
-            <circle cx="269.7" cy="189.5" r="1.2" fill="#1f361e" opacity="0.17"/>
-            <circle cx="74.6" cy="266.1" r="1.4" fill="#1f361e" opacity="0.29"/>
-            <circle cx="83.5" cy="90.1" r="1.0" fill="#1f361e" opacity="0.18"/>
-            <circle cx="217.3" cy="109.9" r="0.8" fill="#1f361e" opacity="0.22"/>
-            <circle cx="161.3" cy="130.5" r="1.0" fill="#1f361e" opacity="0.27"/>
-            <circle cx="266.6" cy="119.5" r="0.8" fill="#1f361e" opacity="0.34"/>
-            <circle cx="312.7" cy="122.0" r="0.9" fill="#1f361e" opacity="0.25"/>
-            <circle cx="301.9" cy="217.5" r="0.6" fill="#1f361e" opacity="0.29"/>
-            <circle cx="108.7" cy="216.1" r="1.2" fill="#1f361e" opacity="0.17"/>
-            <circle cx="280.6" cy="162.7" r="1.2" fill="#1f361e" opacity="0.35"/>
-            <circle cx="299.7" cy="172.5" r="1.1" fill="#1f361e" opacity="0.15"/>
-            <circle cx="322.7" cy="233.0" r="0.9" fill="#1f361e" opacity="0.35"/>
-            <circle cx="182.8" cy="275.4" r="1.0" fill="#1f361e" opacity="0.32"/>
-            <circle cx="101.7" cy="220.8" r="0.6" fill="#1f361e" opacity="0.29"/>
-            <circle cx="172.5" cy="113.8" r="0.9" fill="#1f361e" opacity="0.39"/>
-            <circle cx="270.9" cy="204.1" r="0.9" fill="#1f361e" opacity="0.16"/>
-            <circle cx="259.4" cy="87.7" r="0.8" fill="#1f361e" opacity="0.17"/>
-            <circle cx="204.8" cy="117.8" r="1.4" fill="#1f361e" opacity="0.36"/>
-            <circle cx="173.9" cy="226.0" r="0.6" fill="#1f361e" opacity="0.21"/>
-            <circle cx="91.6" cy="202.2" r="1.2" fill="#1f361e" opacity="0.17"/>
-            <circle cx="33.3" cy="170.5" r="1.2" fill="#1f361e" opacity="0.29"/>
-            <circle cx="224.4" cy="217.9" r="1.3" fill="#1f361e" opacity="0.29"/>
-            <circle cx="33.9" cy="278.9" r="1.1" fill="#1f361e" opacity="0.16"/>
-            <circle cx="281.5" cy="83.7" r="1.2" fill="#1f361e" opacity="0.40"/>
-            <circle cx="66.5" cy="212.6" r="1.1" fill="#1f361e" opacity="0.26"/>
-            <use href="#bl" transform="translate(156.9 138.2) rotate(12.6) scale(0.60)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(164.6 139.1) rotate(17.4) scale(0.77)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(165.9 139.3) rotate(-9.3) scale(0.66)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(162.3 137.4) rotate(19.2) scale(0.80)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(165.1 135.8) rotate(6.8) scale(0.73)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(128.9 144.0) rotate(-28.6) scale(1.08)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(123.0 147.6) rotate(-34.3) scale(1.11)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(125.5 146.1) rotate(-9.3) scale(1.61)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(147.4 222.7) rotate(-18.0) scale(1.31)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(148.3 223.8) rotate(-4.8) scale(1.17)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(144.4 222.2) rotate(-13.4) scale(1.28)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(151.8 222.6) rotate(-10.9) scale(1.33)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(96.0 205.4) rotate(14.0) scale(1.01)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(98.6 205.0) rotate(-34.0) scale(1.01)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(92.2 205.0) rotate(14.0) scale(0.82)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(96.1 204.7) rotate(-17.8) scale(0.94)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(92.3 203.8) rotate(-28.1) scale(0.91)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(93.2 207.5) rotate(5.7) scale(1.07)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(317.6 178.1) rotate(-3.4) scale(0.60)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(315.8 175.9) rotate(-30.6) scale(0.77)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(319.6 174.4) rotate(-20.0) scale(0.66)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(219.2 156.3) rotate(-19.6) scale(1.06)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(218.4 157.3) rotate(-13.1) scale(1.24)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(215.5 158.2) rotate(-0.7) scale(1.43)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(215.0 155.8) rotate(0.2) scale(1.40)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(111.2 128.6) rotate(-23.8) scale(1.15)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(114.8 128.8) rotate(20.7) scale(1.24)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(114.8 127.8) rotate(13.3) scale(1.04)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(134.0 92.0) rotate(2.8) scale(1.09)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(131.4 90.1) rotate(-3.3) scale(0.91)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(137.4 93.2) rotate(-6.5) scale(0.98)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(203.1 202.2) rotate(3.7) scale(1.24)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(205.4 202.3) rotate(-12.8) scale(0.94)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(203.5 203.0) rotate(-14.1) scale(1.29)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(198.8 203.9) rotate(-11.4) scale(1.32)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(208.0 204.1) rotate(3.4) scale(1.15)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(43.4 184.2) rotate(-34.5) scale(1.22)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(39.7 184.6) rotate(-15.1) scale(1.27)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(36.9 186.2) rotate(14.0) scale(1.23)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(347.1 225.1) rotate(-4.5) scale(1.26)" style="color:#7ec77a"/>
-            <use href="#bl" transform="translate(348.5 225.7) rotate(-2.6) scale(1.19)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(354.2 226.9) rotate(-5.1) scale(1.29)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(289.6 96.3) rotate(-28.5) scale(1.04)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(285.1 96.3) rotate(-27.4) scale(1.04)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(292.3 98.0) rotate(8.7) scale(0.96)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(74.4 154.8) rotate(-10.6) scale(1.15)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(69.9 155.8) rotate(6.8) scale(1.11)" style="color:#7ec77a"/>
-            <use href="#bl" transform="translate(69.8 157.0) rotate(12.3) scale(1.19)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(228.3 209.8) rotate(-24.3) scale(1.07)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(230.3 206.5) rotate(-23.6) scale(1.07)" style="color:#7ec77a"/>
-            <use href="#bl" transform="translate(228.1 208.6) rotate(-1.9) scale(1.20)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(230.5 207.6) rotate(-4.3) scale(1.07)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(71.8 232.1) rotate(-29.4) scale(1.14)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(70.9 231.5) rotate(-30.7) scale(1.31)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(67.0 231.1) rotate(-35.6) scale(1.29)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(248.5 184.1) rotate(-14.1) scale(1.14)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(245.7 185.0) rotate(35.2) scale(1.14)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(247.7 182.9) rotate(18.2) scale(0.99)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(251.1 183.5) rotate(12.1) scale(1.32)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(125.2 229.8) rotate(-3.6) scale(0.93)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(125.3 229.6) rotate(0.4) scale(0.66)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(117.1 230.4) rotate(18.0) scale(0.74)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(120.2 230.4) rotate(-3.5) scale(0.73)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(124.1 227.8) rotate(26.9) scale(0.72)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(160.7 299.9) rotate(11.5) scale(0.78)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(163.6 296.5) rotate(-35.3) scale(0.61)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(167.4 299.1) rotate(-18.8) scale(0.84)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(167.1 299.0) rotate(-28.2) scale(0.62)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(165.2 296.8) rotate(-24.1) scale(0.73)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(165.2 297.5) rotate(2.6) scale(0.66)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(102.0 127.3) rotate(22.0) scale(1.46)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(109.5 126.9) rotate(2.3) scale(1.46)" style="color:#7ec77a"/>
-            <use href="#bl" transform="translate(102.4 129.4) rotate(-8.1) scale(1.31)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(110.3 130.2) rotate(14.9) scale(1.31)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(109.6 127.3) rotate(18.7) scale(1.29)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(106.9 128.5) rotate(-18.2) scale(1.63)" style="color:#7ec77a"/>
-            <use href="#bl" transform="translate(248.1 69.5) rotate(7.5) scale(0.98)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(239.8 71.7) rotate(2.6) scale(1.14)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(248.2 71.8) rotate(1.5) scale(1.14)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(247.8 69.9) rotate(-25.9) scale(1.14)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(247.6 71.2) rotate(1.8) scale(1.24)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(244.3 72.0) rotate(-0.7) scale(0.86)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(214.8 129.6) rotate(1.1) scale(1.39)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(208.5 130.7) rotate(21.6) scale(1.44)" style="color:#7ec77a"/>
-            <use href="#bl" transform="translate(209.8 131.8) rotate(-20.8) scale(1.10)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(307.6 175.0) rotate(-28.3) scale(1.28)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(306.0 175.5) rotate(15.8) scale(1.34)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(304.8 175.4) rotate(1.8) scale(1.22)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(311.3 175.8) rotate(12.3) scale(1.20)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(305.2 173.8) rotate(-29.1) scale(1.02)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(277.0 154.3) rotate(-7.4) scale(1.16)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(278.1 155.8) rotate(-6.5) scale(1.32)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(285.5 153.6) rotate(20.5) scale(1.36)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(282.7 154.7) rotate(-12.3) scale(1.34)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(280.6 155.6) rotate(16.6) scale(1.33)" style="color:#7ec77a"/>
-            <use href="#bl" transform="translate(281.2 155.6) rotate(-13.2) scale(1.00)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(43.6 274.6) rotate(-33.0) scale(1.07)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(41.0 275.7) rotate(-24.5) scale(1.32)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(43.9 274.5) rotate(-29.4) scale(1.24)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(36.3 277.4) rotate(-13.5) scale(1.30)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(39.8 275.6) rotate(-23.7) scale(1.08)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(36.5 274.8) rotate(-35.8) scale(1.13)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(144.4 84.9) rotate(20.4) scale(0.75)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(154.0 83.4) rotate(-18.4) scale(0.87)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(152.9 81.2) rotate(9.9) scale(1.12)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(152.6 81.8) rotate(24.0) scale(0.84)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(146.6 82.9) rotate(-11.8) scale(0.92)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(242.6 157.4) rotate(21.2) scale(1.30)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(243.9 156.8) rotate(28.9) scale(1.01)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(245.4 159.9) rotate(22.8) scale(1.14)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(239.9 158.7) rotate(-16.6) scale(1.21)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(245.9 157.5) rotate(-16.9) scale(1.47)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(242.7 156.7) rotate(-9.1) scale(1.09)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(144.7 249.4) rotate(4.1) scale(1.45)" style="color:#7ec77a"/>
-            <use href="#bl" transform="translate(144.8 252.0) rotate(11.7) scale(1.46)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(140.9 248.4) rotate(7.0) scale(1.28)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(20.3 68.1) rotate(10.9) scale(1.09)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(19.1 68.4) rotate(0.9) scale(1.38)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(16.8 69.1) rotate(7.0) scale(1.01)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(16.1 69.1) rotate(-22.1) scale(1.34)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(56.6 253.0) rotate(-31.1) scale(1.12)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(59.3 252.6) rotate(-32.9) scale(0.99)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(60.7 252.1) rotate(-23.0) scale(1.00)" style="color:#4f8341"/>
-            <use href="#bl" transform="translate(55.0 250.6) rotate(-32.1) scale(0.90)" style="color:#5a8f4a"/>
-            <use href="#bl" transform="translate(58.7 251.5) rotate(-29.7) scale(0.94)" style="color:#244a20"/>
-            <use href="#bl" transform="translate(221.5 219.6) rotate(27.0) scale(1.13)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(221.2 217.0) rotate(-5.7) scale(1.29)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(219.7 218.7) rotate(-7.3) scale(1.21)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(219.2 217.4) rotate(33.2) scale(1.23)" style="color:#3c6b34"/>
-            <use href="#bl" transform="translate(220.3 219.3) rotate(21.8) scale(1.31)" style="color:#2d4a2b"/>
-            <use href="#bl" transform="translate(215.7 220.4) rotate(13.6) scale(1.02)" style="color:#3c6b34"/>
-            <use href="#fl1" transform="translate(188.1 107.7) rotate(27) scale(0.98)"/>
-            <use href="#fl1" transform="translate(246.5 165.4) rotate(225) scale(1.15)"/>
-            <use href="#fl1" transform="translate(96.8 164.5) rotate(208) scale(1.10)"/>
-            <use href="#fl1" transform="translate(76.7 98.6) rotate(1) scale(1.12)"/>
-            <use href="#fl1" transform="translate(293.4 225.2) rotate(354) scale(1.05)"/>
-            <use href="#fl1" transform="translate(170.0 184.3) rotate(111) scale(0.94)"/>
-            <use href="#fl1" transform="translate(202.6 259.2) rotate(325) scale(0.90)"/>
-            <use href="#fl3" transform="translate(244.0 116.7) rotate(317) scale(0.89)"/>
-            <use href="#fl3" transform="translate(112.0 236.0) rotate(338) scale(0.90)"/>
+          <g id="t6surf">
+            <circle cx="371.8" cy="105.8" r="1.1" fill="#16300f" opacity="0.14"/>
+            <circle cx="140.6" cy="135.9" r="0.7" fill="#16300f" opacity="0.37"/>
+            <circle cx="227.9" cy="233.0" r="0.8" fill="#16300f" opacity="0.40"/>
+            <circle cx="164.2" cy="318.7" r="1.4" fill="#16300f" opacity="0.32"/>
+            <circle cx="345.5" cy="176.1" r="0.6" fill="#16300f" opacity="0.13"/>
+            <circle cx="313.3" cy="337.6" r="1.5" fill="#16300f" opacity="0.27"/>
+            <circle cx="227.2" cy="300.5" r="0.8" fill="#16300f" opacity="0.26"/>
+            <circle cx="56.5" cy="267.2" r="1.3" fill="#16300f" opacity="0.23"/>
+            <circle cx="194.8" cy="252.3" r="1.3" fill="#16300f" opacity="0.36"/>
+            <circle cx="362.9" cy="299.3" r="1.1" fill="#16300f" opacity="0.27"/>
+            <circle cx="73.5" cy="272.0" r="0.8" fill="#16300f" opacity="0.25"/>
+            <circle cx="43.9" cy="199.1" r="1.1" fill="#16300f" opacity="0.17"/>
+            <circle cx="156.4" cy="149.0" r="1.0" fill="#16300f" opacity="0.27"/>
+            <circle cx="284.2" cy="212.0" r="1.1" fill="#16300f" opacity="0.25"/>
+            <circle cx="100.4" cy="194.9" r="1.4" fill="#16300f" opacity="0.20"/>
+            <circle cx="122.9" cy="228.6" r="1.5" fill="#16300f" opacity="0.34"/>
+            <circle cx="289.0" cy="297.5" r="1.4" fill="#16300f" opacity="0.15"/>
+            <circle cx="298.7" cy="67.1" r="1.1" fill="#16300f" opacity="0.27"/>
+            <circle cx="186.5" cy="195.4" r="0.7" fill="#16300f" opacity="0.23"/>
+            <circle cx="36.6" cy="194.3" r="1.2" fill="#16300f" opacity="0.18"/>
+            <circle cx="92.3" cy="169.0" r="0.9" fill="#16300f" opacity="0.36"/>
+            <circle cx="54.5" cy="285.9" r="1.0" fill="#16300f" opacity="0.35"/>
+            <circle cx="217.4" cy="265.4" r="1.5" fill="#16300f" opacity="0.24"/>
+            <circle cx="25.7" cy="198.1" r="1.4" fill="#16300f" opacity="0.39"/>
+            <circle cx="248.2" cy="162.1" r="0.7" fill="#16300f" opacity="0.21"/>
+            <circle cx="139.9" cy="100.8" r="1.3" fill="#16300f" opacity="0.36"/>
+            <circle cx="353.3" cy="77.1" r="1.2" fill="#16300f" opacity="0.25"/>
+            <circle cx="367.3" cy="349.0" r="0.8" fill="#16300f" opacity="0.35"/>
+            <circle cx="217.7" cy="73.5" r="1.0" fill="#16300f" opacity="0.30"/>
+            <circle cx="325.5" cy="105.9" r="1.2" fill="#16300f" opacity="0.32"/>
+            <circle cx="171.4" cy="236.2" r="0.9" fill="#16300f" opacity="0.22"/>
+            <circle cx="244.5" cy="193.6" r="0.8" fill="#16300f" opacity="0.28"/>
+            <circle cx="238.6" cy="128.4" r="1.0" fill="#16300f" opacity="0.40"/>
+            <circle cx="122.2" cy="101.1" r="0.9" fill="#16300f" opacity="0.35"/>
+            <circle cx="45.6" cy="287.0" r="1.5" fill="#16300f" opacity="0.28"/>
+            <circle cx="117.2" cy="251.0" r="0.8" fill="#16300f" opacity="0.13"/>
+            <circle cx="204.3" cy="77.9" r="1.4" fill="#16300f" opacity="0.19"/>
+            <circle cx="36.0" cy="307.2" r="0.8" fill="#16300f" opacity="0.17"/>
+            <circle cx="270.2" cy="168.3" r="1.0" fill="#16300f" opacity="0.17"/>
+            <circle cx="265.6" cy="321.6" r="0.6" fill="#16300f" opacity="0.32"/>
+            <circle cx="41.0" cy="323.4" r="1.1" fill="#16300f" opacity="0.36"/>
+            <circle cx="287.5" cy="256.9" r="1.5" fill="#16300f" opacity="0.25"/>
+            <circle cx="84.0" cy="280.2" r="1.3" fill="#16300f" opacity="0.38"/>
+            <circle cx="114.7" cy="314.2" r="1.4" fill="#16300f" opacity="0.33"/>
+            <circle cx="362.3" cy="143.6" r="1.0" fill="#16300f" opacity="0.37"/>
+            <circle cx="212.3" cy="72.7" r="1.0" fill="#16300f" opacity="0.15"/>
+            <use href="#bl" transform="translate(169.0 189.4) rotate(-8.9) scale(1.21)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(166.8 189.1) rotate(-4.0) scale(0.91)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(163.8 186.8) rotate(1.9) scale(1.06)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(164.0 186.3) rotate(19.8) scale(0.92)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(148.8 113.9) rotate(28.9) scale(1.04)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(155.8 114.1) rotate(30.5) scale(1.10)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(149.2 115.0) rotate(20.0) scale(0.80)" style="color:#86d182"/>
+            <use href="#bl" transform="translate(151.2 115.6) rotate(19.0) scale(0.85)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(328.7 138.7) rotate(-27.3) scale(0.94)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(322.4 136.8) rotate(19.3) scale(0.77)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(323.2 139.0) rotate(16.2) scale(0.80)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(319.9 136.1) rotate(18.0) scale(1.00)" style="color:#86d182"/>
+            <use href="#bl" transform="translate(329.0 137.0) rotate(-19.5) scale(1.03)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(325.3 136.4) rotate(18.1) scale(1.10)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(314.5 176.6) rotate(16.8) scale(0.89)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(315.1 176.4) rotate(18.8) scale(0.62)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(319.2 174.2) rotate(13.3) scale(0.84)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(25.8 331.6) rotate(7.3) scale(1.01)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(23.1 333.2) rotate(-11.4) scale(1.26)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(24.6 332.5) rotate(-9.4) scale(1.21)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(24.9 329.7) rotate(14.0) scale(1.27)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(27.6 332.5) rotate(-27.4) scale(1.34)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(22.3 330.6) rotate(-20.9) scale(1.04)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(374.0 124.6) rotate(29.1) scale(1.20)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(366.5 125.9) rotate(-12.5) scale(0.86)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(366.3 123.7) rotate(12.8) scale(0.90)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(369.6 125.8) rotate(-3.2) scale(1.10)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(366.5 124.2) rotate(22.5) scale(1.16)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(368.9 123.8) rotate(1.7) scale(1.01)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(60.2 236.2) rotate(-11.3) scale(1.21)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(62.7 236.6) rotate(4.5) scale(1.12)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(59.8 239.9) rotate(-17.7) scale(1.32)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(59.9 239.1) rotate(17.6) scale(1.50)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(60.6 236.7) rotate(6.6) scale(1.36)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(61.2 256.7) rotate(-21.0) scale(1.18)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(65.5 258.6) rotate(-10.2) scale(1.05)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(65.6 258.2) rotate(8.7) scale(1.04)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(65.4 256.8) rotate(-1.9) scale(1.25)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(63.1 259.0) rotate(20.8) scale(0.87)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(69.6 257.7) rotate(-18.1) scale(1.20)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(251.3 163.2) rotate(17.9) scale(1.07)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(252.7 159.4) rotate(-8.8) scale(1.11)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(254.9 162.0) rotate(19.5) scale(1.44)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(253.4 162.3) rotate(16.5) scale(1.16)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(246.8 160.7) rotate(21.6) scale(1.26)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(172.6 113.4) rotate(-24.3) scale(1.20)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(174.5 113.0) rotate(4.7) scale(1.03)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(177.5 114.1) rotate(-9.7) scale(1.24)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(181.3 113.6) rotate(-15.9) scale(0.97)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(304.6 262.2) rotate(-9.5) scale(0.73)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(308.3 261.4) rotate(-23.9) scale(0.72)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(304.8 261.7) rotate(24.9) scale(1.04)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(214.6 118.8) rotate(23.0) scale(0.76)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(214.4 118.1) rotate(22.0) scale(0.79)" style="color:#86d182"/>
+            <use href="#bl" transform="translate(214.6 118.6) rotate(31.7) scale(1.05)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(346.1 243.2) rotate(9.5) scale(0.92)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(345.6 243.4) rotate(5.4) scale(0.92)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(349.2 243.6) rotate(-13.0) scale(0.97)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(350.7 244.3) rotate(1.3) scale(0.78)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(347.5 244.4) rotate(-5.6) scale(0.76)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(205.3 288.5) rotate(-4.7) scale(1.69)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(209.5 289.5) rotate(-31.8) scale(1.42)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(203.9 287.8) rotate(-13.5) scale(1.32)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(290.3 182.6) rotate(-30.3) scale(0.70)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(286.1 180.0) rotate(17.9) scale(0.91)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(289.0 181.6) rotate(-15.2) scale(0.70)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(289.1 180.0) rotate(10.2) scale(0.86)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(290.3 180.0) rotate(-7.5) scale(0.79)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(292.8 182.8) rotate(9.1) scale(0.68)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(121.3 144.5) rotate(4.6) scale(1.34)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(127.1 142.0) rotate(-30.0) scale(1.33)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(118.8 143.5) rotate(-33.2) scale(1.13)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(118.2 141.8) rotate(16.0) scale(1.56)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(123.1 144.4) rotate(-11.5) scale(1.52)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(120.8 324.7) rotate(-16.2) scale(0.79)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(112.4 325.0) rotate(14.0) scale(0.67)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(117.7 323.1) rotate(-34.9) scale(0.89)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(116.8 321.8) rotate(13.0) scale(0.71)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(113.2 324.7) rotate(-30.8) scale(0.90)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(119.6 323.5) rotate(-13.7) scale(0.68)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(106.2 71.6) rotate(21.3) scale(1.52)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(110.9 71.7) rotate(23.0) scale(1.46)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(108.7 70.2) rotate(13.4) scale(1.14)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(105.3 276.9) rotate(-12.1) scale(1.51)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(100.7 279.1) rotate(-17.1) scale(1.43)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(101.3 277.9) rotate(15.6) scale(1.36)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(268.5 211.1) rotate(35.8) scale(1.42)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(268.4 211.2) rotate(13.2) scale(1.20)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(265.6 212.2) rotate(8.3) scale(1.17)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(262.3 210.4) rotate(13.2) scale(1.54)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(266.5 213.1) rotate(36.4) scale(1.38)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(256.1 344.7) rotate(19.3) scale(1.24)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(258.4 347.4) rotate(-10.9) scale(1.43)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(258.0 348.0) rotate(23.9) scale(1.68)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(257.6 347.4) rotate(33.9) scale(1.41)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(261.7 346.4) rotate(5.3) scale(1.39)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(256.3 346.8) rotate(24.2) scale(1.12)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(44.4 207.4) rotate(-26.0) scale(1.64)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(48.6 207.0) rotate(5.6) scale(1.65)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(43.5 208.0) rotate(6.6) scale(1.23)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(46.8 207.6) rotate(-11.3) scale(1.59)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(48.6 208.9) rotate(0.3) scale(1.56)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(43.6 206.3) rotate(0.4) scale(1.63)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(332.7 196.5) rotate(-16.0) scale(0.64)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(329.1 196.4) rotate(11.1) scale(0.69)" style="color:#86d182"/>
+            <use href="#bl" transform="translate(334.0 198.0) rotate(12.0) scale(0.75)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(44.8 228.7) rotate(-0.6) scale(0.59)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(40.9 226.9) rotate(-15.4) scale(0.56)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(40.1 229.6) rotate(31.9) scale(0.71)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(39.9 230.5) rotate(27.2) scale(0.55)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(44.0 229.3) rotate(-1.9) scale(0.79)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(45.3 227.1) rotate(26.4) scale(0.55)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(302.4 304.9) rotate(8.1) scale(0.76)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(303.2 305.1) rotate(-6.5) scale(0.87)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(301.7 307.8) rotate(4.1) scale(0.84)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(303.2 307.0) rotate(7.4) scale(0.93)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(307.1 303.9) rotate(-8.9) scale(0.68)" style="color:#86d182"/>
+            <use href="#bl" transform="translate(302.9 307.6) rotate(4.3) scale(0.80)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(327.9 115.4) rotate(-34.7) scale(1.12)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(332.4 115.6) rotate(-8.4) scale(1.10)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(330.9 115.9) rotate(-18.2) scale(1.07)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(329.1 115.7) rotate(3.7) scale(1.34)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(136.5 221.1) rotate(10.5) scale(1.36)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(134.1 219.1) rotate(5.9) scale(1.48)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(142.0 218.7) rotate(-23.2) scale(1.07)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(141.8 217.8) rotate(6.3) scale(1.07)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(18.3 130.3) rotate(-4.6) scale(1.19)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(14.4 132.2) rotate(15.7) scale(1.12)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(16.6 132.3) rotate(-26.8) scale(0.95)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(111.0 143.3) rotate(-8.5) scale(1.36)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(114.2 144.7) rotate(-0.9) scale(1.28)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(117.0 142.4) rotate(-5.6) scale(1.65)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(108.7 141.4) rotate(-12.4) scale(1.19)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(117.1 142.4) rotate(-19.1) scale(1.14)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(111.3 143.7) rotate(-28.8) scale(1.53)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(339.6 301.1) rotate(14.5) scale(1.30)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(337.0 302.6) rotate(-13.4) scale(1.35)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(336.9 303.9) rotate(17.4) scale(1.09)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(334.0 302.2) rotate(-17.9) scale(0.98)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(338.2 300.1) rotate(-8.9) scale(0.95)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(341.3 302.9) rotate(23.7) scale(1.26)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(195.7 77.0) rotate(25.0) scale(0.67)" style="color:#86d182"/>
+            <use href="#bl" transform="translate(193.9 77.1) rotate(25.3) scale(0.81)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(191.6 75.6) rotate(27.1) scale(0.57)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(187.5 77.3) rotate(16.3) scale(0.75)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(336.6 237.0) rotate(-28.8) scale(0.99)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(330.6 236.2) rotate(-3.0) scale(0.91)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(336.9 237.7) rotate(19.2) scale(0.96)" style="color:#3c6b34"/>
+            <use href="#bl" transform="translate(221.2 311.4) rotate(-28.6) scale(1.28)" style="color:#23491f"/>
+            <use href="#bl" transform="translate(224.0 310.4) rotate(-12.5) scale(1.24)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(223.1 310.2) rotate(-15.8) scale(1.25)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(222.2 311.0) rotate(-4.8) scale(1.29)" style="color:#2d4a2b"/>
+            <use href="#bl" transform="translate(138.4 189.1) rotate(1.0) scale(1.11)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(133.1 187.0) rotate(15.3) scale(0.96)" style="color:#86d182"/>
+            <use href="#bl" transform="translate(141.3 189.2) rotate(1.5) scale(1.07)" style="color:#4f8341"/>
+            <use href="#bl" transform="translate(142.3 189.1) rotate(26.8) scale(1.09)" style="color:#5f9a4e"/>
+            <use href="#bl" transform="translate(141.6 188.4) rotate(14.2) scale(0.82)" style="color:#23491f"/>
+            <use href="#fl3" transform="translate(189.1 251.6) rotate(335) scale(1.02)"/>
+            <use href="#fl1" transform="translate(132.0 281.8) rotate(30) scale(1.26)"/>
+            <use href="#fl2" transform="translate(266.2 231.5) rotate(99) scale(1.06)"/>
+            <use href="#fl1" transform="translate(158.6 159.6) rotate(57) scale(1.18)"/>
+            <use href="#fl3" transform="translate(147.5 221.1) rotate(279) scale(1.14)"/>
+            <use href="#fl3" transform="translate(235.2 182.2) rotate(69) scale(1.09)"/>
+            <use href="#fl2" transform="translate(280.3 178.2) rotate(324) scale(1.23)"/>
+            <use href="#fl1" transform="translate(40.3 321.8) rotate(98) scale(1.14)"/>
+            <use href="#fl2" transform="translate(329.1 142.1) rotate(277) scale(1.13)"/>
+            <use href="#fl1" transform="translate(224.2 97.7) rotate(64) scale(1.33)"/>
+            <use href="#fl3" transform="translate(229.9 294.0) rotate(21) scale(0.85)"/>
           </g>
         </defs>
       
+        <!-- atmosphere halo (pulses softly) -->
+        <circle cx="220" cy="206" r="210" fill="url(#halo)">
+          <animate attributeName="opacity" values="0.85;1;0.85" dur="5.5s" repeatCount="indefinite"/>
+        </circle>
+      
         <!-- ground shadow -->
-        <ellipse cx="180" cy="342" rx="116" ry="12" fill="#0b1c0a" opacity="0.13"/>
+        <ellipse cx="220" cy="398" rx="120" ry="13" fill="#0b1c0a" opacity="0.14"/>
       
-        <!-- sphere -->
-        <g clip-path="url(#gclip)">
-          <circle cx="180" cy="180" r="148" fill="url(#gfield)"/>
-          <g>
-            <use href="#t6strip" x="0" y="0"/>
-            <use href="#t6strip" x="360" y="0"/>
-            <animateTransform attributeName="transform" type="translate" from="0 0" to="-360 0" dur="28s" repeatCount="indefinite"/>
-          </g>
-          <circle cx="180" cy="180" r="148" fill="url(#gshade)"/>
-        </g>
-      
-        <!-- rim -->
-        <circle cx="180" cy="180" r="148" fill="none" stroke="#16300f" stroke-width="2.5" opacity="0.55"/>
-        <circle cx="180" cy="180" r="146" fill="none" stroke="#bfe3bb" stroke-width="1" opacity="0.3"/>
-      
-        <!-- flowers + tall blades poking over the top, gently swaying -->
+        <!-- float bob: ring + planet + rim + flowers all drift together -->
         <g>
-          <g style="color:#3c6b34"><use href="#bl" transform="translate(168 40) rotate(-8) scale(1.5)"/></g>
-          <g style="color:#4f8341"><use href="#bl" transform="translate(176 38) rotate(4) scale(1.9)"/></g>
-          <g style="color:#5a8f4a"><use href="#bl" transform="translate(186 41) rotate(12) scale(1.6)"/></g>
-          <use href="#fl1" transform="translate(178 30) scale(1.25)"/>
-          <use href="#fl2" transform="translate(192 40) scale(1.0)"/>
-          <animateTransform attributeName="transform" type="rotate" values="-3.5 180 150; 3.5 180 150; -3.5 180 150" dur="5.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
+          <animateTransform attributeName="transform" type="translate" values="0 0;0 -8;0 0" dur="6.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      
+          <ellipse cx="220" cy="206" rx="196" ry="116" fill="none" stroke="#a8d3a4" stroke-width="1.4" opacity="0.28" transform="rotate(-13 220 206)"/>
+      
+          <g clip-path="url(#gclip)">
+            <circle cx="220" cy="206" r="148" fill="url(#gfield)"/>
+            <g>
+              <use href="#t6surf" x="0" y="0"/>
+              <use href="#t6surf" x="380" y="0"/>
+              <animateTransform attributeName="transform" type="translate" from="0 0" to="-380 0" dur="30s" repeatCount="indefinite"/>
+            </g>
+            <circle cx="220" cy="206" r="148" fill="url(#gshade)"/>
+          </g>
+      
+          <!-- lit atmospheric rim -->
+          <circle cx="220" cy="206" r="148" fill="none" stroke="url(#rimgrad)" stroke-width="4.5" filter="url(#soft)"/>
+          <circle cx="220" cy="206" r="148" fill="none" stroke="#14300d" stroke-width="2.5" opacity="0.5"/>
+      
+          <path d="M 24 206 A 196 116 0 0 0 220 322 A 196 116 0 0 0 416 206" fill="none" stroke="#c7e8c2" stroke-width="1.8" opacity="0.5" transform="rotate(-13 220 206)"/>
+      
+          <!-- flowers + tall blades poking over the top, gently swaying -->
+          <g>
+            <g style="color:#3c6b34"><use href="#bl" transform="translate(208 64) rotate(-8) scale(1.6)"/></g>
+            <g style="color:#4f8341"><use href="#bl" transform="translate(218 60) rotate(4) scale(2.0)"/></g>
+            <g style="color:#5f9a4e"><use href="#bl" transform="translate(230 65) rotate(12) scale(1.7)"/></g>
+            <use href="#fl1" transform="translate(217 52) scale(1.3)"/>
+            <use href="#fl2" transform="translate(233 62) scale(1.05)"/>
+            <animateTransform attributeName="transform" type="rotate" values="-3.5 220 150; 3.5 220 150; -3.5 220 150" dur="5.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+          </g>
         </g>
+      
+        <!-- drifting petals -->
+        <g transform="translate(300 296)"><g opacity="0">
+        <use href="#fl2" transform="scale(0.75)"/>
+        <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.2;0.7;1" dur="7.5s" begin="-1.5s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 0;-9 -50" dur="7.5s" begin="-1.5s" repeatCount="indefinite"/>
+      </g></g>
+        <g transform="translate(126 168)"><g opacity="0">
+        <use href="#fl1" transform="scale(0.62)"/>
+        <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.2;0.7;1" dur="8.5s" begin="-4s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 0;7 -44" dur="8.5s" begin="-4s" repeatCount="indefinite"/>
+      </g></g>
+        <g transform="translate(352 232)"><g opacity="0">
+        <use href="#fl3" transform="scale(0.7)"/>
+        <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.2;0.7;1" dur="7s" begin="-2.8s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 0;-6 -52" dur="7s" begin="-2.8s" repeatCount="indefinite"/>
+      </g></g>
+        <g transform="translate(186 320)"><g opacity="0">
+        <use href="#fl2" transform="scale(0.66)"/>
+        <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.2;0.7;1" dur="9s" begin="-6s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 0;5 -46" dur="9s" begin="-6s" repeatCount="indefinite"/>
+      </g></g>
+        <g transform="translate(252 120)"><g opacity="0">
+        <use href="#fl1" transform="scale(0.7)"/>
+        <animate attributeName="opacity" values="0;0.85;0.85;0" keyTimes="0;0.2;0.7;1" dur="6.8s" begin="-3.5s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="translate" values="0 0;-8 -40" dur="6.8s" begin="-3.5s" repeatCount="indefinite"/>
+      </g></g>
       </svg>
       <div class="cap"><span><b>On call</b> today</span><span><b>Same-day</b> response</span><span><b>Fully</b> insured</span></div>
     </div>
