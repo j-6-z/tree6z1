@@ -45,6 +45,9 @@
   .t6-burger.on i:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
   .t6-drawer{position:fixed;inset:0;z-index:80;background:var(--paper);transform:translateX(100%);transition:transform 0.4s var(--ease);display:flex;flex-direction:column;padding:5rem 2rem 3rem;overflow-y:auto}
   .t6-drawer.on{transform:translateX(0)}
+  .t6-close{position:absolute;top:1.1rem;right:1.1rem;width:46px;height:46px;border-radius:50%;border:1px solid var(--rule);background:none;color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s,color 0.2s,border-color 0.2s,transform 0.2s;-webkit-tap-highlight-color:transparent}
+  .t6-close:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:rotate(90deg)}
+  .t6-close svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2}
   .t6-drawer a.dl{font-family:var(--d);font-size:clamp(2rem,8vw,3rem);letter-spacing:-0.02em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:0.5rem 0;border-bottom:1px solid var(--rule-soft);transition:color 0.2s,padding-left 0.2s}
   .t6-drawer a.dl:hover,.t6-drawer a.dl.active{color:var(--moss);padding-left:0.4rem}
   .t6-dfoot{margin-top:auto;padding-top:2rem;border-top:1px solid var(--rule)}
@@ -97,6 +100,7 @@
       '</div>' +
     '</nav>' +
     '<div class="t6-drawer" id="t6drawer" aria-hidden="true">' +
+      '<button class="t6-close" id="t6close" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
       '<a class="dl" href="/">Home</a>' +
       '<a class="dl" href="/#svc-lawn">Lawn Care</a>' +
       '<a class="dl" href="/#svc-leaf">Leaf Removal</a>' +
@@ -142,6 +146,8 @@
     document.body.style.overflow = open ? 'hidden' : '';
   }
   burger.addEventListener('click', function () { toggle(); });
+  var closeBtn = document.getElementById('t6close');
+  if (closeBtn) closeBtn.addEventListener('click', function () { toggle(false); });
   drawer.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', function () { toggle(false); });
   });
